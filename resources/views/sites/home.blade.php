@@ -7,7 +7,7 @@
                 <main id="main" class="site-main" itemprop="mainContentOfPage">
                     <aside id="shopy-products-2" class="widget widget-shopy-products">
                         <h3 class="widget-title">
-                            <span>Best Selling</span>
+                            <span> @lang('sites.best_selling') </span>
                         </h3>
                         <div class="row" style="padding-bottom: 70px">
                             <div class="col col-sm-3">
@@ -176,7 +176,7 @@
                     </aside>
                     <aside id="shopy-products-2" class="widget widget-shopy-products">
                         <h3 class="widget-title">
-                            <span>All Product</span>
+                            <span> @lang('sites.all') </span>
                         </h3>
                         <div class="row" style="padding-bottom: 70px">
                             <div class="col col-sm-3">
