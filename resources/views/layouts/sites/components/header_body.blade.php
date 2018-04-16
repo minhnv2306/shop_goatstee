@@ -18,7 +18,7 @@
         </div>
         <div class="header-cart">
             <span>
-                <a class="cart-contents" href="#" title="View your shopping cart">
+                <a class="cart-contents" href="#" title="{{ trans('sites.view_cart') }}">
                     <span class="total">$ 150</span>
                     <i class="fa fa-shopping-cart"></i>
                     <span class="count">3</span>
@@ -32,16 +32,16 @@
         <div class="menu-wrapper">
             <ul id="menu-primary-items" class="menu-primary-items">
                 <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33">
-                    <a href="{{ route('sites.about-us') }}">About Us</a>
+                    <a href="{{ route('sites.about-us') }}"> @lang('sites.about-us')</a>
                 </li>
                 <li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
-                    <a href="#">Contact Us</a>
+                    <a href="#"> @lang('sites.contact-us') </a>
                 </li>
                 <li id="menu-item-38" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-38">
-                    <a href="#">FAQs</a>
+                    <a href=" {{ route('sites.faqs') }}"> @lang('sites.faqs') </a>
                 </li>
                 <li id="menu-item-377685" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377685">
-                    <a href="#">Size Chart</a>
+                    <a href="#"> @lang('sites.size-chart') </a>
                 </li>
             </ul>
         </div>

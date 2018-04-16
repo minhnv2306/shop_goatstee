@@ -11,32 +11,7 @@
              src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/925280851/?guid=ON&script=0"/>
     </div>
 </noscript>
-<script type='text/javascript'>
-    /* <![CDATA[ */
-    var _wpcf7 = {"recaptcha": {"messages": {"empty": "Please verify that you are not a robot."}}, "cached": "1"};
-    /* ]]> */
-</script>
-<script type='text/javascript'>
-    /* <![CDATA[ */
-    var wc_add_to_cart_params = {
-        "ajax_url": "\/wp-admin\/admin-ajax.php",
-        "wc_ajax_url": "\/?wc-ajax=%%endpoint%%",
-        "i18n_view_cart": "View Cart",
-        "cart_url": "https:\/\/goatstee.com\/cart\/",
-        "is_cart": "",
-        "cart_redirect_after_add": "yes"
-    };
-    /* ]]> */
-</script>
-<script type='text/javascript'>
-    /* <![CDATA[ */
-    var wc_cart_fragments_params = {
-        "ajax_url": "\/wp-admin\/admin-ajax.php",
-        "wc_ajax_url": "\/?wc-ajax=%%endpoint%%",
-        "fragment_name": "wc_fragments"
-    };
-    /* ]]> */
-</script>
+
 <script type='text/javascript'>
     /* <![CDATA[ */
     var yith_wcwl_l10n = {

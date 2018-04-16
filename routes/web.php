@@ -13,4 +13,6 @@
 Route::group([ 'namespace' => 'Sites'], function() {
     Route::get('/', 'HomeController@home')->name('sites.home');
     Route::get('/about-us', 'HomeController@aboutUs')->name('sites.about-us');
+    Route::get('faqs', 'HomeController@faqs')->name('sites.faqs');
+    Route::resource('products', 'ProductController');
 });

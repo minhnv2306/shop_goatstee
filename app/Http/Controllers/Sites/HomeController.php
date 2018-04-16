@@ -16,4 +16,19 @@ class HomeController extends Controller
     {
         return view('sites.aboutUs');
     }
+
+    public function contact()
+    {
+        return view('sites.contact');
+    }
+
+    public function sizeChart()
+    {
+        return view('sites.size-chart');
+    }
+
+    public function faqs()
+    {
+        return view('sites.faqs');
+    }
 }

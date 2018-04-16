@@ -1,4 +1,5 @@
 @extends('layouts.sites.master')
+@section('title', trans('sites.home'))
 @section('content')
     <div id="content" class="site-content">
         <div class="container">

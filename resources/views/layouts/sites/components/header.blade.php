@@ -6,9 +6,9 @@
     <meta name="google-site-verification" content="qY0zYEE7M5CSLC5qQka72up1VYMDTooYURCdOg9J3S4"/>
     <input type="hidden" name="hash" id="hash" value="f74f638f8311e134a9d9fad232be1a5d515e96a4"/>
     <script type="text/javascript">document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
-    <title>Home Page - Goatstee</title>
-    <script src="/js/app.js"></script>
-    <link rel="stylesheet" href="/css/app.css">
+    <title>@yield('title')</title>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         .wishlist_table .add_to_cart, a.add_to_wishlist.button.alt {
             border-radius: 16px;
@@ -33,12 +33,13 @@
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
-    <link rel='stylesheet' id='contact-form-7-css' href='/css/goatstee/styles.css?ver=4.7' type='text/css' media='all'/>
-    <link rel='stylesheet' id='junkie-shortcodes-css' href='/css/goatstee/junkie-shortcodes.css?ver=4.6.10' type='text/css' media='all'/>
-    <link rel='stylesheet' id='pif-styles-css' href='/css/goatstee/style.css?ver=4.6.10' type='text/css' media='all'/>
-    <link rel='stylesheet' id='ywot_style-css' href='/css/goatstee/ywot_style.css?ver=4.6.10' type='text/css' media='all'/>
-    <link rel='stylesheet' id='yith-wcwl-main-css' href='/css/goatstee/style1.css?ver=2.0.16' type='text/css' media='all'/>
-    <link rel='stylesheet' id='shopy-style-css' href='/css/goatstee/shopy/style.min.css?ver=4.6.10' type='text/css' media='all'/>
+    <link rel='stylesheet' id='contact-form-7-css' href="{{ asset('css/goatstee/styles.css?ver=4.7') }}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='junkie-shortcodes-css' href="{{ asset('css/goatstee/junkie-shortcodes.css?ver=4.6.10') }}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='pif-styles-css' href="{{ asset('css/goatstee/style.css?ver=4.6.10') }}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='ywot_style-css' href="{{ asset('css/goatstee/ywot_style.css?ver=4.6.10') }}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='woocommerce_prettyPhoto_css-css' href="{{ asset('css/goatstee/prettyPhoto.css?ver=3.1.6') }}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='yith-wcwl-main-css' href="{{ asset('css/goatstee/style1.css?ver=2.0.16') }}" type='text/css' media='all'/>
+    <link rel='stylesheet' id='shopy-style-css' href="{{ asset('css/goatstee/shopy/style.min.css?ver=4.6.10') }}" type='text/css' media='all'/>
     <link rel='stylesheet' id='shopy-custom-fonts-css' href='//fonts.googleapis.com/css?family=Nunito%3Aregular%2C700%2C300%7CKameron%3Aregular%2C700%26subset%3Dlatin%2C'
           type='text/css' media='all'/>
     <script type='text/javascript'>

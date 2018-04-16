@@ -124,7 +124,6 @@
     border-right: 9px solid;
     margin-top: -8px;
 }
-/* Some CSS magic for the awesome animations - feel free to make your own custom animations and reference it in your Tooltipster settings! */
 .tooltipster-fade {
     opacity: 0;
     -webkit-transition-property: opacity;
