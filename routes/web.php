@@ -30,4 +30,8 @@ Route::group([ 'namespace' => 'Sites'], function() {
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::get('/', 'HomeController@index');
+    Route::resource('users', 'UserController');
+    Route::resource('products', 'ProductController');
+    Route::resource('orders', 'OrderController');
+    Route::resource('reviews', 'ReViewController');
 });

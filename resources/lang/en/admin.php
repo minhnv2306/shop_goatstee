@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'category' => 'Category',
     'dashboard' => 'Dashboard',
     'dashboard_1' => 'Dashboard 1',
     'dashboard_2' => 'Dashboard 2',
@@ -24,10 +25,13 @@ return [
     'profile' => 'Profile',
     'logout' => 'Logout',
     'number' => 'Number',
+    'add' => 'Add',
+    'add_detail' => 'Add detail',
     'user' => [
         'manager' => 'User Manager',
     ],
     'product' => [
+        'sex' => 'Sex',
         'comment' => 'Comment',
         'product' => 'Product',
         'manager' => 'Product manager',
@@ -52,6 +56,8 @@ return [
         'image_4' => 'Image 4',
         'image_5' => 'Image 5',
         'total_price' => 'Total Price',
+        'billing_addr' => 'Billling Address',
+        'shipping_addr' => 'Shipping Address',
     ],
     'order' => [
         'coupon' => 'Discount Coupon',

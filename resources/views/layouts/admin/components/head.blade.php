@@ -8,7 +8,10 @@
     {!! Html::script(asset('js/app.js')) !!}
     {!! Html::style(asset('css/app.css')) !!}
     <!-- endif-->
-    <!--Admin LTE CSS -->
+    <!-- Admin LTE CSS -->
     {!! Html::style(asset('css/goatstee/adminlte/_all-skins.css')) !!}
     {!! Html::style(asset('css/goatstee/adminlte/AdminLTE.css')) !!}
+
+    <!-- Admin LTE Js -->
+    {!! Html::script(asset('js/goatstee/adminLTE.min.js')) !!}
 </head>
