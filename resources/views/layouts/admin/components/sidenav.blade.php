@@ -19,8 +19,8 @@
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span> @lang('admin.dashboard') </span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i> @lang('admin.dashboard') </a></li>
@@ -28,25 +28,25 @@
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('users.index') }}">
                     <i class="fa fa-user"></i>
                     <span> @lang('admin.user.manager') </span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('products.index') }}">
                     <i class="fa fa-product-hunt"></i>
                     <span> @lang('admin.product.manager') </span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('orders.index') }}">
                     <i class="fa fa-money"></i>
                     <span> @lang('admin.order.manager') </span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('reviews.index') }}">
                     <i class="fa fa-star"></i>
                     <span> @lang('admin.review.manager') </span>
                 </a>
