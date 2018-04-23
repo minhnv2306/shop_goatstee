@@ -27,3 +27,7 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::resource('products', 'ProductController');
     Route::resource('users', 'UserController');
 });
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
+    Route::get('/', 'HomeController@index');
+});
