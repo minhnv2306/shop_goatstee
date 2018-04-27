@@ -108,6 +108,7 @@ return [
         'state' => 'State',
         'zip' => 'ZIP',
         'save_address' => 'Save Address',
+        'success_update' => 'Update information successfully!',
     ],
     'order' => [
         'order' => 'Your Order',
@@ -137,6 +138,7 @@ return [
         'billing' => 'Billing Address',
         'no_address' => 'You have not set up this type of address yet.',
         'shipping' => 'Shipping Address',
+        'your_address' => 'Your address',
         'edit' => 'Edit',
     ],
     'account' => [

@@ -6,4 +6,8 @@
             @endforeach
         </ul>
     </div>
+@elseif(!empty(session('message')))
+    <div class="woocommerce-info">
+        <p>{{ session('message') }}</p>
+    </div>
 @endif
