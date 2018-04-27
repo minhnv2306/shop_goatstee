@@ -354,3 +354,7 @@ a, .top-navigation .sub-menu li.current-menu-item a, .top-navigation .sub-menu a
 .site-info a {
     color: #000000;
 }
+
+.padding-bottom-40 {
+    padding-bottom: 40px;
+}

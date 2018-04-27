@@ -2,28 +2,49 @@
 
 namespace App\Http\Controllers\Sites;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository;
+use App\Models\User;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function showAccount()
     {
         return view('sites.user.my-account');
     }
 
-    public function address()
+    public function show(User $user)
     {
-        return view('sites.user.address');
+        return view('sites.user.show', [
+            'user' => $user
+        ]);
     }
 
-    public function addressBilling()
+    public function update(UserRequest $request, User $user)
     {
-        return view('sites.user.billing-address');
-    }
+        try {
+            $data = $request->only([
+                'first_name',
+                'last_name',
+                'company',
+                'phone',
+                'address',
+                'country_id',
+                'city_id',
+            ]);
+            $this->userRepository->saveInfor($user, $data);
 
-    public function addressShipping()
-    {
-        return view('sites.user.shipping-address');
+            return redirect()->back()->with('message', trans('sites.user.success_update'));
+        } catch (Exception $ex) {
+            return redirect()->back()->with('errors', $ex->getMessage());
+        }
     }
 }

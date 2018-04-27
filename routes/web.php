@@ -18,9 +18,6 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::get('contact-us', 'HomeController@contact')->name('sites.contact');
     Route::get('size-chart', 'HomeController@sizeChart')->name('sites.size-chart');
     Route::get('my-account', 'UserController@showAccount')->name('sites.my-account');
-    Route::get('address', 'UserController@address')->name('sites.address');
-    Route::get('address/billing', 'UserController@addressBilling')->name('sites.billing-address');
-    Route::get('address/shipping', 'UserController@addressShipping')->name('sites.shipping-address');
     Route::get('order', 'ProductController@order')->name('sites.order');
     Route::get('faqs', 'HomeController@faqs')->name('sites.faqs');
 
@@ -30,7 +27,7 @@ Route::group([ 'namespace' => 'Sites'], function() {
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::get('/', 'HomeController@index');
-    Route::resource('users', 'UserController');
+    Route::resource('users-admin', 'UserController');
     Route::resource('products', 'ProductController');
     Route::resource('orders', 'OrderController');
     Route::resource('reviews', 'ReViewController');
