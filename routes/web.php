@@ -26,11 +26,16 @@ Route::group([ 'namespace' => 'Sites'], function() {
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
-    Route::get('/', 'HomeController@index');
-    Route::resource('users-admin', 'UserController');
-    Route::resource('products', 'ProductController');
-    Route::resource('orders', 'OrderController');
-    Route::resource('reviews', 'ReViewController');
+    Route::group(['middleware' => 'admin'], function () {
+        Route::get('/', 'HomeController@index')->name('admin.index');
+        Route::resource('users-admin', 'UserController');
+        Route::resource('products', 'ProductController');
+        Route::resource('orders', 'OrderController');
+        Route::resource('reviews', 'ReViewController');
+    });
+    Route::get('/login', 'HomeController@login');
+    Route::get('/logout', 'UserController@logout')->name('admin.logout');
+    Route::post('/login', 'UserController@checkLoginAdmin')->name('admin.login');
 });
 
 Auth::routes();

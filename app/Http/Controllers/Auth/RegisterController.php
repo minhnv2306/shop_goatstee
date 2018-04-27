@@ -9,8 +9,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    const ROLE_USER = 2;
-    const ROLE_ADMIN = 1;
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -67,7 +65,7 @@ class RegisterController extends Controller
         return User::create([
             'email' => $data['email'],
             'password' => $data['password'],
-            'role_id' => self::ROLE_USER,
+            'role_id' => User::ROLE_USER,
         ]);
     }
 }

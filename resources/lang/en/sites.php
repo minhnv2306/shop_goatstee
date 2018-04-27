@@ -150,5 +150,5 @@ return [
         'confirm_password' => 'Confirm password',
         'remember' => 'Remember me',
         'lost_password' => 'Lost your password',
-    ]
+    ],
 ];

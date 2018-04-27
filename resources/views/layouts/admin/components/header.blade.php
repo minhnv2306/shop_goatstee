@@ -28,7 +28,7 @@
                         <li class="user-header">
                             {{ HTML::image(asset('img/avatar.png'), '', ['class' => 'img-circle', 'alt' => trans('admin.error_image')]) }}
                             <p>
-                                Alexander Pierce - Web Developer
+                                {{ Auth::user()->email }}
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
@@ -38,7 +38,7 @@
                                 <a href="#" class="btn btn-default btn-flat"> @lang('admin.profile') </a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat"> @lang('admin.logout') </a>
+                                <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat"> @lang('admin.logout') </a>
                             </div>
                         </li>
                     </ul>
