@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const ROLE_USER = 2;
+    const ROLE_ADMIN = 1;
     use Notifiable, UserRelations, UserMutators;
 
     /**

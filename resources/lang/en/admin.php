@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'goatstee' => 'Goatstee Admin',
     'category' => 'Category',
     'dashboard' => 'Dashboard',
     'dashboard_1' => 'Dashboard 1',
@@ -75,5 +76,11 @@ return [
         'name' => 'User name',
         'content' => 'Content',
         'product' => 'Product',
+    ],
+    'login' => [
+        'start' => 'Sign in to start your session',
+    ],
+    'error' => [
+        'login' => 'Username or password is not right!',
     ]
 ];

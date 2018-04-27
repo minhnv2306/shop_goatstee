@@ -28,7 +28,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('users.index') }}">
+                <a href="{{ route('users-admin.index') }}">
                     <i class="fa fa-user"></i>
                     <span> @lang('admin.user.manager') </span>
                 </a>
