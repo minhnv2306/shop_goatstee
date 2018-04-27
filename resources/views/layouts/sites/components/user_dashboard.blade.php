@@ -13,7 +13,16 @@
             <a href="#"> @lang('sites.address.account_detail') </a>
         </li>
         <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout">
-            <a href="#"> @lang('sites.logout') </a>
+            <a href="{{ route('logout') }}"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                @lang('sites.account.logout')
+            </a>
+            {!! Form::open([
+                'method' => 'POST',
+                'route' => 'logout',
+                'id' => 'logout-form',
+            ]) !!}
+            {!! Form::close() !!}
         </li>
     </ul>
 </nav>

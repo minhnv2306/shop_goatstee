@@ -35,3 +35,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::resource('orders', 'OrderController');
     Route::resource('reviews', 'ReViewController');
 });
+
+Auth::routes();
