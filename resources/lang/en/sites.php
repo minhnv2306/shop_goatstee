@@ -37,7 +37,7 @@ return [
         'name' => 'Your name',
         'subject' => 'Subject',
         'message' => 'Your message',
-        'send' => 'Send'
+        'send' => 'Send',
     ],
     'size' => [
         'product_1' => [
@@ -93,7 +93,7 @@ return [
         'rate' => 'Your Rating',
         'your_review' => 'Your Review',
         'note' => 'Your email address will not be published.',
-        'note_2' => 'Required fields are marked'
+        'note_2' => 'Required fields are marked',
     ],
     'user' => [
         'name' => 'Name',
@@ -107,7 +107,7 @@ return [
         'city' => 'Town / City',
         'state' => 'State',
         'zip' => 'ZIP',
-        'save_address' => 'Save Address'
+        'save_address' => 'Save Address',
     ],
     'order' => [
         'order' => 'Your Order',
@@ -128,7 +128,7 @@ return [
         'result' => 'Search Results',
         'sort_1' => 'Sort by create at',
         'sort_2' => 'Sort by price: low to high',
-        'sort_3' => 'Sort by price: high to low'
+        'sort_3' => 'Sort by price: high to low',
     ],
     'address' => [
         'dashboard' => 'Dashboard',
@@ -137,13 +137,16 @@ return [
         'billing' => 'Billing Address',
         'no_address' => 'You have not set up this type of address yet.',
         'shipping' => 'Shipping Address',
-        'edit' => 'Edit'
+        'edit' => 'Edit',
     ],
     'account' => [
         'login' => 'Login',
+        'logout' => 'Logout',
         'username' => 'Username or email address',
         'register' => 'Register',
         'password' => 'Password',
-        'lost_password' => 'Lost your password'
+        'confirm_password' => 'Confirm password',
+        'remember' => 'Remember me',
+        'lost_password' => 'Lost your password',
     ]
 ];
