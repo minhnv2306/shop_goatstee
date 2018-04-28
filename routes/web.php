@@ -32,6 +32,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
         Route::resource('products', 'ProductController');
         Route::resource('orders', 'OrderController');
         Route::resource('reviews', 'ReViewController');
+        Route::resource('categories', 'CategoryController');
     });
     Route::get('/login', 'HomeController@login');
     Route::get('/logout', 'UserController@logout')->name('admin.logout');
