@@ -6,6 +6,7 @@ use App\Http\Requests\ColorRequest;
 use App\Models\Color;
 use App\Repositories\ColorRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class ColorController extends Controller
 {
@@ -38,6 +39,9 @@ class ColorController extends Controller
             return redirect()->route('colors.index')
                 ->with('message', trans('admin.color.success_add'));
         } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+
             return redirect()->route('colors.index')
                 ->with('error', trans('admin.color.error'));
         }
@@ -52,6 +56,9 @@ class ColorController extends Controller
             return redirect()->route('colors.index')
                 ->with('message', trans('admin.color.success_update'));
         } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+
             return redirect()->route('colors.index')
                 ->with('error', trans('admin.color.error'));
         }
@@ -65,6 +72,9 @@ class ColorController extends Controller
             return redirect()->route('colors.index')
                 ->with('message', trans('admin.color.success_delete'));
         } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+
             return redirect()->route('colors.index')
                 ->with('error', trans('admin.color.error'));
         }

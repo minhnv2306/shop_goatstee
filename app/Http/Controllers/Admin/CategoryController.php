@@ -6,7 +6,9 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -39,6 +41,9 @@ class CategoryController extends Controller
             return redirect()->route('categories.index')
                 ->with('message', trans('admin.category.success_add'));
         } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+
             return redirect()->route('categories.index')
                 ->with('error', trans('admin.category.error'));
         }
@@ -53,6 +58,9 @@ class CategoryController extends Controller
             return redirect()->route('categories.index')
                 ->with('message', trans('admin.category.success_update'));
         } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+
             return redirect()->route('categories.index')
                 ->with('error', trans('admin.category.error'));
         }
@@ -60,12 +68,18 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        DB::beginTransaction();
         try {
             $this->cateRepository->delele($category);
+            DB::commit();
 
             return redirect()->route('categories.index')
                 ->with('message', trans('admin.category.success_delete'));
         } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+            DB::rollback();
+
             return redirect()->route('categories.index')
                 ->with('error', trans('admin.category.error'));
         }

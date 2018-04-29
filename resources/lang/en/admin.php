@@ -2,7 +2,7 @@
 
 return [
     'goatstee' => 'Goatstee Admin',
-    'category' => 'Category',
+    'category_title' => 'Category',
     'dashboard' => 'Dashboard',
     'dashboard_1' => 'Dashboard 1',
     'dashboard_2' => 'Dashboard 2',
@@ -31,6 +31,7 @@ return [
     'create' => 'Create',
     'update' => 'Update',
     'close' => 'Close',
+    'filter' => 'Filter',
     'user' => [
         'manager' => 'User Manager',
     ],
@@ -103,5 +104,15 @@ return [
         'success_update' => 'Update new color successfully!',
         'success_delete' => 'Delete color successfully!',
         'error' => 'Name of color is not same!',
+    ],
+    'size' => [
+        'manager' => 'Size manager',
+        'edit' => 'Edit size',
+        'create' => 'Create new size',
+        'add' => 'Add new size',
+        'success_add' => 'Add new size successfully!',
+        'success_update' => 'Update new size successfully!',
+        'success_delete' => 'Delete size successfully!',
+        'error' => 'Name of size is not same!',
     ],
 ];
