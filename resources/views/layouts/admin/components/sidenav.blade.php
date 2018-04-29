@@ -27,25 +27,31 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i> @lang('admin.dashboard') </a></li>
                 </ul>
             </li>
-            <li>
+            <li id="users">
                 <a href="{{ route('users-admin.index') }}">
                     <i class="fa fa-user"></i>
                     <span> @lang('admin.user.manager') </span>
                 </a>
             </li>
-            <li>
+            <li id="categories">
+                <a href="{{ route('categories.index') }}">
+                    <i class="fa fa-circle-thin"></i>
+                    <span> @lang('admin.category.manager') </span>
+                </a>
+            </li>
+            <li id="products">
                 <a href="{{ route('products.index') }}">
                     <i class="fa fa-product-hunt"></i>
                     <span> @lang('admin.product.manager') </span>
                 </a>
             </li>
-            <li>
+            <li id="orders">
                 <a href="{{ route('orders.index') }}">
                     <i class="fa fa-money"></i>
                     <span> @lang('admin.order.manager') </span>
                 </a>
             </li>
-            <li>
+            <li id="reviews">
                 <a href="{{ route('reviews.index') }}">
                     <i class="fa fa-star"></i>
                     <span> @lang('admin.review.manager') </span>

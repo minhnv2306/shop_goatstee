@@ -28,6 +28,9 @@ return [
     'number' => 'Number',
     'add' => 'Add',
     'add_detail' => 'Add detail',
+    'create' => 'Create',
+    'update' => 'Update',
+    'close' => 'Close',
     'user' => [
         'manager' => 'User Manager',
     ],
@@ -82,5 +85,15 @@ return [
     ],
     'error' => [
         'login' => 'Username or password is not right!',
+    ],
+    'category' => [
+        'manager' => 'Category manager',
+        'create' => 'Create new category',
+        'name' => 'Name',
+        'success_add' => 'Add new category successfully!',
+        'success_delete' => 'Delete category successfully!',
+        'success_update' => 'Update new category successfully!',
+        'error' => 'Name of category is not same!',
+        'delete' => 'Do you want to delete this element?'
     ]
 ];
