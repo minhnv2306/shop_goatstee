@@ -39,6 +39,12 @@
                     <span> @lang('admin.category.manager') </span>
                 </a>
             </li>
+            <li id="colors">
+                <a href="{{ route('colors.index') }}">
+                    <i class="fa fa-cube"></i>
+                    <span> @lang('admin.color.manager') </span>
+                </a>
+            </li>
             <li id="products">
                 <a href="{{ route('products.index') }}">
                     <i class="fa fa-product-hunt"></i>

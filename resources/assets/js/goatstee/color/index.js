@@ -1,0 +1,1 @@
+$('#colors').addClass('active');

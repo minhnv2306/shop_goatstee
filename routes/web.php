@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
         Route::resource('orders', 'OrderController');
         Route::resource('reviews', 'ReViewController');
         Route::resource('categories', 'CategoryController');
+        Route::resource('colors', 'ColorController');
     });
     Route::get('/login', 'HomeController@login');
     Route::get('/logout', 'UserController@logout')->name('admin.logout');
