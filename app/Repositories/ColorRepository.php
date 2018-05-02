@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\Category;
+use App\Models\Color;
 use App\Repositories\Contracts\BaseInterfaceRepository;
 
-class CategoryRepository extends BaseRepository
+class ColorRepository extends BaseRepository
 {
     public function __construct()
     {
-        parent::__construct(Category::class);
+        parent::__construct(Color::class);
     }
 }

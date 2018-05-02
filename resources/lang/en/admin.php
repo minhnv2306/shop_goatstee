@@ -95,5 +95,13 @@ return [
         'success_update' => 'Update new category successfully!',
         'error' => 'Name of category is not same!',
         'delete' => 'Do you want to delete this element?'
-    ]
+    ],
+    'color' => [
+        'manager' => 'Color manager',
+        'create' => 'Create new color',
+        'success_add' => 'Add new color successfully!',
+        'success_update' => 'Update new color successfully!',
+        'success_delete' => 'Delete color successfully!',
+        'error' => 'Name of color is not same!',
+    ],
 ];

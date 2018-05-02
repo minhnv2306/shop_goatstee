@@ -19,7 +19,11 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = $this->cateRepository->getAllCategory();
+        $attribute = [
+            'name',
+            'id',
+        ];
+        $categories = $this->cateRepository->getAll($attribute);
 
         return view('admin.category.index', [
             'categories' => $categories,
@@ -30,7 +34,7 @@ class CategoryController extends Controller
     {
         try {
             $data = $request->only('name');
-            $this->cateRepository->createNewCategory($data);
+            $this->cateRepository->create($data);
 
             return redirect()->route('categories.index')
                 ->with('message', trans('admin.category.success_add'));
@@ -44,7 +48,7 @@ class CategoryController extends Controller
     {
         try {
             $data = $request->only('name');
-            $this->cateRepository->updateCategory($category, $data);
+            $this->cateRepository->update($category, $data);
 
             return redirect()->route('categories.index')
                 ->with('message', trans('admin.category.success_update'));
@@ -57,7 +61,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         try {
-            $this->cateRepository->deleleCategory($category);
+            $this->cateRepository->delele($category);
 
             return redirect()->route('categories.index')
                 ->with('message', trans('admin.category.success_delete'));
