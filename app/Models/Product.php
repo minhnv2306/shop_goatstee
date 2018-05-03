@@ -11,7 +11,7 @@ class Product extends Model
 
     const IMAGE_AVATAR = 1;
     const IMAGE_DESCRIPTION = 2;
-    const IMGAE_NUMBER = 5;
+    const IMAGE_NUMBER = 5;
     protected $guarded = ['id'];
 
     public static function getTypeProduct()
