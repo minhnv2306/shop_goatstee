@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'file_log' => storage_path('logs/debug.log'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

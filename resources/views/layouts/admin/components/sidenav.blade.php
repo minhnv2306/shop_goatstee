@@ -45,6 +45,12 @@
                     <span> @lang('admin.color.manager') </span>
                 </a>
             </li>
+            <li id="sizes">
+                <a href="{{ route('sizes.index') }}">
+                    <i class="fa fa-list"></i>
+                    <span> @lang('admin.size.manager') </span>
+                </a>
+            </li>
             <li id="products">
                 <a href="{{ route('products.index') }}">
                     <i class="fa fa-product-hunt"></i>

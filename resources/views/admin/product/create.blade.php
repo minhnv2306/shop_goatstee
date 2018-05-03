@@ -9,7 +9,7 @@
         <section class="content-header">
             <h1> @lang('admin.product.create') </h1>
             <ol class="breadcrumb">
-                <li><a href="http://goatstee.herokuapp.com/home"><i class="fa fa-dashboard"></i> @lang('sites.home') </a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> @lang('sites.home') </a></li>
                 <li class="active"> @lang('admin.product.create') </li>
             </ol>
         </section>
