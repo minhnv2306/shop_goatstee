@@ -63,6 +63,9 @@ return [
         'total_price' => 'Total Price',
         'billing_addr' => 'Billling Address',
         'shipping_addr' => 'Shipping Address',
+        'success_add' => 'Add new product successfully!',
+        'success_delete' => 'Delete product successfully!',
+        'success_update' => 'Update new product successfully!',
     ],
     'order' => [
         'coupon' => 'Discount Coupon',

@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use App\Repositories\Contracts\CategoryInterfaceRepository;
 
-class CategoryRepository extends BaseRepository
+class CategoryRepository extends BaseRepository implements CategoryInterfaceRepository
 {
     public function __construct()
     {
@@ -15,5 +16,10 @@ class CategoryRepository extends BaseRepository
     {
         $model->sizes()->delete();
         parent::delele($model);
+    }
+
+    public function getCategoryHasSize($attribute)
+    {
+        return Category::has('sizes')->get($attribute);
     }
 }
