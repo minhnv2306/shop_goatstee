@@ -10,4 +10,14 @@ class StoreProductRepository extends BaseRepository
     {
         parent::__construct(StoreProduct::class);
     }
+
+    /**
+     * Get storage product model
+     * @param $id
+     * @return Model
+     */
+    public function getStorageProduct($id)
+    {
+        return StoreProduct::findOrFail($id);
+    }
 }

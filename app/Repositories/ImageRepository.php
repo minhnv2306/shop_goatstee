@@ -10,4 +10,14 @@ class ImageRepository extends BaseRepository
     {
         parent::__construct(Image::class);
     }
+
+    /**
+     * Get image model
+     * @param $id
+     * @return Model
+     */
+    public function getImage($id)
+    {
+        return Image::findOrFail($id);
+    }
 }

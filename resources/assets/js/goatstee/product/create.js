@@ -68,7 +68,7 @@ $(document).ready(function () {
             url: '/admin/add-product/' + $('#category_id').val(),
             type: 'GET',
             success: function (data) {
-                $('#product-content').prepend(data)
+                $('#product-content').append(data)
             }
         })
     })
