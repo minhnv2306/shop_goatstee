@@ -28,7 +28,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover">
+                            <table id="product-table" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th> @lang('admin.id') </th>
@@ -36,52 +36,10 @@
                                         <th> @lang('admin.product.price') </th>
                                         <th> @lang('admin.product.image') </th>
                                         <th> @lang('admin.product.desciption') </th>
-                                        <th> @lang('admin.product.number') </th>
+                                        <th> @lang('admin.category_title') </th>
                                         <th> @lang('admin.action') </th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Minh NV</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>21/3/1234</td>
-                                        <td>
-                                            <a href="{{route('products.show', ['product' => 1])}}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> @lang('admin.edit') </a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> @lang('admin.delete') </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.0</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.5
-                                        </td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                        <td>A</td>
-                                    </tr>
-                                </tbody>>
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -97,5 +55,22 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('scripts')
-    {!! Html::script(asset('js/goatstee/datatable.js')) !!}
+    {!! Html::script(asset('js/goatstee/product/index.js')) !!}
+    {!! Html::style(asset('css/goatstee/product/index.css')) !!}
+    <script>
+        $('#product-table').DataTable({
+            "processing": true,
+            "serverSide": true,
+            ajax: '{{route('datatable.server-side')}}',
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'price', name: 'price'},
+                {data: 'images', name: 'images'},
+                {data: 'note', name: 'note'},
+                {data: 'category_id', name: 'category_id'},
+                {data: 'action', name: 'action'},
+            ]
+        } );
+    </script>
 @endsection
