@@ -1,3 +1,4 @@
+// Review 5 images when upload
 function preview_image_1(event)
 {
     var reader = new FileReader();
@@ -58,3 +59,26 @@ function preview_image_6(event)
     }
     reader.readAsDataURL(event.target.files[0]);
 }
+
+// Process addition detail product
+$(document).ready(function () {
+    $('#add_detail').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: '/admin/add-product/' + $('#category_id').val(),
+            type: 'GET',
+            success: function (data) {
+                $('#product-content').prepend(data)
+            }
+        })
+    })
+    $('#category_id').change(function () {
+        $.ajax({
+            url: '/admin/add-product/' + $('#category_id').val(),
+            type: 'GET',
+            success: function (data) {
+                $('#product-content').html(data)
+            }
+        })
+    })
+})
