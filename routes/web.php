@@ -21,8 +21,13 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::get('order', 'ProductController@order')->name('sites.order');
     Route::get('faqs', 'HomeController@faqs')->name('sites.faqs');
 
-    Route::resource('products', 'ProductController');
+    Route::resource('product', 'ProductController');
     Route::resource('users', 'UserController');
+    Route::resource('categories-site', 'CategoryController');
+
+    Route::get('getProducts/{categoryId}/{count}', 'CategoryController@getProducts');
+    Route::post('getColors', 'ProductController@getColors')->name('ajax.get-color');
+    Route::post('getSizes', 'ProductController@getSizes')->name('ajax.get-size');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {

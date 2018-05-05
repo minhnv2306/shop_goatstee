@@ -11,7 +11,6 @@
              src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/925280851/?guid=ON&script=0"/>
     </div>
 </noscript>
-
 <script type='text/javascript'>
     /* <![CDATA[ */
     var yith_wcwl_l10n = {
@@ -35,17 +34,11 @@
     };
     /* ]]> */
 </script>
+
 <script>
-    if (!localStorage.getItem("hash")) {
-        localStorage.setItem("hash", $('#hash').val());
-    } else {
-        $('#hash').val(localStorage.getItem("hash"));
-    }
-</script>
-<script>
-    $.ajax({
-        url: "/getNumberProduct/" + localStorage.getItem("hash"), success: function (result) {
-            $('.header-cart').html(result);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 </script>

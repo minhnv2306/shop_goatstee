@@ -2,8 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\Image;
+use App\Models\Size;
+use App\Models\StoreProduct;
 use App\Repositories\Contracts\ProductInterfaceRepository;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +52,7 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
     }
 
     /**
-     * Get model avatar image
+     * Get model avatar image of a product
      * @param $product
      * @return Image model
      */
@@ -96,5 +99,81 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
     public function getAllStoreProducts($product)
     {
         return $product->storeProducts;
+    }
+
+    /**
+     * Get all sizes of product with sex and color_id
+     * @param $productId
+     * @param string $sex
+     * @param int $color_id
+     * @return mixed
+     */
+    public function getSizes($productId, $sex = 'all', $color_id = 0)
+    {
+        if ($sex == 'all') {
+            $size_ids = StoreProduct::where([
+                'product_id' => $productId,
+            ])->pluck('size_id')->all();
+        }
+        if ($color_id == 0) {
+            $size_ids = StoreProduct::where([
+                'product_id' => $productId,
+                'sex' => $sex,
+            ])->pluck('size_id')->all();
+        } else {
+            $size_ids = StoreProduct::where([
+                'product_id' => $productId,
+                'sex' => $sex,
+                'color_id' => $color_id,
+            ])->pluck('size_id')->all();
+        }
+
+        return Size::whereIn('id', $size_ids)->get(['id', 'name']);
+    }
+
+    /**
+     * Get all colors of product with sex and size_id
+     * @param $productId
+     * @param string $sex
+     * @param int $size_id
+     * @return mixed
+     */
+    public function getColors($productId, $sex = 'all', $size_id = 0)
+    {
+        if ($sex == 'all') {
+            $color_ids = StoreProduct::where([
+                'product_id' => $productId,
+            ])->pluck('color_id')->all();
+        }
+        if ($size_id == 0) {
+            $color_ids = StoreProduct::where([
+                'product_id' => $productId,
+                'sex' => $sex,
+            ])->pluck('color_id')->all();
+        } else {
+            $color_ids = StoreProduct::where([
+                'product_id' => $productId,
+                'sex' => $sex,
+                'size_id' => $size_id,
+            ])->pluck('color_id')->all();
+        }
+
+        return Color::whereIn('id', $color_ids)->get(['id', 'name']);
+    }
+
+    /**
+     * Get link avatar of products
+     * @param $products
+     * @return array
+     */
+    public function getAvatarOfProducts($products)
+    {
+        $avatars = [];
+        foreach ($products as $product) {
+            $avatar = self::getAvatar($product);
+            array_push($avatars, $avatar[0]->link);
+        }
+
+        return $avatars;
     }
 }

@@ -6,6 +6,12 @@ return [
      * Save image in public of storage
      */
     'image_path' => 'public/',
+
+    /*
+     * Paginate product (site)
+     */
+    'paginate_product' => 8,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

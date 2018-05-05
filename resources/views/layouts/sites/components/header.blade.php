@@ -3,18 +3,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
-    <meta name="google-site-verification" content="qY0zYEE7M5CSLC5qQka72up1VYMDTooYURCdOg9J3S4"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <input type="hidden" name="hash" id="hash" value="f74f638f8311e134a9d9fad232be1a5d515e96a4"/>
     <script type="text/javascript">document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
     <title>@yield('title')</title>
     <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <style>
-        .wishlist_table .add_to_cart, a.add_to_wishlist.button.alt {
-            border-radius: 16px;
-            -moz-border-radius: 16px;
-            -webkit-border-radius: 16px;
-        }            </style>
     <!-- This site is optimized with the Yoast SEO plugin v3.7.1 - https://yoast.com/wordpress/plugins/seo/ -->
     <link rel="canonical" href="https://goatstee.com/"/>
     <meta property="og:locale" content="en_US"/>
