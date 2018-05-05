@@ -17,8 +17,19 @@ class Product extends Model
     public static function getTypeProduct()
     {
         return [
-            'Domestic' => 'Domestic',
-            'Imported' => 'Imported',
+            'Domestic' => trans('admin.product.domestic'),
+            'Imported' => trans('admin.product.imported'),
+        ];
+    }
+
+    public static function getRatesProduct()
+    {
+        return [
+            '1' => trans('admin.rates.1-star'),
+            '2' => trans('admin.rates.2-stars'),
+            '3' => trans('admin.rates.3-stars'),
+            '4' => trans('admin.rates.4-stars'),
+            '5' => trans('admin.rates.5-stars'),
         ];
     }
 }

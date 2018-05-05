@@ -1,6 +1,6 @@
 @foreach($products as $product)
     <div class="col col-sm-3 padding-bottom-40">
-        <a href="{{ route('product.show', ['product' => $product->id]) }}" class="woocommerce-LoopProduct-link">
+        <a href="{{ route('product.show', ['product' => $product->imageable_id]) }}" class="woocommerce-LoopProduct-link">
             <!-- Featured Image From URL plugin -->
             <img src="{{ asset('/storage/' . $product->link) }}">
             <h3 class="title-name-product">

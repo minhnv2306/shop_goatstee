@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Sites;
 
-use App\Models\Category;
-use App\Models\Product;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
