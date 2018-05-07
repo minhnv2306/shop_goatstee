@@ -41,6 +41,7 @@ return [
         'product' => 'Product',
         'manager' => 'Product manager',
         'create' => 'Create new product',
+        'edit' => 'Edit product',
         'price' => 'Price',
         'image' => 'Image',
         'desciption' => 'Description',
@@ -66,6 +67,7 @@ return [
         'success_add' => 'Add new product successfully!',
         'success_delete' => 'Delete product successfully!',
         'success_update' => 'Update new product successfully!',
+        'error_delete' => 'Delete product fail!',
     ],
     'order' => [
         'coupon' => 'Discount Coupon',

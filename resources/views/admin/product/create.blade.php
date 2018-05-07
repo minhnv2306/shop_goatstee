@@ -98,8 +98,8 @@
                             <div class="box-body">
                                 <div class="table-responsive">
                                     <div class="form-group">
-                                        {!! Form::label('note_machine', trans('admin.product.note_machine')) !!}
-                                        {!! Form::textarea('note_machine', '', ['class' => 'form-control', 'rows' => '5', 'id' => 'note_machine']) !!}
+                                        {!! Form::label('washing', trans('admin.product.note_machine')) !!}
+                                        {!! Form::textarea('washing', '', ['class' => 'form-control', 'rows' => '5', 'id' => 'washing']) !!}
                                     </div>
 
                                     <div class="form-group">
