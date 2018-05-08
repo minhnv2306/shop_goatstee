@@ -71,6 +71,8 @@ return [
         'success_delete' => 'Delete product successfully!',
         'success_update' => 'Update new product successfully!',
         'error_delete' => 'Delete product fail!',
+        'domestic' => 'Domestic',
+        'imported' => 'Imported',
     ],
     'order' => [
         'coupon' => 'Discount Coupon',
@@ -123,4 +125,11 @@ return [
         'success_delete' => 'Delete size successfully!',
         'error' => 'Name of size is not same!',
     ],
+    'rates' => [
+        '1-star' => 'Very poor',
+        '2-stars' => 'Not that bad',
+        '3-stars' => 'Average',
+        '4-stars' => 'Good',
+        '5-stars' => 'Perfect',
+    ]
 ];

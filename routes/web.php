@@ -26,8 +26,8 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::resource('categories-site', 'CategoryController');
 
     Route::get('getProducts/{categoryId}/{count}', 'CategoryController@getProducts');
-    Route::post('getColors', 'ProductController@getColors')->name('ajax.get-color');
-    Route::post('getSizes', 'ProductController@getSizes')->name('ajax.get-size');
+    Route::post('getColors', 'ProductController@getColors')->name('ajax.get-color-product');
+    Route::post('getSizes', 'ProductController@getSizes')->name('ajax.get-size-product');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {

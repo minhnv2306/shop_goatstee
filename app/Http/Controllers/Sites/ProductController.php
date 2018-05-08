@@ -26,6 +26,7 @@ class ProductController extends Controller
         $defaultOption = [
             '0' => trans('admin.select_option'),
         ];
+        $rates = Product::getRatesProduct();
         $avatar = $this->productRepository->getAvatar($product);
         $images = $this->productRepository->getDescriptionImages($product);
         $colors = $this->productRepository->getColors($product->id);
@@ -39,6 +40,7 @@ class ProductController extends Controller
             'sizes' => $sizes,
             'sex' => $sex,
             'defaultOption' => $defaultOption,
+            'rates' => $rates,
         ]);
     }
 

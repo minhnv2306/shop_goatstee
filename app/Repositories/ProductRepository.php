@@ -114,18 +114,19 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
             $size_ids = StoreProduct::where([
                 'product_id' => $productId,
             ])->pluck('size_id')->all();
-        }
-        if ($color_id == 0) {
-            $size_ids = StoreProduct::where([
-                'product_id' => $productId,
-                'sex' => $sex,
-            ])->pluck('size_id')->all();
         } else {
-            $size_ids = StoreProduct::where([
-                'product_id' => $productId,
-                'sex' => $sex,
-                'color_id' => $color_id,
-            ])->pluck('size_id')->all();
+            if ($color_id == 0) {
+                $size_ids = StoreProduct::where([
+                    'product_id' => $productId,
+                    'sex' => $sex,
+                ])->pluck('size_id')->all();
+            } else {
+                $size_ids = StoreProduct::where([
+                    'product_id' => $productId,
+                    'sex' => $sex,
+                    'color_id' => $color_id,
+                ])->pluck('size_id')->all();
+            }
         }
 
         return Size::whereIn('id', $size_ids)->get(['id', 'name']);
@@ -144,18 +145,19 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
             $color_ids = StoreProduct::where([
                 'product_id' => $productId,
             ])->pluck('color_id')->all();
-        }
-        if ($size_id == 0) {
-            $color_ids = StoreProduct::where([
-                'product_id' => $productId,
-                'sex' => $sex,
-            ])->pluck('color_id')->all();
         } else {
-            $color_ids = StoreProduct::where([
-                'product_id' => $productId,
-                'sex' => $sex,
-                'size_id' => $size_id,
-            ])->pluck('color_id')->all();
+            if ($size_id == 0) {
+                $color_ids = StoreProduct::where([
+                    'product_id' => $productId,
+                    'sex' => $sex,
+                ])->pluck('color_id')->all();
+            } else {
+                $color_ids = StoreProduct::where([
+                    'product_id' => $productId,
+                    'sex' => $sex,
+                    'size_id' => $size_id,
+                ])->pluck('color_id')->all();
+            }
         }
 
         return Color::whereIn('id', $color_ids)->get(['id', 'name']);

@@ -13,136 +13,101 @@
                 <div id="primary" class="content-area">
                     <main id="main" class="site-main" role="main">
                         <nav class="woocommerce-breadcrumb" itemprop="breadcrumb">
-                            <a href="http://goatstee.herokuapp.com"> @lang('sites.home') </a>&nbsp;&#47;&nbsp;Cancer Sucks Top Hat
-                            Skeleton T-Shirt
+                            <a href="{{ route('sites.home') }}"> @lang('sites.home') </a>&nbsp;&#47;&nbsp;
+                            {{ $product->name }}
                         </nav>
                         <div itemscope itemtype="http://schema.org/Product" id="product-2779088" class="post-2779088 product type-product status-publish has-post-thumbnail
                             yith-wishlist entry first instock taxable shipping-taxable purchasable product-type-variable has-children">
                             <div class="images">
-                                <a href="https://images-na.ssl-images-amazon.com/images/I/81FLbbhIhpL._UL1500_.jpg"
+                                <a href="{{ $avatar[0]->link }}"
                                    itemprop="image" class="woocommerce-main-image zoom"
                                    title="Armed Forces Day Honor Their Sacrifice Military T-shirt"
                                    data-rel="prettyPhoto[product-gallery]"><!-- Featured Image From URL plugin -->
-                                    <img src="https://images-na.ssl-images-amazon.com/images/I/81FLbbhIhpL._UL1500_.jpg"
+                                    <img src="{{ $avatar[0]->link }}"
                                          alt="Armed Forces Day Honor Their Sacrifice Military T-shirt"/>
                                 </a>
                                 <div class="thumbnails columns-4">
-                                    <a href='https://images-na.ssl-images-amazon.com/images/I/81bdUSkCmDL._UL1500_.jpg'
-                                       class='zoom' title='Armed Forces Day Honor Their Sacrifice Military T-shirt'
-                                       data-rel=prettyPhoto[product-gallery]>
-                                        <!-- Featured Image From URL plugin -->
-                                        <img src="https://images-na.ssl-images-amazon.com/images/I/81bdUSkCmDL._UL1500_.jpg"
-                                             alt="Armed Forces Day Honor Their Sacrifice Military T-shirt"/>
-                                    </a>
-                                    <a href='https://images-na.ssl-images-amazon.com/images/I/71vxtDcvANL._UL1500_.jpg'
-                                       class='zoom' title='Armed Forces Day Honor Their Sacrifice Military T-shirt'
-                                       data-rel=prettyPhoto[product-gallery]>
-                                        <!-- Featured Image From URL plugin -->
-                                        <img src="https://images-na.ssl-images-amazon.com/images/I/71vxtDcvANL._UL1500_.jpg"
-                                             alt="Armed Forces Day Honor Their Sacrifice Military T-shirt"></img></a>
-                                    <a href='https://images-na.ssl-images-amazon.com/images/I/81FLbbhIhpL._UL1500_.jpg'
-                                       class='zoom' title='Armed Forces Day Honor Their Sacrifice Military T-shirt'
-                                       data-rel=prettyPhoto[product-gallery]>
-                                        <!-- Featured Image From URL plugin -->
-                                        <img src="https://images-na.ssl-images-amazon.com/images/I/81FLbbhIhpL._UL1500_.jpg"
-                                             alt="Armed Forces Day Honor Their Sacrifice Military T-shirt"></img>
-                                    </a>
-                                    <a href='https://images-na.ssl-images-amazon.com/images/I/71TD9vPWTAL._UL1500_.jpg'
-                                       class='zoom' title='Armed Forces Day Honor Their Sacrifice Military T-shirt'
-                                       data-rel=prettyPhoto[product-gallery]>
-                                        <!-- Featured Image From URL plugin -->
-                                        <img src="https://images-na.ssl-images-amazon.com/images/I/71TD9vPWTAL._UL1500_.jpg"
-                                             alt="Armed Forces Day Honor Their Sacrifice Military T-shirt"></img>
-                                    </a>
+                                    @foreach($images as $image)
+                                        <a href="{{ $image->link }}"
+                                           class='zoom' title='Armed Forces Day Honor Their Sacrifice Military T-shirt'
+                                           data-rel=prettyPhoto[product-gallery]>
+                                            <!-- Featured Image From URL plugin -->
+                                            <img src="{{$image->link}}"
+                                                 alt="Armed Forces Day Honor Their Sacrifice Military T-shirt"/>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="summary entry-summary">
                                 <h1 itemprop="name" class="product_title entry-title">
-                                    Cancer Sucks Top Hat Skeleton T-Shirt
+                                    {{ $product->name }}
                                 </h1>
                                 {!! Form::open([
                                     'method' => 'POST',
                                     'accept-charset' => 'UTF-8',
                                     'class' => 'variations_form cart'
                                 ]) !!}
-                                    <table class="variations" cellspacing="0">
-                                        <tbody>
-                                        <tr id="fit_type_choose">
-                                            <td class="label"><label for="fit-type"> @lang('sites.product.type') </label></td>
-                                            <td class="value">
-                                                <select id="fit-type" class="" name="fit_type"
-                                                        data-attribute_name="fit_type"
-                                                        data-show_option_none="yes" style="min-width: 200px">
-                                                    <option value="men" selected='selected'>Men</option>
-                                                    <option value="women">Women</option>
-                                                </select>
-                                            </td>
-                                            <input type="hidden" value="895" id="product_id"/>
-                                            <input type="hidden" value="21.99" id="price"/>
-                                        </tr>
-                                        <tr id="color_choose">
-                                            <td class="label"><label for="color"> @lang('sites.product.color') </label></td>
-                                            <td class="value" id="color_product">
-                                                <select id="color" class="" name="attribute_color"
-                                                        data-attribute_name="attribute_color"
-                                                        data-show_option_none="yes" style="min-width: 200px">
-                                                    <option value="Slate">Slate</option>
-                                                    <option value="Silver">Silver</option>
-                                                    <option value="White">White</option>
-                                                    <option value="Black">Black</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label"><label for="size"> @lang('sites.product.size') </label></td>
-                                            <td class="value">
-                                                <select id="size" class="" name="attribute_size"
-                                                        data-attribute_name="attribute_size"
-                                                        data-show_option_none="yes" style="min-width: 200px">
-                                                    <option value="S">S</option>
-                                                    <option value="M">M</option>
-                                                    <option value="L">L</option>
-                                                    <option value="XL">XL</option>
-                                                    <option value="2XL">2XL</option>
-                                                    <option value="3XL">3XL</option>
-                                                    <option value="4XL">4XL</option>
-                                                    <option value="5XL">5XL</option>
-                                                    <option value="YXS">YXS</option>
-                                                    <option value="YS">YS</option>
-                                                    <option value="YM">YM</option>
-                                                    <option value="YL">YL</option>
-                                                    <option value="YXL">YXL</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">
-                                                <p class="price total_price">
-                                                <span class="woocommerce-Price-amount amount" id="total_number">
-                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>
-                                                    21.99
+                                <table class="variations" cellspacing="0">
+                                    <tbody>
+                                    <tr id="fit_type_choose">
+                                        <td>
+                                            {!! Form::label('fit-type', trans('sites.product.type')) !!}
+                                        </td>
+                                        <td class="value">
+                                            {!! Form::select('fit_type', $sex, 0, ['id' => 'fit-type']) !!}
+                                        </td>
+                                    </tr>
+                                    <tr id="color_choose">
+                                        <td>
+                                            {!! Form::label('color', trans('sites.product.color')) !!}
+                                        </td>
+                                        <td class="value" id="color_product">
+                                            {!! Form::select('attribute_color', $defaultOption, null, ['id' => 'color']) !!}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        {!! Form::label('size', trans('sites.product.size')) !!}
+                                        <td class="value">
+                                            {!! Form::select('attribute_size', $defaultOption, null, ['id' => 'size']) !!}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="single_variation_wrap">
+                                    <div class="woocommerce-variation single_variation" style="">
+                                        <div class="woocommerce-variation-description">
+
+                                        </div>
+
+                                        <div class="woocommerce-variation-price">
+                                            <span class="price">
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <span class="woocommerce-Price-currencySymbol">$</span>
                                                 </span>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="single_variation_wrap">
-                                        <div class="woocommerce-variation single_variation"></div>
-                                        <div class="woocommerce-variation-add-to-cart variations_button">
-                                            <div class="quantity">
-                                                <input type="number" step="1" min="1" max="" name="quantity" value="1"
-                                                       title="Qty" class="input-text qty text number_product" size="4"
-                                                       pattern="[0-9]*" inputmode="numeric"/>
-                                            </div>
-                                            <input type="hidden" name="hash_cart" value="" id="hash_cart">
-                                            <input type="hidden" id="price_cart" value="21.99" name="price_cart">
-                                            <input type="hidden" name="product_id" value="895">
-                                            <button type="submit" class="single_add_to_cart_button button alt" id="add_cart">
-                                                @lang('sites.product.add_to_cart')
-                                            </button>
+                                                <span id="price">
+                                                {{ $product->price }}
+                                                </span>
+                                            </span>
+                                        </div>
+
+                                        <div class="woocommerce-variation-availability">
+
                                         </div>
                                     </div>
+                                    <div class="woocommerce-variation single_variation"></div>
+                                    <div class="woocommerce-variation-add-to-cart variations_button">
+                                        <div class="quantity">
+                                            {!! Form::number('quantity', 1, [
+                                                'class' => 'input-text qty text number_product',
+                                                'min' => 1,
+                                            ]) !!}
+                                        </div>
+                                        <button class="single_add_to_cart_button button alt" id="add_cart">
+                                            @lang('sites.product.add_to_cart')
+                                        </button>
+                                    </div>
+                                </div>
                                 {!! Form::close() !!}
                                 <div class="clear"></div>
                                 <div class="product_meta">
@@ -172,14 +137,29 @@
                                     </div>
                                     <div>
                                         <UL class="a-unordered-list a-vertical a-spacing-none">
-                                            <LI><SPAN class=a-list-item>100% Cotton </SPAN>
-                                            <LI><SPAN class=a-list-item>Imported </SPAN>
                                             <LI>
-                                                <SPAN class=a-list-item>Machine wash cold with like colors, dry low heat </SPAN>
-                                            <LI><SPAN class=a-list-item>Tired of the politically correct tee shirts - support cancer? Well then this shirt's for you </SPAN>
-                                            <LI><SPAN class=a-list-item>Cancer takes all our energy, time and money - tell it like it is - cancer sucks! </SPAN>
-                                            <LI><SPAN class=a-list-item>Lightweight, Classic fit, Double-needle sleeve and bottom hem </SPAN>
+                                                <SPAN class=a-list-item>{{ $product->made_in }} </SPAN>
                                             </LI>
+                                            @if(!empty($product->washing))
+                                                <LI>
+                                                    <SPAN class=a-list-item>{{ $product->washing }}</SPAN>
+                                                </LI>
+                                            @endif
+                                            @if(!empty($product->note_1))
+                                                <LI>
+                                                    <SPAN class=a-list-item>{{ $product->note_1 }}</SPAN>
+                                                </LI>
+                                            @endif
+                                            @if(!empty($product->note_2))
+                                                <LI>
+                                                    <SPAN class=a-list-item>{{ $product->note_2 }}</SPAN>
+                                                </LI>
+                                            @endif
+                                            @if(!empty($product->note_3))
+                                                <LI>
+                                                    <SPAN class=a-list-item>{{ $product->note_3 }}</SPAN>
+                                                </LI>
+                                            @endif
                                         </UL><!--  Loading EDP related metadata -->
                                     </div>
                                 </div>
@@ -190,13 +170,21 @@
                                         <tr class="">
                                             <th> @lang('sites.product.color') </th>
                                             <td>
-                                                <p>Slate, Silver, White, Black</p>
+                                                <p>
+                                                    @foreach($colors as $color)
+                                                        {{$color->name . ', '}}
+                                                    @endforeach
+                                                </p>
                                             </td>
                                         </tr>
                                         <tr class="alt">
                                             <th> @lang('sites.product.size') </th>
                                             <td>
-                                                <p>S, M </p>
+                                                <p>
+                                                    @foreach($sizes as $sizes)
+                                                        {{$sizes->name . ', '}}
+                                                    @endforeach
+                                                </p>
                                             </td>
                                         </tr>
                                         <tr class="">
@@ -218,43 +206,40 @@
                                         <div id="review_form_wrapper">
                                             <div id="review_form">
                                                 <div id="respond" class="comment-respond">
-                                                    <h3 id="reply-title" class="comment-reply-title">Add your
-                                                        review for &ldquo;Cancer Sucks Top Hat Skeleton T-Shirt&rdquo;
+                                                    <h3 id="reply-title" class="comment-reply-title">
+                                                        @lang('sites.product.add_review') &ldquo;{{ $product->name }}&rdquo;
                                                     </h3>
-                                                    <form method="POST" action="http://goatstee.herokuapp.com/reviews/store"
-                                                          accept-charset="UTF-8" id="commentform" class="comment-form">
+                                                    {!! Form::open([
+                                                        'method' => 'POST',
+                                                        'id' => 'commentform',
+                                                        'class' => 'comment-form',
+                                                    ]) !!}
                                                         <p class="comment-notes"><span id="email-notes"> @lang('sites.product.note') </span>
                                                             @lang('sites.product.note_2') <span class="required">*</span>
                                                         </p>
                                                         <p class="comment-form-rating">
-                                                            <label for="rating"> @lang('sites.product.rate') </label>
-                                                            <select name="rating" id="rating" aria-required="true" required>
-                                                                <option value="">Rate&hellip;</option>
-                                                                <option value="5">Perfect</option>
-                                                                <option value="4">Good</option>
-                                                                <option value="3">Average</option>
-                                                                <option value="2">Not that bad</option>
-                                                                <option value="1">Very Poor</option>
-                                                            </select>
+                                                            {!! Form::label('rating', trans('sites.product.rate')) !!}
+                                                            {!! Form::select('rating', $rates, null, ['id' => 'rating']) !!}
                                                         </p>
                                                         <p class="comment-form-comment">
-                                                            <label for="comment"> @lang('sites.product.your_review') <span class="required">*</span></label>
-                                                            <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" required></textarea>
+                                                            <label for="comment">
+                                                                @lang('sites.product.your_review') <span class="required">*</span>
+                                                            </label>
+                                                            {!! Form::textarea('comment', null, ['size' => '45x8']) !!}
                                                         </p>
                                                         <p class="comment-form-author">
                                                             <label for="author"> @lang('sites.user.name')
                                                                 <span class="required">*</span>
                                                             </label>
-                                                            <input id="author" name="author" type="text" value="" size="30" aria-required="true" required/>
+                                                            {!! Form::text('author', null, ['size' => '30', 'required' => '']) !!}
                                                         </p>
                                                         <p class="comment-form-email">
                                                             <label for="email"> @lang('sites.user.email') <span class="required">*</span></label>
-                                                            <input id="email" name="email" type="email" value="" size="30" aria-required="true" required/></p>
+                                                            {!! Form::email('email', null, ['size' => '30', 'required' => '']) !!}
                                                         <p class="form-submit">
                                                             <button id="submit" class="submit"> @lang('sites.submit')</button>
                                                         </p>
-                                                        <input type="hidden" value="895" name="product_id">
-                                                    </form>
+                                                    {!! Form::close() !!}
                                                 </div><!-- #respond -->
                                             </div>
                                         </div>
@@ -284,5 +269,44 @@
 <script type='text/javascript' src="{{ asset('js/goatstee/product/single-product.min.js?ver=2.6.7') }}"></script>
 <script type='text/javascript' src="{{ asset('js/goatstee/jquery.prettyPhoto.min.js?ver=3.1.5') }}"></script>
 <script type='text/javascript' src="{{ asset('js/goatstee/jquery.prettyPhoto.init.min.js?ver=2.6.7') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('#fit-type').change(function () {
+            var sex = $('#fit-type').val();
+            var productId = {!! $product->id !!}
+            $.ajax({
+                url: '{{ route('ajax.get-color-product') }}',
+                data: {
+                    sex: sex,
+                    productId: productId,
+                },
+                type: 'POST',
+                success: function (data) {
+                    $('#color').html(data);
+                }
+            })
+        })
+        $('#color').change(function () {
+            var sex = $('#fit-type').val();
+            var productId = {!! $product->id !!};
+            var color_id = $('#color').val();
+            $.ajax({
+                url: '{{ route('ajax.get-size-product') }}',
+                data: {
+                    sex: sex,
+                    productId: productId,
+                    color_id: color_id,
+                },
+                type: 'POST',
+                success: function (data) {
+                    $('#size').html(data);
+                }
+            })
+        })
+        $('.number_product').change(function () {
+            $('#price').html($(this).val() * {!! $product->price !!});
+        })
+    })
+</script>
 </body>
 </html>

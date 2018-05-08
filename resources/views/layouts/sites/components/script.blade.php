@@ -11,6 +11,7 @@
              src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/925280851/?guid=ON&script=0"/>
     </div>
 </noscript>
+{!! Html::script(asset('js/app.js')) !!}
 <script type='text/javascript'>
     /* <![CDATA[ */
     var yith_wcwl_l10n = {
@@ -35,6 +36,13 @@
     /* ]]> */
 </script>
 
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 <script>
     $.ajaxSetup({
         headers: {
