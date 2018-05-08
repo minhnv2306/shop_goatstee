@@ -5,8 +5,9 @@ namespace App\Repositories;
 use App\Models\Cart;
 use App\Models\StoreProduct;
 use App\Models\CartProduct;
+use App\Repositories\Contracts\CartInterfaceRepository;
 
-class CartRepository extends BaseRepository
+class CartRepository extends BaseRepository implements CartInterfaceRepository
 {
     public function __construct()
     {
@@ -33,6 +34,18 @@ class CartRepository extends BaseRepository
         $cartProduct->increment('price', $price);
     }
 
+    public function updateCart($cartProductIds)
+    {
+        foreach ($cartProductIds as $key => $value) {
+            $cartProduct = CartProduct::findOrFail($key);
+            $price = $cartProduct->storeProduct->product->price * $value['number'];
+
+            $cartProduct->number = $value['number'];
+            $cartProduct->price = $price;
+            $cartProduct->save();
+        }
+    }
+
     public function getProductInCart()
     {
         $cart = Cart::where('hash_cart', session('hash'))
@@ -44,5 +57,24 @@ class CartRepository extends BaseRepository
         }
 
         return $cartProducts;
+    }
+
+    public function removeProductInCart($cartProductId)
+    {
+        $cart = Cart::firstOrCreate([
+            'hash_cart' => session('hash')[0]
+        ]);
+
+        // Check cart_produts in cart before delete it?
+        $cartProduct = CartProduct::where([
+            'id' => $cartProductId,
+            'cart_id' => $cart->id
+        ])->first();
+        if (empty($cartProduct)) {
+            return 0;
+        } else {
+            $cartProduct->delete();
+            return 1;
+        }
     }
 }

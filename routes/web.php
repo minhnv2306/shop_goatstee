@@ -29,6 +29,8 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::get('getProducts/{categoryId}/{count}', 'CategoryController@getProducts');
     Route::post('getColors', 'ProductController@getColors')->name('ajax.get-color-product');
     Route::post('getSizes', 'ProductController@getSizes')->name('ajax.get-size-product');
+    Route::post('removeProduct', 'CartController@removeProductInCart')->name('sites.cart.remove-product');
+    Route::post('updateCart', 'CartController@updateCart')->name('sites.cart.update');
     Route::get('getNumberProduct/{hash}', 'CartController@getNumberProduct');
 });
 

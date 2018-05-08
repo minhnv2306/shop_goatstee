@@ -19,6 +19,7 @@ return [
     'logout' => 'Logout',
     'best_selling' => 'Best Selling',
     'all' => 'All Product',
+    'some_thing_wrong' => 'Something went wrong!',
     'about' => [
         'welcome' => 'Welcome To Goatstee',
         'content_1' => 'Goatstee is passionate about designing t-shirts, hoodies and accessories based on what
@@ -80,6 +81,8 @@ return [
         'subtotal' => 'Subtotal',
         'cart_total' => 'Cart Totals',
         'title' => 'View your shopping cart',
+        'success_update' => 'Update cart successfully!',
+        'empty_cart' => 'Your cart is currently empty.',
     ],
     'product' => [
         'size' => 'Size',
