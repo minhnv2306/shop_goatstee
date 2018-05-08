@@ -35,18 +35,22 @@
     };
     /* ]]> */
 </script>
-
 <script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-</script>
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    // Set hash for client
+    if (!localStorage.getItem("hash")) {
+        localStorage.setItem("hash", Math.random());
+    }
+
+    // Load cart
+    $.ajax({
+        url: "/getNumberProduct/" + localStorage.getItem("hash"),
+        success: function(result){
+            $('.header-cart').html(result);
         }
     });
 </script>

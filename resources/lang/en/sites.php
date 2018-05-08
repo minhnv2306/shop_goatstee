@@ -79,6 +79,7 @@ return [
         'flat_rate' => 'Flat rate',
         'subtotal' => 'Subtotal',
         'cart_total' => 'Cart Totals',
+        'title' => 'View your shopping cart',
     ],
     'product' => [
         'size' => 'Size',
@@ -95,6 +96,9 @@ return [
         'your_review' => 'Your Review',
         'note' => 'Your email address will not be published.',
         'note_2' => 'Required fields are marked',
+        'type_choose' => 'Choose type of product!',
+        'color_choose' => 'Choose color of product!',
+        'size_choose' => 'Choose size of product',
     ],
     'user' => [
         'name' => 'Name',

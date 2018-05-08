@@ -17,13 +17,7 @@
             </form>
         </div>
         <div class="header-cart">
-            <span>
-                <a class="cart-contents" href="{{ route('sites.cart') }}" title="{{ trans('sites.view_cart') }}">
-                    <span class="total">$ 150</span>
-                    <i class="fa fa-shopping-cart"></i>
-                    <span class="count">3</span>
-                </a>
-            </span>
+
         </div>
     </div><!-- .container -->
 </header><!-- #masthead -->

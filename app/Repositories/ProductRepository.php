@@ -29,6 +29,17 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
         ]);
     }
 
+    public function getName($product_id)
+    {
+        $modelInstance = $this->model;
+        $product = $modelInstance::find($product_id);
+        if (empty($product)) {
+            return '';
+        } else {
+            return $product->name;
+        }
+    }
+
     public function createMany($product, $data)
     {
         $product->storeProducts()->createMany($data);

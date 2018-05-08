@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <input type="hidden" name="hash" id="hash" value="f74f638f8311e134a9d9fad232be1a5d515e96a4"/>
     <script type="text/javascript">document.documentElement.className = document.documentElement.className + ' yes-js js_active js'</script>
     <title>@yield('title')</title>
     <script src="{{ asset('js/app.js') }}"></script>

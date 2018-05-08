@@ -44,34 +44,36 @@
                                 </h1>
                                 {!! Form::open([
                                     'method' => 'POST',
+                                    'route' => 'carts.store',
                                     'accept-charset' => 'UTF-8',
                                     'class' => 'variations_form cart'
                                 ]) !!}
                                 <table class="variations" cellspacing="0">
                                     <tbody>
-                                    <tr id="fit_type_choose">
-                                        <td>
-                                            {!! Form::label('fit-type', trans('sites.product.type')) !!}
-                                        </td>
-                                        <td class="value">
-                                            {!! Form::select('fit_type', $sex, 0, ['id' => 'fit-type']) !!}
-                                        </td>
-                                    </tr>
-                                    <tr id="color_choose">
-                                        <td>
-                                            {!! Form::label('color', trans('sites.product.color')) !!}
-                                        </td>
-                                        <td class="value" id="color_product">
-                                            {!! Form::select('attribute_color', $defaultOption, null, ['id' => 'color']) !!}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        {!! Form::label('size', trans('sites.product.size')) !!}
-                                        <td class="value">
-                                            {!! Form::select('attribute_size', $defaultOption, null, ['id' => 'size']) !!}
-                                        </td>
-                                    </tr>
+                                        <tr id="fit_type_choose">
+                                            <td>
+                                                {!! Form::label('sex', trans('sites.product.type')) !!}
+                                            </td>
+                                            <td class="value">
+                                                {!! Form::select('sex', $sex, 0, ['id' => 'fit-type']) !!}
+                                            </td>
+                                        </tr>
+                                        <tr id="color_choose">
+                                            <td>
+                                                {!! Form::label('color', trans('sites.product.color')) !!}
+                                            </td>
+                                            <td class="value" id="color_product">
+                                                {!! Form::select('color_id', $defaultOption, null, ['id' => 'color']) !!}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            {!! Form::label('size', trans('sites.product.size')) !!}
+                                            <td class="value">
+                                                {!! Form::select('size_id', $defaultOption, null, ['id' => 'size']) !!}
+                                            </td>
+                                        </tr>
+                                        <input type="hidden" name="product_id" value="{{$product->id}}">
                                     </tbody>
                                 </table>
                                 <div class="single_variation_wrap">
@@ -98,7 +100,7 @@
                                     <div class="woocommerce-variation single_variation"></div>
                                     <div class="woocommerce-variation-add-to-cart variations_button">
                                         <div class="quantity">
-                                            {!! Form::number('quantity', 1, [
+                                            {!! Form::number('number', 1, [
                                                 'class' => 'input-text qty text number_product',
                                                 'min' => 1,
                                             ]) !!}
@@ -271,6 +273,8 @@
 <script type='text/javascript' src="{{ asset('js/goatstee/jquery.prettyPhoto.init.min.js?ver=2.6.7') }}"></script>
 <script>
     $(document).ready(function () {
+
+        // Load ajax when user change type field
         $('#fit-type').change(function () {
             var sex = $('#fit-type').val();
             var productId = {!! $product->id !!}
@@ -278,14 +282,16 @@
                 url: '{{ route('ajax.get-color-product') }}',
                 data: {
                     sex: sex,
-                    productId: productId,
+                    productId: productId
                 },
                 type: 'POST',
                 success: function (data) {
                     $('#color').html(data);
                 }
             })
-        })
+        });
+
+        // Load ajax when user change color field
         $('#color').change(function () {
             var sex = $('#fit-type').val();
             var productId = {!! $product->id !!};
@@ -295,16 +301,38 @@
                 data: {
                     sex: sex,
                     productId: productId,
-                    color_id: color_id,
+                    color_id: color_id
                 },
                 type: 'POST',
                 success: function (data) {
                     $('#size').html(data);
                 }
             })
-        })
+        });
+
+        // Computer price when user change number of product
         $('.number_product').change(function () {
             $('#price').html($(this).val() * {!! $product->price !!});
+        });
+
+        // Validate data from client form
+        $('#add_cart').click(function (event) {
+            var sex = $('#fit-type').val();
+            var color = $('#color').val();
+            var size = $('#size').val();
+
+            if (sex == 0) {
+                alert('{{ trans('sites.product.type_choose') }}');
+                event.preventDefault();
+            }
+            if (color == 0) {
+                alert('{{ trans('sites.product.color_choose') }}');
+                event.preventDefault();
+            }
+            if (size == 0) {
+                alert('{{ trans('sites.product.size_choose') }}');
+                event.preventDefault();
+            }
         })
     })
 </script>
