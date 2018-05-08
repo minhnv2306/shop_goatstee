@@ -35,6 +35,9 @@ return [
     'user' => [
         'manager' => 'User Manager',
     ],
+    'select_option' => '-- Select an option --',
+    'men' => 'Men',
+    'women' => 'Women',
     'product' => [
         'sex' => 'Sex',
         'comment' => 'Comment',

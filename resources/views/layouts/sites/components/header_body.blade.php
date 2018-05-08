@@ -34,6 +34,11 @@
                 <li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33">
                     <a href="{{ route('sites.about-us') }}"> @lang('sites.about-us')</a>
                 </li>
+                @foreach($categories as $category)
+                    <li id="menu-item-377685" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377685">
+                        <a href="{{ route('categories-site.show', ['category' => $category->id]) }}"> {{ $category->name }} </a>
+                    </li>
+                @endforeach
                 <li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39">
                     <a href="{{ route('sites.contact') }}"> @lang('sites.contact-us') </a>
                 </li>
