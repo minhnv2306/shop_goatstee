@@ -14,7 +14,7 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::get('/', 'HomeController@home')->name('sites.home');
     Route::get('/about-us', 'HomeController@aboutUs')->name('sites.about-us');
     Route::get('search', 'ProductController@search');
-    Route::get('my-cart', 'ProductController@cart')->name('sites.cart');
+    Route::get('my-cart', 'CartController@myCart')->name('sites.cart');
     Route::get('contact-us', 'HomeController@contact')->name('sites.contact');
     Route::get('size-chart', 'HomeController@sizeChart')->name('sites.size-chart');
     Route::get('my-account', 'UserController@showAccount')->name('sites.my-account');
@@ -24,10 +24,12 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::resource('product', 'ProductController');
     Route::resource('users', 'UserController');
     Route::resource('categories-site', 'CategoryController');
+    Route::resource('carts', 'CartController');
 
     Route::get('getProducts/{categoryId}/{count}', 'CategoryController@getProducts');
     Route::post('getColors', 'ProductController@getColors')->name('ajax.get-color-product');
     Route::post('getSizes', 'ProductController@getSizes')->name('ajax.get-size-product');
+    Route::get('getNumberProduct/{hash}', 'CartController@getNumberProduct');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {

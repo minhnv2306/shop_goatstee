@@ -49,11 +49,6 @@ class ProductController extends Controller
         return view('sites.product.search');
     }
 
-    public function cart()
-    {
-        return view('sites.product.cart');
-    }
-
     public function order()
     {
         return view('sites.product.order');

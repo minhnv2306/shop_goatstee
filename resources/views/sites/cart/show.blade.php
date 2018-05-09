@@ -10,129 +10,95 @@
                         <h1 class="page-title" itemprop="headline"> @lang('sites.carts.cart') </h1>
                         <div class="entry-content" itemprop="text">
                             <div class="woocommerce">
-                                <div class="woocommerce-message">
-                                    <a href="https://goatstee.com/product/im-the-juan-for-you-funny-cinco-de-mayo-saying-t-shirt/"
-                                       class="button wc-forward"> @lang('sites.carts.continue') </a> &ldquo;Im The Juan For You
-                                    &#8211; Funny Cinco De Mayo Saying T-shirt&rdquo; @lang('sites.carts.added')
-                                </div>
+                                @if(!empty(session('name_product')))
+                                    <div class="woocommerce-message">
+                                        <a href="https://goatstee.com/product/im-the-juan-for-you-funny-cinco-de-mayo-saying-t-shirt/"
+                                           class="button wc-forward"> @lang('sites.carts.continue') </a> &ldquo;{{session('name_product')}}&rdquo; @lang('sites.carts.added')
+                                    </div>
+                                @endif
                                 {!! Form::open([
                                     'method' => 'POST'
                                 ]) !!}
-                                    <table class="shop_table shop_table_responsive cart" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th class="product-remove">&nbsp;</th>
-                                            <th class="product-thumbnail">&nbsp;</th>
-                                            <th class="product-name"> @lang('sites.carts.product') </th>
-                                            <th class="product-price"> @lang('sites.carts.price') </th>
-                                            <th class="product-quantity"> @lang('sites.carts.quantity') </th>
-                                            <th class="product-subtotal"> @lang('sites.carts.total') </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                                <table class="shop_table shop_table_responsive cart" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th class="product-remove">&nbsp;</th>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name"> @lang('sites.carts.product') </th>
+                                        <th class="product-price"> @lang('sites.carts.price') </th>
+                                        <th class="product-quantity"> @lang('sites.carts.quantity') </th>
+                                        <th class="product-subtotal"> @lang('sites.carts.total') </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($cartProducts as $cartProduct)
                                         <tr class="cart_item">
                                             <td class="product-remove">
-                                                <a href="https://goatstee.com/cart/?remove_item=4ddc6de999a7bac91a4fe47e0b59d688&#038;_wpnonce=1d9dc3b6d5"
-                                                   class="remove" title="Remove this item" data-product_id="2779088" data-product_sku="">&times;
+                                                <a href="#"
+                                                   class="remove" title="Remove this item" data-product_id="2779088"
+                                                   data-product_sku="">&times;
                                                 </a>
                                             </td>
                                             <td class="product-thumbnail">
-                                                <a href="https://goatstee.com/product/armed-forces-day-honor-their-sacrifice-military-t-shirt/?attribute_color=Navy&#038;attribute_size=S&#038;attribute_fit-type=Men">
+                                                <a href="{{ route('product.show', ['product' => $cartProduct->storeProduct->product->id]) }}">
                                                     <!-- Featured Image From URL plugin -->
-                                                    <img src="https://images-na.ssl-images-amazon.com/images/I/719CEpJe6JL._UL1500_.jpg?fifu"
-                                                         alt="Armed Forces Day Honor Their Sacrifice Military T-shirt"></img>
+                                                    <img src="#"></img>
                                                 </a>
                                             </td>
                                             <td class="product-name" data-title="Product">
-                                                <a href="https://goatstee.com/product/armed-forces-day-honor-their-sacrifice-military-t-shirt/?attribute_color=Navy&#038;attribute_size=S&#038;attribute_fit-type=Men">Armed
-                                                    Forces Day Honor Their Sacrifice Military T-shirt</a>
+                                                <a href="{{ route('product.show', ['product' => $cartProduct->storeProduct->product->id]) }}">
+                                                    {{ $cartProduct->storeProduct->product->name }}
+                                                </a>
                                                 <dl class="variation">
                                                     <dt class="variation-Color"> @lang('sites.product.color'):</dt>
-                                                    <dd class="variation-Color"><p>Navy</p>
+                                                    <dd class="variation-Color">
+                                                        <p>{{ $cartProduct->storeProduct->color->name }}</p>
                                                     </dd>
                                                     <dt class="variation-Size"> @lang('sites.product.size'):</dt>
-                                                    <dd class="variation-Size"><p>S</p>
+                                                    <dd class="variation-Size">
+                                                        <p>{{ $cartProduct->storeProduct->size->name }}</p>
                                                     </dd>
                                                     <dt class="variation-FitType"> @lang('sites.product.type'):</dt>
-                                                    <dd class="variation-FitType"><p>Men</p>
+                                                    <dd class="variation-FitType">
+                                                        <p>{{ $cartProduct->storeProduct->sex }}</p>
                                                     </dd>
                                                 </dl>
                                             </td>
                                             <td class="product-price" data-title="Price">
                                                 <span class="woocommerce-Price-amount amount">
-                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>17.95
+                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span> {{ $cartProduct->storeProduct->product->price }}
                                                 </span>
                                             </td>
                                             <td class="product-quantity" data-title="Quantity">
                                                 <div class="quantity">
-                                                    <input type="number" step="1" min="0" max="" name="cart[4ddc6de999a7bac91a4fe47e0b59d688][qty]" value="1"
-                                                       title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"/>
+                                                    <input type="number" step="1" min="0" max=""
+                                                           name="cart[4ddc6de999a7bac91a4fe47e0b59d688][qty]"
+                                                           value={{ $cartProduct->number }}
+                                                                   title="Qty" class="input-text qty text" size="4"
+                                                           pattern="[0-9]*" inputmode="numeric"/>
                                                 </div>
                                             </td>
                                             <td class="product-subtotal" data-title="Total">
                                                 <span class="woocommerce-Price-amount amount"><span
-                                                            class="woocommerce-Price-currencySymbol">&#36;</span>17.95</span>
+                                                            class="woocommerce-Price-currencySymbol">&#36;</span> {{$cartProduct->price}}</span>
                                             </td>
                                         </tr>
-                                        <tr class="cart_item">
-                                            <td class="product-remove">
-                                                <a href="https://goatstee.com/cart/?remove_item=86b33525aa9190fc5e49679c359a36fe&#038;_wpnonce=1d9dc3b6d5"
-                                                   class="remove" title="Remove this item" data-product_id="2779007" data-product_sku="">&times;
-                                                </a>
-                                            </td>
-                                            <td class="product-thumbnail">
-                                                <a href="https://goatstee.com/product/im-the-juan-for-you-funny-cinco-de-mayo-saying-t-shirt/?attribute_color=Navy&#038;attribute_size=S&#038;attribute_fit-type=Men">
-                                                    <!-- Featured Image From URL plugin -->
-                                                    <img src="https://images-na.ssl-images-amazon.com/images/I/71S4j0oPE+L._UL1500_.jpg?fifu"
-                                                         alt="Im The Juan For You - Funny Cinco De Mayo Saying T-shirt"></img>
-                                                </a>
-                                            </td>
-                                            <td class="product-name" data-title="Product">
-                                                <a href="https://goatstee.com/product/im-the-juan-for-you-funny-cinco-de-mayo-saying-t-shirt/?attribute_color=Navy&#038;attribute_size=S&#038;attribute_fit-type=Men">Im
-                                                    The Juan For You - Funny Cinco De Mayo Saying T-shirt</a>
-                                                <dl class="variation">
-                                                    <dl class="variation">
-                                                        <dt class="variation-Color"> @lang('sites.product.color'):</dt>
-                                                        <dd class="variation-Color"><p>Navy</p>
-                                                        </dd>
-                                                        <dt class="variation-Size"> @lang('sites.product.size'):</dt>
-                                                        <dd class="variation-Size"><p>S</p>
-                                                        </dd>
-                                                        <dt class="variation-FitType"> @lang('sites.product.type'):</dt>
-                                                        <dd class="variation-FitType"><p>Men</p>
-                                                        </dd>
-                                                    </dl>
-                                                </dl>
-                                            </td>
-                                            <td class="product-price" data-title="Price">
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>17.95
-                                                </span>
-                                            </td>
-                                            <td class="product-quantity" data-title="Quantity">
-                                                <div class="quantity">
-                                                    <input type="number" step="1" min="0" max="" name="cart[86b33525aa9190fc5e49679c359a36fe][qty]" value="1"
-                                                           title="Qty" class="input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric"/>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal" data-title="Total">
-                                                <span class="woocommerce-Price-amount amount">
-                                                    <span class="woocommerce-Price-currencySymbol">&#36;</span>17.95</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="6" class="actions">
-                                                <div class="coupon">
-                                                    <label for="coupon_code">Coupon:</label>
-                                                    <input type="text" name="coupon_code" class="input-text" id="coupon_code"
-                                                           value="" placeholder="Coupon code"/>
-                                                    <input type="submit" class="button" name="apply_coupon" value="Apply Coupon"/>
-                                                </div>
-                                                <input type="submit" class="button" name="update_cart" value="Update Cart"/>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                    @endforeach
+                                    <tr>
+                                        <td colspan="6" class="actions">
+                                            <div class="coupon">
+                                                <label for="coupon_code">Coupon:</label>
+                                                <input type="text" name="coupon_code" class="input-text"
+                                                       id="coupon_code"
+                                                       value="" placeholder="Coupon code"/>
+                                                <input type="submit" class="button" name="apply_coupon"
+                                                       value="Apply Coupon"/>
+                                            </div>
+                                            <input type="submit" class="button" name="update_cart" value="Update Cart"/>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                                 {!! Form::close() !!}
                                 <div class="cart-collaterals">
                                     <div class="cart_totals calculated_shipping">
@@ -149,15 +115,21 @@
                                             <tr class="shipping">
                                                 <th> @lang('sites.carts.shipping') </th>
                                                 <td data-title="Shipping">
-                                                    @lang('sites.carts.flat_rate'): <span class="woocommerce-Price-amount amount"><span
+                                                    @lang('sites.carts.flat_rate'): <span
+                                                            class="woocommerce-Price-amount amount"><span
                                                                 class="woocommerce-Price-currencySymbol">&#36;</span>8.90</span>
-                                                    <input type="hidden" name="shipping_method[0]" data-index="0" id="shipping_method_0" value="flat_rate:3" class="shipping_method"/>
-                                                    <form class="woocommerce-shipping-calculator" action="https://goatstee.com/cart/" method="post">
+                                                    <input type="hidden" name="shipping_method[0]" data-index="0"
+                                                           id="shipping_method_0" value="flat_rate:3"
+                                                           class="shipping_method"/>
+                                                    <form class="woocommerce-shipping-calculator"
+                                                          action="https://goatstee.com/cart/" method="post">
                                                         <section class="shipping-calculator-form" style="display:none;">
                                                             <p class="form-row form-row-wide"
                                                                id="calc_shipping_country_field">
-                                                                <select name="calc_shipping_country" id="calc_shipping_country"
-                                                                        class="country_to_state" rel="calc_shipping_state">
+                                                                <select name="calc_shipping_country"
+                                                                        id="calc_shipping_country"
+                                                                        class="country_to_state"
+                                                                        rel="calc_shipping_state">
                                                                     <option value="">Select a country&hellip;</option>
                                                                     <option value="AX">&#197;land Islands</option>
                                                                     <option value="AF">Afghanistan</option>
@@ -428,20 +400,26 @@
                                                             </p>
                                                             <p class="form-row form-row-wide"
                                                                id="calc_shipping_state_field">
-                                                                <input type="hidden" name="calc_shipping_state" id="calc_shipping_state"
+                                                                <input type="hidden" name="calc_shipping_state"
+                                                                       id="calc_shipping_state"
                                                                        placeholder="State / county"/>
                                                             </p>
                                                             <p class="form-row form-row-wide"
                                                                id="calc_shipping_postcode_field">
-                                                                <input type="text" class="input-text" value="" placeholder="Postcode / ZIP"
-                                                                       name="calc_shipping_postcode" id="calc_shipping_postcode"/>
+                                                                <input type="text" class="input-text" value=""
+                                                                       placeholder="Postcode / ZIP"
+                                                                       name="calc_shipping_postcode"
+                                                                       id="calc_shipping_postcode"/>
                                                             </p>
                                                             <p>
-                                                                <button type="submit" name="calc_shipping" value="1" class="button">Update Totals
+                                                                <button type="submit" name="calc_shipping" value="1"
+                                                                        class="button">Update Totals
                                                                 </button>
                                                             </p>
-                                                            <input type="hidden" id="_wpnonce" name="_wpnonce" value="1d9dc3b6d5"/>
-                                                            <input type="hidden" name="_wp_http_referer" value="/cart/"/></section>
+                                                            <input type="hidden" id="_wpnonce" name="_wpnonce"
+                                                                   value="1d9dc3b6d5"/>
+                                                            <input type="hidden" name="_wp_http_referer"
+                                                                   value="/cart/"/></section>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -456,7 +434,8 @@
                                             </tr>
                                         </table>
                                         <div class="wc-proceed-to-checkout">
-                                            <a href="https://goatstee.com/checkout/" class="checkout-button button alt wc-forward">
+                                            <a href="https://goatstee.com/checkout/"
+                                               class="checkout-button button alt wc-forward">
                                                 @lang('sites.carts.checkout')
                                             </a>
                                         </div>
