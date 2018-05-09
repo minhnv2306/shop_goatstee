@@ -4,7 +4,7 @@
             <a href="{{ route('sites.my-account') }}"> @lang('sites.address.dashboard') </a>
         </li>
         <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders">
-            <a href="#"> @lang('sites.order.order') </a>
+            <a href="{{ route('sites.my-order') }}"> @lang('sites.order.order') </a>
         </li>
         <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account">
             <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}"> @lang('sites.address.account_detail') </a>

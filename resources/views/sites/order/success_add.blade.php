@@ -9,13 +9,19 @@
                              itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
                         <h1 class="page-title" itemprop="headline">@lang('sites.order.order')</h1>
                         <div class="entry-content" itemprop="text">
-                            <div class="woocommerce">
-                                <div class="woocommerce-info"> @lang('sites.order.success_add')
-                                    <a href="#" class="showlogin">
-                                        @lang('sites.order.login')
-                                    </a>
+                            @if (!empty($message))
+                                <div class="woocommerce">
+                                    <div class="woocommerce-info"> {{ $message }}
+                                        <a href="{{ route('sites.my-order') }}"> @lang('sites.order.order') </a>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="woocommerce">
+                                    <div class="alert alert-danger"> {{ $error }}
+                                        <a href="{{ route('sites.cart') }}"> @lang('sites.carts.your_cart') </a>
+                                    </div>
+                                </div>
+                            @endif
                         </div><!-- .entry-content -->
                     </article><!-- #post-## -->
                 </main><!-- #main -->

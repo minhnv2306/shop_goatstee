@@ -24,17 +24,22 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::resource('product', 'ProductController');
     Route::resource('users', 'UserController');
     Route::resource('categories-site', 'CategoryController');
+    Route::resource('carts', 'CartController');
 
     Route::get('getProducts/{categoryId}/{count}', 'CategoryController@getProducts');
     Route::post('getColors', 'ProductController@getColors')->name('ajax.get-color-product');
     Route::post('getSizes', 'ProductController@getSizes')->name('ajax.get-size-product');
+    Route::post('getNumber', 'ProductController@getNumber')->name('ajax.get-number-product');
     Route::post('removeProduct', 'CartController@removeProductInCart')->name('sites.cart.remove-product');
     Route::post('updateCart', 'CartController@updateCart')->name('sites.cart.update');
     Route::get('getNumberProduct/{hash}', 'CartController@getNumberProduct');
     Route::post('storeOrder', 'OrderController@store')->name('sites.order.store');
 
-    Route::get('order/{order}', 'OrderController@showOrder')->name('sites.showOrder');
-    Route::get('my-order', 'OrderController@getAllMyOrder');
+    Route::group(['middleware' => 'sites.login'], function () {
+        Route::get('order/{order}', 'OrderController@showOrder')->name('sites.showOrder');
+        Route::get('my-order', 'OrderController@getAllMyOrder')->name('sites.my-order');
+        Route::resource('users', 'UserController');
+    });
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
