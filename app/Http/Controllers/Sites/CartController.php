@@ -47,6 +47,29 @@ class CartController extends Controller
     }
 
     /**
+     * Update product in cart
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateCart(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $this->cartRepository->updateCart($request->cartProductIds);
+            DB::commit();
+
+            return redirect()->route('sites.cart')
+                ->with('message', trans('sites.carts.success_update'));
+        } catch (Exception $ex) {
+            Log::useDailyFiles(config('app.file_log'));
+            Log::error($ex->getMessage());
+            DB::rollback();
+
+            return redirect()->route('sites.cart')
+                ->with('error', $ex->getMessage());
+        }
+    }
+    /**
      * Ajax header of cart
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -72,9 +95,27 @@ class CartController extends Controller
     public function myCart()
     {
         $cartProducts = $this->cartRepository->getProductInCart();
+        $price = empty($cartProducts) ? 0 : $cartProducts->sum("price");
+
+        // Add avatar attribute for cart_product model
+        foreach ($cartProducts as $cartProduct) {
+            $product = $cartProduct->storeProduct->product;
+            $cartProduct['avatar'] = $this->productRepository->getAvatar($product);
+        }
 
         return view('sites.cart.show', [
             'cartProducts' => $cartProducts,
+            'price' => $price,
         ]);
+    }
+
+    /**
+     * Remove product in cart
+     * @param Request $request
+     * @return boolean
+     */
+    public function removeProductInCart(Request $request)
+    {
+        return $this->cartRepository->removeProductInCart($request->id);
     }
 }
