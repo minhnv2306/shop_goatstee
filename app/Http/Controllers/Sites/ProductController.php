@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -47,11 +48,6 @@ class ProductController extends Controller
     public function search()
     {
         return view('sites.product.search');
-    }
-
-    public function order()
-    {
-        return view('sites.product.order');
     }
 
     public function getColors(Request $request)
