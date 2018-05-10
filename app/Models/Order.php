@@ -32,13 +32,23 @@ class Order extends Model
     {
         switch ($index) {
             case self::CANCEL_STATUS:
-                return trans('sites.order.status_1');
+                return '<span class="label label-danger">' . trans('sites.order.status_1') . '</span>';
             case self::PENDDING_STATUS:
-                return trans('sites.order.status_2');
+                return '<span class="label label-warning">' . trans('sites.order.status_2') . '</span>';
             case self::SHIPPING_STATUS:
-                return trans('sites.order.status_3');
+                return '<span class="label label-infor">' . trans('sites.order.status_3') . '</span>';
             default:
-                return trans('sites.order.status_4');
+                return '<span class="label label-success">' . trans('sites.order.status_4') . '</span>';
         }
+    }
+
+    public static function getArrayStatus()
+    {
+        return [
+            self::CANCEL_STATUS => trans('sites.order.status_1'),
+            self::PENDDING_STATUS => trans('sites.order.status_2'),
+            self::SHIPPING_STATUS => trans('sites.order.status_3'),
+            self::FINISH_STATUS => trans('sites.order.status_4'),
+        ];
     }
 }

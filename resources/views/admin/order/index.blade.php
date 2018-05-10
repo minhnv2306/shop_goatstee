@@ -20,76 +20,23 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <div class="pull-right">
-                            </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="example2" class="table table-bordered table-hover">
+                            <table id="order-table" class="table table-bordered table-hover">
                                 <thead>
-                                    <tr>
-                                        <th> @lang('admin.id') </th>
-                                        <th> @lang('admin.order.user') </th>
-                                        <th> @lang('admin.email') </th>
-                                        <th> @lang('sites.billing-address') </th>
-                                        <th> @lang('sites.shipping-address') </th>
-                                        <th> @lang('admin.order.price') </th>
-                                        <th> @lang('admin.order.status') </th>
-                                        <th> @lang('admin.action') </th>
-                                    </tr>
+                                <tr>
+                                    <th> @lang('admin.id') </th>
+                                    <th> @lang('sites.order.billing-name') </th>
+                                    <th> @lang('sites.order.billing-address') </th>
+                                    <th> @lang('sites.order.shipping-name') </th>
+                                    <th> @lang('sites.order.shipping-address') </th>
+                                    <th> @lang('sites.carts.price') </th>
+                                    <th> @lang('sites.order.status') </th>
+                                    <th> @lang('admin.created_at') </th>
+                                    <th> @lang('admin.action') </th>
+                                </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Minh NV</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>21/3/1234</td>
-                                        <td>
-                                            <a href="#" class="btn btn-xs btn-primary"><i
-                                                        class="fa fa-edit"></i> @lang('admin.edit') </a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i
-                                                        class="fa fa-trash"></i> @lang('admin.delete') </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 4.0
-                                        </td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.0
-                                        </td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.5
-                                        </td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                        <td>A</td>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -105,5 +52,24 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('scripts')
-    {!! Html::script(asset('js/goatstee/datatable.js')) !!}
+    {!! Html::script(asset('js/goatstee/order/index.js')) !!}
+    <script>
+        $('#order-table').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "order": [[ 0, 'desc' ]],
+            ajax: '{{route('datatable.order.server-side')}}',
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'billing_name', name: 'billing_name'},
+                {data: 'billing_address', name: 'billing_address'},
+                {data: 'shipping_name', name: 'shipping_name'},
+                {data: 'shipping_address', name: 'shipping_address'},
+                {data: 'price', name: 'price'},
+                {data: 'status', name: 'status'},
+                {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action'},
+            ]
+        } );
+    </script>
 @endsection

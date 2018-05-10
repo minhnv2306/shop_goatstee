@@ -43,6 +43,11 @@ class OrderRepository extends BaseRepository implements OrderInterfaceRepository
         }
     }
 
+    /**
+     * Get all order of a user
+     * @param $user
+     * @return mixed
+     */
     public function getAllOrderOfUser($user)
     {
         return $user->orders()
