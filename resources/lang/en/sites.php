@@ -68,6 +68,7 @@ return [
         ]
     ],
     'carts' => [
+        'your_cart' => 'Your Cart',
         'cart' => 'Cart',
         'continue' => 'Continue Shopping',
         'added' => 'has been added to your cart.',
@@ -102,6 +103,7 @@ return [
         'type_choose' => 'Choose type of product!',
         'color_choose' => 'Choose color of product!',
         'size_choose' => 'Choose size of product',
+        'number_store' => 'Number in storage: ',
     ],
     'user' => [
         'name' => 'Name',
@@ -137,6 +139,9 @@ return [
         'status_2' => 'Pending',
         'status_3' => 'Shipping',
         'status_4' => 'Finish',
+        'my_order' => 'My Order',
+        'empty' => 'Your order is currently empty.',
+        'not_enough' => 'There is not enough product in storage!'
     ],
     'paypal' => [
         'what' => 'What is PayPal?',

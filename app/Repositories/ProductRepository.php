@@ -123,19 +123,22 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
     {
         if ($sex == 'all') {
             $size_ids = StoreProduct::where([
-                'product_id' => $productId,
+                ['product_id', '=', $productId],
+                ['number', '>', 0]
             ])->pluck('size_id')->all();
         } else {
             if ($color_id == 0) {
                 $size_ids = StoreProduct::where([
-                    'product_id' => $productId,
-                    'sex' => $sex,
+                    ['product_id', '=', $productId],
+                    ['sex', '=', $sex],
+                    ['number', '>', 0]
                 ])->pluck('size_id')->all();
             } else {
                 $size_ids = StoreProduct::where([
-                    'product_id' => $productId,
-                    'sex' => $sex,
-                    'color_id' => $color_id,
+                    ['product_id', '=', $productId],
+                    ['sex', '=', $sex],
+                    ['number', '>', 0],
+                    ['color_id', '=', $color_id],
                 ])->pluck('size_id')->all();
             }
         }
@@ -154,19 +157,22 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
     {
         if ($sex == 'all') {
             $color_ids = StoreProduct::where([
-                'product_id' => $productId,
+                ['product_id', '=', $productId],
+                ['number', '>', 0]
             ])->pluck('color_id')->all();
         } else {
             if ($size_id == 0) {
                 $color_ids = StoreProduct::where([
-                    'product_id' => $productId,
-                    'sex' => $sex,
+                    ['product_id', '=', $productId],
+                    ['number', '>', 0],
+                    ['sex', '=', $sex],
                 ])->pluck('color_id')->all();
             } else {
                 $color_ids = StoreProduct::where([
-                    'product_id' => $productId,
-                    'sex' => $sex,
-                    'size_id' => $size_id,
+                    ['product_id', '=', $productId],
+                    ['number', '>', 0],
+                    ['sex', '=', $sex],
+                    ['size_id', '=', $size_id],
                 ])->pluck('color_id')->all();
             }
         }
@@ -188,5 +194,17 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
         }
 
         return $avatars;
+    }
+
+    public function getNumberOfProduct($productId, $sex = 'all', $sizeId = 0, $colorId = 0)
+    {
+        $storeProduct = StoreProduct::where([
+            'product_id' => $productId,
+            'sex' => $sex,
+            'size_id' => $sizeId,
+            'color_id' => $colorId,
+        ])->first();
+
+        return empty($storeProduct) ? 0 : $storeProduct->number;
     }
 }

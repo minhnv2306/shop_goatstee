@@ -64,32 +64,39 @@ class OrderController extends Controller
                 $data['user_id'] = Auth::user()->id;
             }
             $data['status'] = Order::PENDDING_STATUS;
-            $this->orderRepository->createOrder($data, $request->cartProductIds);
-            DB::commit();
+            if ($this->orderRepository->createOrder($data, $request->cartProductIds)) {
+                DB::commit();
 
-            return view('sites.order.success_add', [
-                'message' => trans('sites.order.success_add'),
-            ]);
+                return view('sites.order.success_add', [
+                    'message' => trans('sites.order.success_add'),
+                ]);
+            } else {
+                DB::rollback();
+
+                return view('sites.order.success_add', [
+                    'error' => trans('sites.order.not_enough'),
+                ]);
+            }
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());
             DB::rollback();
 
             return view('sites.order.success_add', [
-                'message' => trans('sites.order.fail_add'),
+                'error' => trans('sites.order.fail_add'),
             ]);
         }
     }
 
     public function getAllMyOrder()
     {
-        $orders = Auth::user()->orders;
+        $orders = $this->orderRepository->getAllOrderOfUser(Auth::user());
         foreach ($orders as $order) {
             $order['status'] = Order::getStatus($order->status);
         }
 
         return view('sites.order.all_my_order', [
-            'orders' => Auth::user()->orders,
+            'orders' => $orders,
         ]);
     }
 

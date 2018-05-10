@@ -19,13 +19,34 @@ class OrderRepository extends BaseRepository implements OrderInterfaceRepository
         $order = Order::create($data);
         foreach ($cartProductIds as $cartProductId) {
             $cartProduct = CartProduct::findOrFail($cartProductId);
-            ProductOrder::create([
-                'store_product_id' => $cartProduct->store_product_id,
-                'number' => $cartProduct->number,
-                'order_id' => $order->id,
-                'price' => $cartProduct->price,
-            ]);
-            $cartProduct->delete();
+
+            /* If the number of product in cart less than the number of product in store,
+                add it to order
+            */
+            if ($cartProduct->number <= $cartProduct->storeProduct->number) {
+                ProductOrder::create([
+                    'store_product_id' => $cartProduct->store_product_id,
+                    'number' => $cartProduct->number,
+                    'order_id' => $order->id,
+                    'price' => $cartProduct->price,
+                ]);
+
+                $number = (int)$cartProduct->number;
+                $cartProduct->storeProduct->decrement('number', $number);
+                $cartProduct->storeProduct->increment('sale_number', $number);
+                $cartProduct->delete();
+
+                return 1;
+            } else {
+                return 0;
+            }
         }
+    }
+
+    public function getAllOrderOfUser($user)
+    {
+        return $user->orders()
+            ->orderBy('id', 'desc')
+            ->get();
     }
 }

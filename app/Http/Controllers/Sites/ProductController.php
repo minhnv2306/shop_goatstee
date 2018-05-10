@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sites;
 
 use App\Models\Product;
+use App\Models\StoreProduct;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -66,5 +67,17 @@ class ProductController extends Controller
         return view('sites.product.get-size', [
             'sizes' => $sizes,
         ]);
+    }
+
+    public function getNumber(Request $request)
+    {
+        $number = $this->productRepository->getNumberOfProduct(
+            $request->productId,
+            $request->sex,
+            $request->sizeId,
+            $request->colorId
+        );
+
+        return $number;
     }
 }

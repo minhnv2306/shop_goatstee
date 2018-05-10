@@ -109,6 +109,9 @@
                                             @lang('sites.product.add_to_cart')
                                         </button>
                                     </div>
+                                    <div>
+                                        <p> (@lang('sites.product.number_store') <span id="total_number"></span>)</p>
+                                    </div>
                                 </div>
                                 {!! Form::close() !!}
                                 <div class="clear"></div>
@@ -310,6 +313,26 @@
             })
         });
 
+        $('#size').change(function () {
+            var sex = $('#fit-type').val();
+            var productId = {!! $product->id !!};
+            var size_id = $('#size').val();
+            var color_id = $('#color').val();
+            $.ajax({
+                url: '{{ route('ajax.get-number-product') }}',
+                data: {
+                    sex: sex,
+                    productId: productId,
+                    colorId: color_id,
+                    sizeId: size_id
+                },
+                type: 'POST',
+                success: function (data) {
+                    $('#total_number').html(data);
+                    $('.qty').attr('max', data);
+                }
+            })
+        })
         // Computer price when user change number of product
         $('.number_product').change(function () {
             $('#price').html($(this).val() * {!! $product->price !!});

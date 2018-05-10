@@ -1,5 +1,5 @@
 @extends('layouts.sites.master')
-@section('title', trans('sites.checkout'))
+@section('title', trans('sites.order.my_order'))
 @section('content')
     <div id="content" class="site-content">
         <div class="container">
