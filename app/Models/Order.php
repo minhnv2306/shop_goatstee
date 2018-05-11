@@ -36,7 +36,7 @@ class Order extends Model
             case self::PENDDING_STATUS:
                 return '<span class="label label-warning">' . trans('sites.order.status_2') . '</span>';
             case self::SHIPPING_STATUS:
-                return '<span class="label label-infor">' . trans('sites.order.status_3') . '</span>';
+                return '<span class="label label-primary">' . trans('sites.order.status_3') . '</span>';
             default:
                 return '<span class="label label-success">' . trans('sites.order.status_4') . '</span>';
         }

@@ -215,4 +215,62 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
 
         return empty($storeProduct) ? 0 : $storeProduct->number;
     }
+
+    /**
+     * Search product
+     * @param $data
+     * @return mixed
+     */
+    public function search($data)
+    {
+        $newKey = self::filterInput($data['key']);
+        $text = '%' . $newKey . '%';
+        $query = Product::where('name', 'like', $text);
+        $orderBy = $data['orderby'];
+        switch ($orderBy) {
+            case 1:
+                $query = $query->orderBy('price', 'asc');
+                break;
+            case 2:
+                $query = $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query = $query->orderBy('id', 'desc');
+        }
+
+        return $query->paginate(Product::PAGINATE);
+    }
+
+    /**
+     * Filter input form client
+     * @param $input
+     * @return null|string|string[]
+     */
+    public function filterInput($input)
+    {
+        $input = trim($input);
+        $pattern = '/[!@#$%^&*()_+-= {}]/';
+        $replacement = '';
+        $newKey = preg_replace($pattern, $replacement, $input);
+
+        return $newKey;
+    }
+
+    public function getAllProductOfCategory($categoryId, $attribute)
+    {
+        $query = Product::where('category_id', $categoryId);
+        $orderBy = empty($attribute['orderby']) ? 0 : $attribute['orderby'];
+        switch ($orderBy) {
+            case 1:
+                $query = $query->orderBy('price', 'asc');
+                break;
+            case 2:
+                $query = $query->orderBy('price', 'desc');
+                break;
+            default:
+                $query = $query->orderBy('id', 'desc');
+        }
+
+        return $query->paginate(Product::PAGINATE);
+    }
 }

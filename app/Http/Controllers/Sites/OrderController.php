@@ -95,7 +95,7 @@ class OrderController extends Controller
             $order['status'] = Order::getStatus($order->status);
         }
 
-        return view('sites.order.all_my_order', [
+        return view('sites.order.index', [
             'orders' => $orders,
         ]);
     }

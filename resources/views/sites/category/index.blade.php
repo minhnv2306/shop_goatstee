@@ -6,12 +6,19 @@
             <div id="primary" class="content-area">
                 <main id="main" class="site-main" itemprop="mainContentOfPage">
                     <aside id="shopy-products-2" class="widget widget-shopy-products">
-                        <h3 class="widget-title">
-                            <span> @lang('sites.all') </span>
-                        </h3>
-                        <div class="row" id="product-content">
-                            @include('sites.category.ajax-get-product')
+                        <div class="shopy-sorting">
+                            {!! Form::open([
+                                'method' => 'GET',
+                                'route' => ['categories-site.show', 'category_id' => $categoryId],
+                                'id' => 'form-search',
+                                'class' => 'woocommerce-ordering'
+                            ]) !!}
+                            <label for="orderby"> <h4> @lang('sites.product.sort') </h4></label>
+                                {!! Form::select('orderby', $orderByArray, $orderBySelected, ['id' => 'orderby', 'style' => 'display:inline']) !!}
+                            {!! Form::close() !!}
                         </div>
+
+                        @include('sites.product.paginate')
                     </aside>
                 </main><!-- #main -->
             </div><!-- #primary -->
@@ -19,34 +26,5 @@
     </div><!-- #content -->
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
-        var isAjax = 0;
-        var height = 0;
-        var count = 1;
-        $(window).scroll(function() {
-            if ($(window).scrollTop() >= (height + 50) && $(window).scrollTop() < (height + 200)) {
-                var cateId = {!! $categoryId !!};
-                if (isAjax == 0) {
-                    isAjax = 1;
-                    $.ajax({
-                        url: '/getProducts/' + cateId + '/' + count,
-                        type: 'GET',
-                        success: function (data) {
-                            $('#product-content').append(data);
-                        }
-                    })
-                }
-            } else if ($(window).scrollTop() > (height + 200)) {
-                if (isAjax == 0) {
-                    count = 1;
-                } else {
-                    count++;
-                }
-                height = height + 200;
-                isAjax = 0;
-            }
-        });
-    });
-</script>
+    {!! Html::script(asset('js/goatstee/product/orderby.js')) !!}
 @endsection
