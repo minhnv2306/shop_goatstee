@@ -9,7 +9,7 @@
             <span class="price">
                 <span class="woocommerce-Price-amount amount font-bold">
                     <span class="woocommerce-Price-currencySymbol">&#36;</span>
-                    {{ $product->price }}
+                    {{ number_format($product->price) }}
                 </span>
             </span>
             <br/>

@@ -28,7 +28,7 @@
                                         </td>
                                         <td class="product-price" data-title="Price">
                                             <span class="woocommerce-Price-amount amount">
-                                                {{ $order->status }}
+                                                {!! $order->status !!}
                                             </span>
                                         </td>
                                         <td class="product-quantity" data-title="Quantity">

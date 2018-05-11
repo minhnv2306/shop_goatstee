@@ -14,4 +14,5 @@ interface ProductInterfaceRepository
     public function getSizes($productId, $sex = 'all', $color_id = 0);
     public function getColors($productId, $sex = 'all', $size_id = 0);
     public function getAvatarOfProducts($products);
+    public function getNumberOfProduct($productId, $sex = 'all', $sizeId = 0, $colorId = 0);
 }

@@ -56,6 +56,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
         Route::get('get-size-of-category/{categoryId}', 'SizeController@getSizeOfCategory')->name('ajax.get-size');
         Route::get('add-product/{categoryId}', 'ProductController@addProduct')->name('ajax.add-product');
         Route::get('/serverSide', 'ProductController@ajaxServerDataTable')->name('datatable.server-side');
+        Route::get('/serverSide/order', 'OrderController@ajaxServerDataTable')->name('datatable.order.server-side');
     });
     Route::get('/login', 'HomeController@login');
     Route::get('/logout', 'UserController@logout')->name('admin.logout');

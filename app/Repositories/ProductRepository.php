@@ -196,6 +196,14 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
         return $avatars;
     }
 
+    /**
+     * Get number of product in storage
+     * @param $productId
+     * @param string $sex
+     * @param int $sizeId
+     * @param int $colorId
+     * @return int
+     */
     public function getNumberOfProduct($productId, $sex = 'all', $sizeId = 0, $colorId = 0)
     {
         $storeProduct = StoreProduct::where([
