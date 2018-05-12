@@ -12,6 +12,8 @@ class Product extends Model
     const IMAGE_AVATAR = 1;
     const IMAGE_DESCRIPTION = 2;
     const IMAGE_NUMBER = 5;
+    const PAGINATE = 4;
+
     protected $guarded = ['id'];
 
     public static function getTypeProduct()
@@ -30,6 +32,15 @@ class Product extends Model
             '3' => trans('admin.rates.3-stars'),
             '4' => trans('admin.rates.4-stars'),
             '5' => trans('admin.rates.5-stars'),
+        ];
+    }
+
+    public static function getOrderBy()
+    {
+        return [
+            '0' => trans('sites.search.sort_1'),
+            '1' => trans('sites.search.sort_2'),
+            '2' => trans('sites.search.sort_3'),
         ];
     }
 }

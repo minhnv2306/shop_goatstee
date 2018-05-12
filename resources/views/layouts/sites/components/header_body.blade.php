@@ -8,13 +8,18 @@
             </div>
         </div>
         <div class="search-area">
-            <form method="get" class="searchform" id="search-product-form" action="#">
+            {!! Form::open([
+                'method' => 'GET',
+                'class' => 'searchform',
+                'id' => 'search-product-form',
+                'route' => 'sites.search',
+            ]) !!}
                 <div>
                     <input type="text" class="textfield" name="s" id="s"
                            placeholder="Type the keyword to search &hellip;">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
         <div class="header-cart">
 

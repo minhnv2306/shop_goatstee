@@ -104,6 +104,7 @@ return [
         'color_choose' => 'Choose color of product!',
         'size_choose' => 'Choose size of product',
         'number_store' => 'Number in storage: ',
+        'sort' => 'Sort product',
     ],
     'user' => [
         'name' => 'Name',
@@ -160,6 +161,7 @@ return [
         'sort_1' => 'Sort by create at',
         'sort_2' => 'Sort by price: low to high',
         'sort_3' => 'Sort by price: high to low',
+        'number' => 'Number of result',
     ],
     'address' => [
         'dashboard' => 'Dashboard',

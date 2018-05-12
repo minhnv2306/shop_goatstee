@@ -35,6 +35,8 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::get('getNumberProduct/{hash}', 'CartController@getNumberProduct');
     Route::post('storeOrder', 'OrderController@store')->name('sites.order.store');
 
+    Route::get('search', 'ProductController@search')->name('sites.search');
+
     Route::group(['middleware' => 'sites.login'], function () {
         Route::get('order/{order}', 'OrderController@showOrder')->name('sites.showOrder');
         Route::get('my-order', 'OrderController@getAllMyOrder')->name('sites.my-order');

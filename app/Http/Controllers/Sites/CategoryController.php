@@ -6,6 +6,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -20,18 +21,24 @@ class CategoryController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function show($categoryId)
+    public function show($categoryId, Request $request)
     {
-        $products = $this->categoryRepository->getProductWithAvatarOfCategory(
-            $categoryId,
-            config('app.paginate_product')
-        );
+        $orderByArray = Product::getOrderBy();
+        $orderBySelected = empty($request->orderby) ? 0 : $request->orderby;
+        $attribute = [
+            'orderby' => $orderBySelected,
+        ];
+        $products = $this->productRepository->getAllProductOfCategory($categoryId, $attribute);
 
-        return view('sites.category.index', [
-            'products' => $products,
-            'productRepository' => $this->productRepository,
-            'categoryId' => $categoryId,
-        ]);
+        // Add avatar attribute to product
+        foreach ($products as $product) {
+            $link = $this->productRepository->getAvatar($product)[0]->link;
+            $product['link'] = substr($link, 9);
+        }
+
+        $data = compact('products', 'categoryId', 'orderByArray', 'orderBySelected');
+
+        return view('sites.category.index', $data);
     }
 
     public function getProducts(Request $request)
@@ -43,9 +50,8 @@ class CategoryController extends Controller
             $skipNumber
         );
 
-        return view('sites.category.ajax-get-product', [
-            'products' => $products,
-            'productRepository' => $this->productRepository,
-        ]);
+        $data = compact('products');
+
+        return view('sites.category.ajax-get-product', $data);
     }
 }

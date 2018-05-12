@@ -381,3 +381,7 @@ a, .top-navigation .sub-menu li.current-menu-item a, .top-navigation .sub-menu a
 .color-black {
     color: black !important;
 }
+
+#orderby {
+    height: 35px;
+}
