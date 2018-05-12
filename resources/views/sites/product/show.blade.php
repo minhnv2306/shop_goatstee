@@ -18,7 +18,7 @@
                         </nav>
                         <div itemscope itemtype="http://schema.org/Product" id="product-2779088" class="post-2779088 product type-product status-publish has-post-thumbnail
                             yith-wishlist entry first instock taxable shipping-taxable purchasable product-type-variable has-children">
-                            <div class="images">
+                            <div class="images animation-left-to-right">
                                 <a href="{{ $avatar[0]->link }}"
                                    itemprop="image" class="woocommerce-main-image zoom"
                                    title="Armed Forces Day Honor Their Sacrifice Military T-shirt"
@@ -38,7 +38,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="summary entry-summary">
+                            <div class="summary entry-summary animation-right-to-left">
                                 <h1 itemprop="name" class="product_title entry-title">
                                     {{ $product->name }}
                                 </h1>
@@ -119,7 +119,7 @@
                                     <span class="sku_wrapper">SKU: <span class="sku" itemprop="sku">N/A</span></span>
                                 </div>
                             </div><!-- .summary -->
-                            <div class="woocommerce-tabs wc-tabs-wrapper">
+                            <div class="woocommerce-tabs wc-tabs-wrapper display-none" id="description">
                                 <ul class="tabs wc-tabs">
                                     <li class="description_tab">
                                         <a href="#tab-description"> @lang('sites.product.description') </a>
@@ -276,6 +276,15 @@
 <script type='text/javascript' src="{{ asset('js/goatstee/jquery.prettyPhoto.init.min.js?ver=2.6.7') }}"></script>
 <script>
     $(document).ready(function () {
+        // Animation
+        $(window).scroll(function()
+        {
+            if ($(this).scrollTop() > 400)
+            {
+                $('#description').removeClass('display-none');
+                $('#description').addClass('animation-bottom ');
+            }
+        });
 
         // Load ajax when user change type field
         $('#fit-type').change(function () {

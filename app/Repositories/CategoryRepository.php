@@ -16,8 +16,14 @@ class CategoryRepository extends BaseRepository implements CategoryInterfaceRepo
 
     public function delele($model)
     {
-        $model->sizes()->delete();
-        parent::delele($model);
+        if (count($model->products) == 0) {
+            $model->sizes()->delete();
+            parent::delele($model);
+
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**

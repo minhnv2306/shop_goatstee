@@ -79,16 +79,19 @@ class SizeController extends Controller
     public function destroy(Size $size)
     {
         try {
-            $this->sizeRepository->delele($size);
-
-            return redirect()->route('sizes.index')
-                ->with('message', trans('admin.size.success_delete'));
+            if ($this->sizeRepository->delele($size)) {
+                return redirect()->route('sizes.index')
+                    ->with('message', trans('admin.size.success_delete'));
+            } else {
+                return redirect()->route('sizes.index')
+                    ->with('error', trans('admin.size.error_delete'));
+            }
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());
 
             return redirect()->route('sizes.index')
-                ->with('error', trans('admin.size.error'));
+                ->with('error', trans('admin.size.error_delete'));
         }
     }
 

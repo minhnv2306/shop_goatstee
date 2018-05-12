@@ -38,6 +38,7 @@
 
     {{ Html::style('css/goatstee/index.css') }}
     {{ Html::script('js/goatstee/index.js') }}
+    {{ Html::style('css/goatstee/animation.css') }}
     <!--[if lte IE 9]>
     <![endif]-->
 </head>

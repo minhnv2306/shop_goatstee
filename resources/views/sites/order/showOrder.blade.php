@@ -25,7 +25,7 @@
                                         'class' => 'checkout woocommerce-checkout',
                                         'enctype' => 'multipart/form-data',
                                     ])!!}
-                                    <div class="col2-set" id="customer_details">
+                                    <div class="col2-set animation-left-to-right" id="customer_details">
                                         <div class="col-1">
                                             <div class="woocommerce-billing-fields">
                                                 <h3> @lang('sites.order.billing') </h3>
@@ -97,8 +97,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h3 id="order_review_heading"> @lang('sites.order.order') </h3>
-                                    <div id="order_review" class="woocommerce-checkout-review-order">
+                                    <h3 id="order_review_heading" class="animation-right-to-left"> @lang('sites.order.order') </h3>
+                                    <div id="order_review" class="woocommerce-checkout-review-order animation-right-to-left">
                                         <table class="shop_table woocommerce-checkout-review-order-table">
                                             <thead>
                                             <tr>

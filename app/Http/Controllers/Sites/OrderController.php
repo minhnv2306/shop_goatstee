@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Sites;
 
+use App\Http\Requests\OrderRequest;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\CartRepository;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -39,14 +39,12 @@ class OrderController extends Controller
             $cartProduct['avatar'] = $this->productRepository->getAvatar($product);
         }
 
-        return view('sites.order.show', [
-            'user' => $user,
-            'price' => $price,
-            'cartProducts' => $cartProducts,
-        ]);
+        $data = compact('user', 'price', 'cartProducts');
+
+        return view('sites.order.show', $data);
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -95,9 +93,9 @@ class OrderController extends Controller
             $order['status'] = Order::getStatus($order->status);
         }
 
-        return view('sites.order.index', [
-            'orders' => $orders,
-        ]);
+        $data = compact('orders');
+
+        return view('sites.order.index', $data);
     }
 
     public function showOrder(Order $order)
@@ -105,10 +103,8 @@ class OrderController extends Controller
         $productOrders = $order->productOrders;
         $price = empty($productOrders) ? 0 : $productOrders->sum('price');
 
-        return view('sites.order.showOrder', [
-            'productOrders' => $productOrders,
-            'order' => $order,
-            'price' => $price,
-        ]);
+        $data = compact('productOrders', 'order', 'price');
+
+        return view('sites.order.showOrder', $data);
     }
 }

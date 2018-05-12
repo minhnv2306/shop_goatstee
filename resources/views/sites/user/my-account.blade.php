@@ -12,7 +12,7 @@
                                 @guest
                                     @include('layouts.sites.validation')
                                     <div class="u-columns col2-set" id="customer_login">
-                                        <div class="u-column1 col-1">
+                                        <div class="u-column1 col-1 animation-left-to-right">
                                             <h2> @lang('sites.account.login') </h2>
                                             {!! Form::open([
                                                 'method' => 'POST',
@@ -47,7 +47,7 @@
                                             </p>
                                             {!! Form::close() !!}
                                         </div>
-                                        <div class="u-column2 col-2">
+                                        <div class="u-column2 col-2 animation-right-to-left">
                                             <h2> @lang('sites.account.register') </h2>
                                             {!! Form::open([
                                                 'method' => 'POST',

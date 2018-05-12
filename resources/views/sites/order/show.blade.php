@@ -27,7 +27,7 @@
                                         'method' => 'POST',
                                         'route' => 'sites.order.store'
                                     ])!!}
-                                        <div class="col2-set" id="customer_details">
+                                        <div class="col2-set animation-left-to-right" id="customer_details">
                                             <div class="col-1">
                                                 <div class="woocommerce-billing-fields">
                                                     <h3> @lang('sites.order.billing') </h3>
@@ -40,7 +40,8 @@
                                                            'class' => 'input-text',
                                                            'id' => 'address',
                                                            'autocomplete' => 'address-line1',
-                                                           'placeholder' => 'Street address'
+                                                           'placeholder' => 'Street address',
+                                                           'required' => '',
                                                         ]) !!}
                                                     </p>
                                                     <p class="form-row form-row form-row-wide address-field validate-required"
@@ -52,7 +53,8 @@
                                                            'class' => 'input-text',
                                                            'id' => 'address',
                                                            'autocomplete' => 'address-line1',
-                                                           'placeholder' => 'Street address'
+                                                           'placeholder' => 'Street address',
+                                                           'required' => '',
                                                         ]) !!}
                                                     </p>
                                                     <div class="clear"></div>
@@ -61,7 +63,8 @@
                                                         {!! Form::text('billing_address', !empty($user) ? $user->address : '', [
                                                             'class' => 'input-text',
                                                             'id' => 'company',
-                                                            'autocomplete' => 'organization'
+                                                            'autocomplete' => 'organization',
+                                                            'required' => '',
                                                         ]) !!}
                                                     </p>
                                                     <p class="form-row form-row form-row-wide address-field validate-required"
@@ -71,7 +74,8 @@
                                                            'class' => 'input-text',
                                                            'id' => 'address',
                                                            'autocomplete' => 'address-line1',
-                                                           'placeholder' => 'Street address'
+                                                           'placeholder' => 'Street address',
+                                                           'required' => '',
                                                         ]) !!}
                                                     </p>
                                                     <div class="clear"></div>
@@ -80,7 +84,8 @@
                                                         {!! Form::text('shipping_address', !empty($user) ? $user->address : '', [
                                                             'class' => 'input-text',
                                                             'id' => 'company',
-                                                            'autocomplete' => 'organization'
+                                                            'autocomplete' => 'organization',
+                                                            'required' => '',
                                                         ]) !!}
                                                     </p>
                                                     <p class="form-row form-row form-row-first validate-required validate-email"
@@ -89,7 +94,8 @@
                                                         {!! Form::text('customer_email', !empty($user) ? $user->email : '', [
                                                            'class' => 'input-text',
                                                            'id' => 'email',
-                                                           'autocomplete' => 'email'
+                                                           'autocomplete' => 'email',
+                                                           'required' => '',
                                                         ]) !!}
                                                     </p>
                                                     <p class="form-row form-row form-row-last validate-required validate-phone"
@@ -98,14 +104,15 @@
                                                     {!! Form::text('phone', !empty($user) ? $user->phone : '', [
                                                        'class' => 'input-text',
                                                        'id' => 'phone',
-                                                       'autocomplete' => 'tel'
+                                                       'autocomplete' => 'tel',
+                                                       'required' => '',
                                                     ]) !!}
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <h3 id="order_review_heading"> @lang('sites.order.order') </h3>
-                                        <div id="order_review" class="woocommerce-checkout-review-order">
+                                        <h3 id="order_review_heading" class="animation-right-to-left"> @lang('sites.order.order') </h3>
+                                        <div id="order_review" class="woocommerce-checkout-review-order animation-right-to-left">
                                             <table class="shop_table woocommerce-checkout-review-order-table">
                                                 <thead>
                                                 <tr>
