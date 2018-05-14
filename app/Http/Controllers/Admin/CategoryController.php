@@ -70,18 +70,22 @@ class CategoryController extends Controller
     {
         DB::beginTransaction();
         try {
-            $this->cateRepository->delele($category);
-            DB::commit();
+            if ($this->cateRepository->delele($category)) {
+                DB::commit();
 
-            return redirect()->route('categories.index')
-                ->with('message', trans('admin.category.success_delete'));
+                return redirect()->route('categories.index')
+                    ->with('message', trans('admin.category.success_delete'));
+            } else {
+                return redirect()->route('categories.index')
+                    ->with('error', trans('admin.category.error_delete'));
+            }
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());
             DB::rollback();
 
             return redirect()->route('categories.index')
-                ->with('error', trans('admin.category.error'));
+                ->with('error', trans('admin.category.error_delete'));
         }
     }
 }

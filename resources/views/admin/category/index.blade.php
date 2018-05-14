@@ -115,7 +115,7 @@
                                                     {!! Form::close() !!}
                                                 </div>
                                             </div>
-                                            @if($cate->has('products')->get()->isEmpty())
+                                            @if (count($cate->products) == 0)
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
                                                     'route' => ['categories.destroy', 'category' => $cate->id],

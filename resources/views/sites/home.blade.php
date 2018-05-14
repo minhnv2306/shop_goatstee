@@ -5,11 +5,11 @@
         <div class="container">
             <div id="primary" class="content-area">
                 <main id="main" class="site-main" itemprop="mainContentOfPage">
-                    <aside id="shopy-products-2" class="widget widget-shopy-products">
+                    <aside id="shopy-products-21" class="widget widget-shopy-products animation">
                         <h3 class="widget-title">
                             <span> @lang('sites.best_selling') </span>
                         </h3>
-                        <div class="row" style="padding-bottom: 70px">
+                        <div class="row row1 padding-bottom-40 animation-right-to-left">
                             <div class="col col-sm-3">
                                 <a href="http://goatstee.herokuapp.com/products/895"
                                    class="woocommerce-LoopProduct-link">
@@ -91,7 +91,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="row" style="padding-bottom: 70px">
+                        <div class="row row2 padding-bottom-40 display-none">
                             <div class="col col-sm-3">
                                 <a href="http://goatstee.herokuapp.com/products/895"
                                    class="woocommerce-LoopProduct-link">
@@ -174,11 +174,11 @@
                             </div>
                         </div>
                     </aside>
-                    <aside id="shopy-products-2" class="widget widget-shopy-products">
+                    <aside id="shopy-products-22" class="widget widget-shopy-products">
                         <h3 class="widget-title">
                             <span> @lang('sites.all') </span>
                         </h3>
-                        <div class="row" style="padding-bottom: 70px">
+                        <div class="row row3 padding-bottom-40 display-none">
                             <div class="col col-sm-3">
                                 <a href="http://goatstee.herokuapp.com/products/895"
                                    class="woocommerce-LoopProduct-link">
@@ -260,7 +260,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="row" style="padding-bottom: 70px">
+                        <div class="row row4 padding-bottom-40 display-none">
                             <div class="col col-sm-3">
                                 <a href="http://goatstee.herokuapp.com/products/895"
                                    class="woocommerce-LoopProduct-link">
@@ -347,4 +347,35 @@
             </div><!-- #primary -->
         </div><!-- .container -->
     </div><!-- #content -->
+@endsection
+@section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function()
+        {
+            console.log($(this).scrollTop());
+            if ($(this).scrollTop() > 1)
+            {
+                $('.row1').removeClass('display-none');
+                $('.row1').addClass('animation-right-to-left');
+            }
+            if ($(this).scrollTop() > 150)
+            {
+                $('.row2').removeClass('display-none');
+                $('.row2').addClass('animation-left-to-right');
+            }
+            if ($(this).scrollTop() > 600)
+            {
+                $('.row3').removeClass('display-none');
+                $('.row3').addClass('animation-right-to-left');
+            }
+            if ($(this).scrollTop() > 1000)
+            {
+                $('.row4').removeClass('display-none');
+                $('.row4').addClass('animation-left-to-right');
+            }
+        });
+    })
+</script>
 @endsection

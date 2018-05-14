@@ -1,0 +1,62 @@
+.display-none {
+    display: none;
+}
+
+.animation-left-to-right {
+    position: relative;
+    -webkit-animation: left-to-right 1.5s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    animation: left-to-right 1.5s;
+    animation-direction: alternate;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes left-to-right {
+    0%   { left: -200px; top: 0px;}
+    100% { left: 0px; top: 0px;}
+}
+
+@keyframes left-to-right {
+    0%   { left: -200px; top: 0px;}
+    100% { left: 0px; top: 0px;}
+}
+
+.animation-right-to-left {
+    position: relative;
+    -webkit-animation: right-to-left 1.5s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    animation: right-to-left 1.5s;
+    animation-direction: alternate;
+}
+
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes right-to-left {
+    0%   { left: 200px; top: 0px;}
+    100% { left: 0px; top: 0px;}
+}
+
+@keyframes right-to-left {
+    0%   { left: 200px; top: 0px;}
+    100% { left: 0px; top: 0px;}
+}
+
+.animation-bottom {
+    position: relative;
+    -webkit-animation: bottom-to-top 1.5s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    animation: bottom-to-top  1.5s;
+    animation-direction: alternate;
+}
+
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes bottom-to-top  {
+    0%   { left: 0px; bottom: -100px;}
+    100% { left: 0px; bottom: 0px;}
+}
+
+@keyframes bottom-to-top  {
+    0%   { left: 0px; bottom: -100px;}
+    100% { left: 0px; bottom: 0px;}
+}

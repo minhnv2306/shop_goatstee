@@ -104,6 +104,7 @@ return [
         'success_add' => 'Add new category successfully!',
         'success_delete' => 'Delete category successfully!',
         'success_update' => 'Update new category successfully!',
+        'error_delete' => 'Delete category fail!',
         'error' => 'Name of category is not same!',
         'delete' => 'Do you want to delete this element?'
     ],
@@ -123,6 +124,7 @@ return [
         'success_add' => 'Add new size successfully!',
         'success_update' => 'Update new size successfully!',
         'success_delete' => 'Delete size successfully!',
+        'error_delete' => 'Delete size fail!',
         'error' => 'Name of size is not same!',
     ],
     'rates' => [

@@ -12,6 +12,16 @@ class SizeRepository extends BaseRepository implements SizeInterfaceRepository
         parent::__construct(Size::class);
     }
 
+    public function delele($model)
+    {
+        if (count($model->storeProducts) == 0) {
+            parent::delele($model);
+
+            return 1;
+        } else {
+            return 0;
+        }
+    }
     /**
      * Get all size of a category
      * @param $category_id

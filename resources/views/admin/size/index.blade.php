@@ -134,7 +134,7 @@
                                                 </div>
                                             </div>
                                             <!-- End modal -->
-                                            @if($size->has('storeProducts')->get()->isEmpty())
+                                            @if (count($size->storeProducts) == 0)
                                                 {!! Form::open([
                                                     'method' => 'DELETE',
                                                     'route' => ['sizes.destroy', 'size' => $size->id],
