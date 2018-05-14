@@ -25,6 +25,7 @@ Route::group([ 'namespace' => 'Sites'], function() {
     Route::resource('users', 'UserController');
     Route::resource('categories-site', 'CategoryController');
     Route::resource('carts', 'CartController');
+    Route::resource('review-product', 'ReviewController');
 
     Route::get('getProducts/{categoryId}/{count}', 'CategoryController@getProducts');
     Route::post('getColors', 'ProductController@getColors')->name('ajax.get-color-product');

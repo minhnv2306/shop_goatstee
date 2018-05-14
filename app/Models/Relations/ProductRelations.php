@@ -21,7 +21,8 @@ trait ProductRelations
 
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)
+            ->whereApproved(Review::APPROVED);
     }
 
     public function storeProducts()

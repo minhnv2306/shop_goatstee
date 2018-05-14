@@ -27,6 +27,7 @@ class Product extends Model
     public static function getRatesProduct()
     {
         return [
+            '0' => '',
             '1' => trans('admin.rates.1-star'),
             '2' => trans('admin.rates.2-stars'),
             '3' => trans('admin.rates.3-stars'),
