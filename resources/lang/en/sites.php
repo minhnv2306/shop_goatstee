@@ -163,6 +163,7 @@ return [
         'sort_2' => 'Sort by price: low to high',
         'sort_3' => 'Sort by price: high to low',
         'number' => 'Number of result',
+        'no_result' => 'Not found product',
     ],
     'address' => [
         'dashboard' => 'Dashboard',

@@ -92,4 +92,9 @@ class ProductController extends Controller
 
         return $number;
     }
+
+    public function find(Request $request)
+    {
+        return response()->json($this->productRepository->findSuggestProduct($request->q));
+    }
 }

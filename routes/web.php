@@ -43,6 +43,7 @@ Route::group([ 'namespace' => 'Sites'], function() {
         Route::get('my-order', 'OrderController@getAllMyOrder')->name('sites.my-order');
         Route::resource('users', 'UserController');
     });
+    Route::get('find', 'ProductController@find');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {

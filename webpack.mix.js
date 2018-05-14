@@ -15,4 +15,5 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copyDirectory('resources/assets/sass/goatstee', 'public/css/goatstee')
     .copyDirectory('resources/assets/js/goatstee', 'public/js/goatstee')
     .copyDirectory('resources/assets/img', 'public/img')
+    .copy('resources/assets/typeahead.js/dist/typeahead.bundle.js', 'public/js/typeahead.bundle.js')
     .sass('resources/assets/sass/app.scss', 'public/css');
