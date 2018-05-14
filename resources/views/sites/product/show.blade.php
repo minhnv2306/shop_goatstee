@@ -50,30 +50,30 @@
                                 ]) !!}
                                 <table class="variations" cellspacing="0">
                                     <tbody>
-                                        <tr id="fit_type_choose">
-                                            <td>
-                                                {!! Form::label('sex', trans('sites.product.type')) !!}
-                                            </td>
-                                            <td class="value">
-                                                {!! Form::select('sex', $sex, 0, ['id' => 'fit-type']) !!}
-                                            </td>
-                                        </tr>
-                                        <tr id="color_choose">
-                                            <td>
-                                                {!! Form::label('color', trans('sites.product.color')) !!}
-                                            </td>
-                                            <td class="value" id="color_product">
-                                                {!! Form::select('color_id', $defaultOption, null, ['id' => 'color']) !!}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            {!! Form::label('size', trans('sites.product.size')) !!}
-                                            <td class="value">
-                                                {!! Form::select('size_id', $defaultOption, null, ['id' => 'size']) !!}
-                                            </td>
-                                        </tr>
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <tr id="fit_type_choose">
+                                        <td>
+                                            {!! Form::label('sex', trans('sites.product.type')) !!}
+                                        </td>
+                                        <td class="value">
+                                            {!! Form::select('sex', $sex, 0, ['id' => 'fit-type']) !!}
+                                        </td>
+                                    </tr>
+                                    <tr id="color_choose">
+                                        <td>
+                                            {!! Form::label('color', trans('sites.product.color')) !!}
+                                        </td>
+                                        <td class="value" id="color_product">
+                                            {!! Form::select('color_id', $defaultOption, null, ['id' => 'color']) !!}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        {!! Form::label('size', trans('sites.product.size')) !!}
+                                        <td class="value">
+                                            {!! Form::select('size_id', $defaultOption, null, ['id' => 'size']) !!}
+                                        </td>
+                                    </tr>
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
                                     </tbody>
                                 </table>
                                 <div class="single_variation_wrap">
@@ -128,7 +128,7 @@
                                         <a href="#tab-additional_information"> @lang('sites.product.infor') </a>
                                     </li>
                                     <li class="reviews_tab">
-                                        <a href="#tab-reviews"> @lang('sites.product.review') (0)</a>
+                                        <a href="#tab-reviews"> @lang('sites.product.review') ({{count( $reviews )}})</a>
                                     </li>
                                 </ul>
                                 <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab"
@@ -203,10 +203,40 @@
                                      id="tab-reviews">
                                     <div id="reviews" class="woocommerce-Reviews">
                                         <div id="comments">
-                                            <h2 class="woocommerce-Reviews-title"> @lang('sites.product.review') </h2>
-                                            <ol class="commentlist">
-                                                <p class="woocommerce-noreviews"> @lang('sites.product.no_review') </p>
-                                            </ol>
+                                            <h2 class="woocommerce-Reviews-title"> @lang('sites.product.review')
+                                                {{ (count($reviews) == 0) ? '' : ( '(' . number_format($reviews->avg('rating'), 1) . ' stars)')}} </h2>
+                                            @if (count($reviews) == 0)
+                                                <ol class="commentlist" id="commentlist">
+                                                    <p class="woocommerce-noreviews"> @lang('sites.product.no_review') </p>
+                                                </ol>
+                                            @else
+                                                <ol class="commentlist" id="commentlist">
+                                                    @foreach($reviews as $review)
+                                                        <li itemprop="review" itemscope="" itemtype="http://schema.org/Review"
+                                                            class="comment even thread-even depth-1" id="li-comment-8715">
+                                                            <div id="comment-8715" class="comment_container">
+                                                                <img alt="" src="https://secure.gravatar.com/avatar/5afcf36b24f4536dd428d27167c129ff?s=60&amp;d=mm&amp;r=g"
+                                                                     srcset="https://secure.gravatar.com/avatar/5afcf36b24f4536dd428d27167c129ff?s=120&amp;d=mm&amp;r=g 2x"
+                                                                     class="avatar avatar-60 photo" height="60" width="60" itemprop="image">
+                                                                <div class="comment-text">
+                                                                    <div>
+                                                                        <span>
+                                                                            @for ($i = 0; $i < $review->rating; $i++)
+                                                                                <i class="fa fa-star"></i>
+                                                                            @endfor
+                                                                        </span>
+                                                                        <span class="pull-right"> {{ $review->created_at->diffForHumans() }} </span>
+                                                                    </div>
+                                                                    <p class="meta">{{ $review->author }}</p>
+                                                                    <div itemprop="description" class="description">
+                                                                        <p>{{ $review->comment }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li><!-- #comment-## -->
+                                                    @endforeach
+                                                </ol>
+                                            @endif
                                         </div>
                                         <div id="review_form_wrapper">
                                             <div id="review_form">
@@ -214,36 +244,44 @@
                                                     <h3 id="reply-title" class="comment-reply-title">
                                                         @lang('sites.product.add_review') &ldquo;{{ $product->name }}&rdquo;
                                                     </h3>
+
                                                     {!! Form::open([
                                                         'method' => 'POST',
                                                         'id' => 'commentform',
                                                         'class' => 'comment-form',
+                                                        'route' => 'review-product.store',
                                                     ]) !!}
-                                                        <p class="comment-notes"><span id="email-notes"> @lang('sites.product.note') </span>
-                                                            @lang('sites.product.note_2') <span class="required">*</span>
-                                                        </p>
-                                                        <p class="comment-form-rating">
-                                                            {!! Form::label('rating', trans('sites.product.rate')) !!}
-                                                            {!! Form::select('rating', $rates, null, ['id' => 'rating']) !!}
-                                                        </p>
-                                                        <p class="comment-form-comment">
-                                                            <label for="comment">
-                                                                @lang('sites.product.your_review') <span class="required">*</span>
-                                                            </label>
-                                                            {!! Form::textarea('comment', null, ['size' => '45x8']) !!}
-                                                        </p>
+                                                    <p class="comment-notes">
+                                                        <span id="email-notes"> @lang('sites.product.note') </span>
+                                                        @lang('sites.product.note_2') <span class="required">*</span>
+                                                    </p>
+                                                    <p class="comment-form-rating">
+                                                        {!! Form::label('rating', trans('sites.product.rate')) !!}
+                                                        {!! Form::select('rating', $rates, null, ['id' => 'rating']) !!}
+                                                    </p>
+                                                    <p class="comment-form-comment">
+                                                        <label for="comment">
+                                                            @lang('sites.product.your_review') <span
+                                                                    class="required">*</span>
+                                                        </label>
+                                                        {!! Form::textarea('comment', null, ['size' => '45x8', 'id' => 'comment', 'required' => '']) !!}
+                                                    </p>
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    @guest
                                                         <p class="comment-form-author">
                                                             <label for="author"> @lang('sites.user.name')
                                                                 <span class="required">*</span>
                                                             </label>
-                                                            {!! Form::text('author', null, ['size' => '30', 'required' => '']) !!}
+                                                            {!! Form::text('author', null, ['size' => '30', 'required' => '', 'id' => 'author']) !!}
                                                         </p>
                                                         <p class="comment-form-email">
-                                                            <label for="email"> @lang('sites.user.email') <span class="required">*</span></label>
-                                                            {!! Form::email('email', null, ['size' => '30', 'required' => '']) !!}
-                                                        <p class="form-submit">
-                                                            <button id="submit" class="submit"> @lang('sites.submit')</button>
-                                                        </p>
+                                                            <label for="email"> @lang('sites.user.email')
+                                                                <span class="required">*</span></label>
+                                                        {!! Form::email('email', null, ['size' => '30', 'required' => '', 'id' => 'email']) !!}
+                                                    @endguest
+                                                    <p class="form-submit">
+                                                        <button id="submit" class="submit"> @lang('sites.submit')</button>
+                                                    </p>
                                                     {!! Form::close() !!}
                                                 </div><!-- #respond -->
                                             </div>
@@ -277,10 +315,8 @@
 <script>
     $(document).ready(function () {
         // Animation
-        $(window).scroll(function()
-        {
-            if ($(this).scrollTop() > 400)
-            {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 400) {
                 $('#description').removeClass('display-none');
                 $('#description').addClass('animation-bottom ');
             }
@@ -364,6 +400,48 @@
             if (size == 0) {
                 alert('{{ trans('sites.product.size_choose') }}');
                 event.preventDefault();
+            }
+        })
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#submit').click(function (e) {
+            e.preventDefault();
+            var rating = $('#rating').val();
+            var comment = $('#comment').val();
+            var auth, email;
+            if ($('#auth').val() == undefined) {
+                auth = '';
+            } else {
+                auth = $('#auth').val();
+            }
+
+            if ($('#email').val() == undefined) {
+                email = '';
+            } else {
+                email = $('#email').val();
+            }
+
+            if (rating == 0 || comment == '') {
+                alert('{{trans('admin.review.validate')}}');
+            } else {
+                $.ajax({
+                    url: '{{route('review-product.store')}}',
+                    type: 'POST',
+                    data: {
+                        rating: rating,
+                        comment: comment,
+                        auth: auth,
+                        email: email,
+                        product_id: {{ $product->id }},
+                    },
+                    success: function (data) {
+                        $('#comment').val('');
+                        $('#commentlist').append(data);
+                    }
+                })
             }
         })
     })

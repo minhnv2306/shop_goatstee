@@ -86,10 +86,16 @@ return [
         'customer' => 'Customer Information',
     ],
     'review' => [
+        'approved' => 'Approve',
+        'rating' => 'Rating',
+        'hidden' => 'Hide',
         'manager' => 'Review manager',
         'name' => 'User name',
         'content' => 'Content',
         'product' => 'Product',
+        'success_update' => 'Update review successfully!',
+        'validate' => 'You must rating and comment for this product!',
+        'pending' => '(Your comment is pending!)',
     ],
     'login' => [
         'start' => 'Sign in to start your session',

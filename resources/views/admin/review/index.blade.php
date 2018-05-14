@@ -30,6 +30,7 @@
                                     <tr>
                                         <th> @lang('admin.id') </th>
                                         <th> @lang('admin.review.name') </th>
+                                        <th> @lang('admin.review.rating') </th>
                                         <th> @lang('admin.review.content') </th>
                                         <th> @lang('admin.review.product') </th>
                                         <th> @lang('admin.created_at') </th>
@@ -37,48 +38,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($reviews as $review)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Minh NV</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>21/3/1234</td>
+                                        <td>{{ $review->id }}</td>
+                                        <td>{{ $review->author }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> @lang('admin.edit') </a>
-                                            <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> @lang('admin.delete') </a>
+                                            @for($i = 0; $i < $review->rating; $i++)
+                                                <span><i class="fa fa-star"></i></span>
+                                            @endfor
+                                        </td>
+                                        <td>{{ $review->comment }}</td>
+                                        <td>{{ $review->product->name }}</td>
+                                        <td>{{ $review->created_at }}</td>
+                                        <td>
+                                            @if ($review->approved == \App\Models\Review::HIDDEN)
+                                                {!! Form::open([
+                                                    'route' => ['reviews.update', 'review' => $review->id],
+                                                    'method' => 'PUT',
+                                                ]) !!}
+                                                    <button class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>
+                                                        @lang('admin.review.approved')
+                                                    </button>
+                                                {!! Form::close() !!}
+                                            @else
+                                                {!! Form::open([
+                                                    'route' => ['reviews.update', 'review' => $review->id],
+                                                    'method' => 'PUT',
+                                                ]) !!}
+                                                    <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i>
+                                                        @lang('admin.review.hidden')
+                                                    </button>
+                                                {!! Form::close() !!}
+                                            @endif
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 4.0
-                                        </td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.0
-                                        </td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.5
-                                        </td>
-                                        <td>minhnv2306@gmail.com</td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                        <td>A</td>
-                                    </tr>
-                                </tbody>>
+                                @endforeach
+                                </tbody>
                             </table>
                         </div>
                         <!-- /.box-body -->

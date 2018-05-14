@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Accessors\UserAccessors;
 use App\Models\Mutators\UserMutators;
 use App\Models\Relations\UserRelations;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,8 @@ class User extends Authenticatable
 {
     const ROLE_USER = 2;
     const ROLE_ADMIN = 1;
-    use Notifiable, UserRelations, UserMutators;
+
+    use Notifiable, UserRelations, UserMutators, UserAccessors;
 
     /**
      * The attributes that are mass assignable.

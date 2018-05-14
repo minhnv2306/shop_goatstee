@@ -9,5 +9,8 @@ class Review extends Model
 {
     use ReviewRelations;
 
+    const APPROVED = 1;
+    const HIDDEN = 0;
+
     protected $guarded = ['id'];
 }

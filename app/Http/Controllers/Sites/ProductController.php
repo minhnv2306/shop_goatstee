@@ -33,8 +33,9 @@ class ProductController extends Controller
         $images = $this->productRepository->getDescriptionImages($product);
         $colors = $this->productRepository->getColors($product->id);
         $sizes = $this->productRepository->getSizes($product->id);
+        $reviews = $product->reviews;
 
-        $data = compact('product', 'avatar', 'images', 'colors', 'sizes', 'sex', 'defaultOption', 'rates');
+        $data = compact('product', 'avatar', 'images', 'colors', 'sizes', 'sex', 'defaultOption', 'rates', 'reviews');
 
         return view('sites.product.show', $data);
     }
