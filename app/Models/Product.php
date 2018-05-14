@@ -13,6 +13,7 @@ class Product extends Model
     const IMAGE_DESCRIPTION = 2;
     const IMAGE_NUMBER = 5;
     const PAGINATE = 4;
+    const TAKE_HOME_PAGE = 8;
 
     protected $guarded = ['id'];
 

@@ -16,6 +16,7 @@ return [
     'view_cart' => 'View your shopping cart',
     'submit' => 'Submit',
     'login' => 'Login',
+    'new_product' => 'New product',
     'logout' => 'Logout',
     'best_selling' => 'Best Selling',
     'all' => 'All Product',

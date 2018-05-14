@@ -273,4 +273,30 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
 
         return $query->paginate(Product::PAGINATE);
     }
+
+    /**
+     * Get best selling product
+     * @param $number
+     * @return mixed
+     */
+    public function getBestSelling($number)
+    {
+        return StoreProduct::selectRaw('count(*) AS cnt, product_id')
+            ->groupBy('product_id')
+            ->orderBy('cnt', 'DESC')
+            ->limit($number)
+            ->get();
+    }
+
+    /**
+     * Get new product
+     * @param $number
+     * @return mixed
+     */
+    public function getNewProducts($number)
+    {
+        return Product::orderBy('id', 'desc')
+            ->take($number)
+            ->get();
+    }
 }

@@ -1,7 +1,7 @@
 <li itemprop="review" itemscope="" itemtype="http://schema.org/Review"
     class="comment even thread-even depth-1" id="li-comment-8715">
     <div id="comment-8715" class="comment_container">
-        <img alt="" src="#" class="avatar avatar-60 photo" height="60" width="60" itemprop="image">
+        <img alt="" src="{{ asset('img/avatar-comment.png') }}" class="avatar avatar-60 photo" itemprop="image">
         <div class="comment-text">
             <div>
                 <span>
