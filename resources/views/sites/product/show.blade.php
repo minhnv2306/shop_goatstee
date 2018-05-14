@@ -215,9 +215,7 @@
                                                         <li itemprop="review" itemscope="" itemtype="http://schema.org/Review"
                                                             class="comment even thread-even depth-1" id="li-comment-8715">
                                                             <div id="comment-8715" class="comment_container">
-                                                                <img alt="" src="https://secure.gravatar.com/avatar/5afcf36b24f4536dd428d27167c129ff?s=60&amp;d=mm&amp;r=g"
-                                                                     srcset="https://secure.gravatar.com/avatar/5afcf36b24f4536dd428d27167c129ff?s=120&amp;d=mm&amp;r=g 2x"
-                                                                     class="avatar avatar-60 photo" height="60" width="60" itemprop="image">
+                                                                <img alt="" src="{{ asset('img/avatar-comment.png') }}" class="avatar avatar-60 photo" itemprop="image">
                                                                 <div class="comment-text">
                                                                     <div>
                                                                         <span>
@@ -225,7 +223,7 @@
                                                                                 <i class="fa fa-star"></i>
                                                                             @endfor
                                                                         </span>
-                                                                        <span class="pull-right"> {{ $review->created_at->diffForHumans() }} </span>
+                                                                        <span class="pull-right padding-right-20"> {{ $review->created_at->diffForHumans() }} </span>
                                                                     </div>
                                                                     <p class="meta">{{ $review->author }}</p>
                                                                     <div itemprop="description" class="description">
@@ -412,10 +410,10 @@
             var rating = $('#rating').val();
             var comment = $('#comment').val();
             var auth, email;
-            if ($('#auth').val() == undefined) {
+            if ($('#author').val() == undefined) {
                 auth = '';
             } else {
-                auth = $('#auth').val();
+                auth = $('#author').val();
             }
 
             if ($('#email').val() == undefined) {
@@ -433,7 +431,7 @@
                     data: {
                         rating: rating,
                         comment: comment,
-                        auth: auth,
+                        author: auth,
                         email: email,
                         product_id: {{ $product->id }},
                     },

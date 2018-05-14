@@ -22,7 +22,8 @@ trait ProductRelations
     public function reviews()
     {
         return $this->hasMany(Review::class)
-            ->whereApproved(Review::APPROVED);
+            ->whereApproved(Review::APPROVED)
+            ->orderBy('id', 'desc');
     }
 
     public function storeProducts()

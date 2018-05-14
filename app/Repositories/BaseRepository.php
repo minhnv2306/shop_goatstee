@@ -22,7 +22,9 @@ abstract class BaseRepository implements BaseInterfaceRepository
     public function getAll($atrribute)
     {
         $modelInstance = $this->model;
-        return $modelInstance::get($atrribute);
+
+        return $modelInstance::orderBy('id', 'desc')
+            ->get($atrribute);
     }
 
     public function update($model, $data)
