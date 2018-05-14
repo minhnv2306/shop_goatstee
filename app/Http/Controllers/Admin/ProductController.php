@@ -3,19 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProductRequest;
-use App\Models\Image;
 use App\Models\Product;
-use App\Models\StoreProduct;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ColorRepository;
 use App\Repositories\ImageRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\SizeRepository;
 use App\Repositories\StoreProductRepository;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -159,7 +155,13 @@ class ProductController extends Controller
                     'size_id' => $request->sizes[$j],
                     'sex' => $request->sex[$j],
                 ];
-                array_push($dataStores, $dataStoreItem);
+
+                if (array_search($dataStoreItem, $dataStores) === false) {
+                    $dataStoreItem['number'] = $request->numbers[$j];
+                    array_push($dataStores, $dataStoreItem);
+                } else {
+                    $dataStores[0]['number'] += $request->numbers[$j];
+                }
             }
             $this->productRepository->createMany($product, $dataStores);
             DB::commit();
@@ -261,7 +263,6 @@ class ProductController extends Controller
                     $this->storeProductRepository->delele($storeProductsItem);
                 }
             }
-
             // Create new store product or update (base on store_ids - hidden field from form)
             for ($j = 0; $j < count($request->sizes); $j++) {
                 $storeIds = 'store_ids';
@@ -273,11 +274,35 @@ class ProductController extends Controller
                     'size_id' => $request->sizes[$j],
                     'sex' => $request->sex[$j],
                 ];
-                if (empty($request[$storeIds][$j])) {
-                    $this->storeProductRepository->create($dataStoreItem);
+                $storeId = empty($request[$storeIds][$j]) ? 0 : $request[$storeIds][$j];
+                $attribute = [
+                    ['size_id', '=', $request->sizes[$j]],
+                    ['color_id', '=', $request->colors[$j]],
+                    ['sex', '=', $request->sex[$j]],
+                    ['product_id', '=', $product->id],
+                ];
+                $storeProduct = $this->storeProductRepository->findStoreProduct($attribute);
+
+                /*
+                 * If store product exist in DB
+                 * Increment the number of product if product is added
+                 */
+
+                if (!empty($storeProduct) && ($storeId == $storeProduct->id)) {
+                    $data = [
+                        'number' => $request->numbers[$j]
+                    ];
+                    $this->storeProductRepository->update($storeProduct, $data);
+                } elseif (!empty($storeProduct) && ($storeId != $storeProduct->id)) {
+                    $this->storeProductRepository->increment($storeProduct, 'number', $request->numbers[$j]);
+                    if ($storeId != 0) {
+                        $this->storeProductRepository->delele($this->storeProductRepository->find($storeId));
+                    }
+                /*
+                 * If store product dont exist in DB, create it
+                 */
                 } else {
-                    $storeProductsModel = $this->storeProductRepository->getStorageProduct($request[$storeIds][$j]);
-                    $this->storeProductRepository->update($storeProductsModel, $dataStoreItem);
+                    $this->storeProductRepository->create($dataStoreItem);
                 }
             }
             DB::commit();

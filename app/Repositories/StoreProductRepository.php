@@ -20,4 +20,30 @@ class StoreProductRepository extends BaseRepository
     {
         return StoreProduct::findOrFail($id);
     }
+
+    /**
+     * Find store product base on attribute
+     * @param $attribute
+     * @return mixed
+     */
+    public function findStoreProduct($attribute)
+    {
+        return StoreProduct::where($attribute)
+            ->first();
+    }
+
+    public function increment($model, $column, $number)
+    {
+        $model->increment($column, $number);
+    }
+
+    /**
+     * Find store product base on id
+     * @param $id
+     * @return mixed
+     */
+    public function find($id)
+    {
+        return StoreProduct::findorFail($id);
+    }
 }

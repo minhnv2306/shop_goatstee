@@ -17,6 +17,7 @@ return [
     'submit' => 'Submit',
     'login' => 'Login',
     'new_product' => 'New product',
+    'suggest_product' => 'Suggest product',
     'logout' => 'Logout',
     'best_selling' => 'Best Selling',
     'all' => 'All Product',

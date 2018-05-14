@@ -389,3 +389,7 @@ a, .top-navigation .sub-menu li.current-menu-item a, .top-navigation .sub-menu a
 .twitter-typeahead {
     width: 99%;
 }
+
+.border-none {
+    border: none !important;
+}
