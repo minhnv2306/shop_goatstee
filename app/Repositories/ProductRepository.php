@@ -299,4 +299,10 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
             ->take($number)
             ->get();
     }
+
+    public function findSuggestProduct($key)
+    {
+        return Product::where('name', 'like', '%' . $key . '%')
+            ->get();
+    }
 }

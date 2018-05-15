@@ -15,7 +15,7 @@
                 'route' => 'sites.search',
             ]) !!}
                 <div>
-                    <input type="text" class="textfield" name="s" id="s"
+                    <input type="text" class="textfield search-input" name="s" id="s"
                            placeholder="Type the keyword to search &hellip;">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </div>

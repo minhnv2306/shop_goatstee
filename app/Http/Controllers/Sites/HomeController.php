@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sites;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\Utilities\Request;
 
 class HomeController extends Controller
 {

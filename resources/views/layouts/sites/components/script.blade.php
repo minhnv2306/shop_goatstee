@@ -54,3 +54,36 @@
         }
     });
 </script>
+<script src="{{asset('js/typeahead.bundle.js')}}"></script>
+<script>
+    jQuery(document).ready(function($) {
+        var engine = new Bloodhound({
+            remote: {
+                url: 'find?q=%QUERY%',
+                wildcard: '%QUERY%'
+            },
+            datumTokenizer: Bloodhound.tokenizers.whitespace('q'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace
+        });
+
+        $(".search-input").typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        }, {
+            source: engine.ttAdapter(),
+            name: 'usersList',
+            templates: {
+                empty: [
+                    '<div class="list-group search-results-dropdown"><div class="list-group-item">{{trans('sites.search.no_result')}}</div></div>'
+                ],
+                header: [
+                    '<div class="list-group search-results-dropdown">'
+                ],
+                suggestion: function (data) {
+                    return '<a href="product/' + data.id + '" class="list-group-item">' + data.name + '</a>'
+                }
+            }
+        });
+    });
+</script>
