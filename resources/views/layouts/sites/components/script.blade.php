@@ -11,7 +11,6 @@
              src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/925280851/?guid=ON&script=0"/>
     </div>
 </noscript>
-{!! Html::script(asset('js/app.js')) !!}
 <script type='text/javascript'>
     /* <![CDATA[ */
     var yith_wcwl_l10n = {
@@ -87,3 +86,13 @@
         });
     });
 </script>
+<!-- Toastr -->
+@if(!empty(session('message')))
+    <script>
+        toastr.success('{{ session('message') }}')
+    </script>
+@elseif(!empty(session('error')))
+    <script>
+        toastr.error('{{ session('error') }}')
+    </script>
+@endif

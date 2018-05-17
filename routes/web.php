@@ -44,6 +44,7 @@ Route::group([ 'namespace' => 'Sites'], function() {
         Route::resource('users', 'UserController');
     });
     Route::get('find', 'ProductController@find');
+    Route::get('get-cart', 'CartController@getCart');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {

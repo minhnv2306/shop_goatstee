@@ -24,6 +24,25 @@
         <div class="header-cart">
 
         </div>
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="modal-cart" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="border: none; padding-bottom: 0px">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="page-title" itemprop="headline">
+                            @lang('sites.carts.cart') <i class="fa fa-cart-arrow-down fa-2x" aria-hidden="true"></i>
+                        </h3>
+                    </div>
+                    <div class="modal-body" id="modal-my-cart" style="padding-top: 0px">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div><!-- .container -->
 </header><!-- #masthead -->
 <nav id="primary-navigation" class="primary-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">

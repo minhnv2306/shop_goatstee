@@ -4,6 +4,12 @@
     'route' => ['products.destroy', 'product' => $product->id],
     'method' => 'DELETE'
 ]) !!}
-    <button class="btn btn-xs btn-danger deleteElement"><i class="fa fa-trash"></i> @lang('admin.delete') </button>
+    <button class="btn btn-xs btn-danger deleteElement-{{$product->id}}"><i class="fa fa-trash"></i> @lang('admin.delete') </button>
 {!! Form::close() !!}
-@include('layouts.admin.components.delete-element')
+<script>
+    $('.deleteElement-' + {{$product->id}}).click(function (e) {
+        if(!confirm('{{trans('admin.category.delete')}}')) {
+            e.preventDefault();
+        }
+    })
+</script>
