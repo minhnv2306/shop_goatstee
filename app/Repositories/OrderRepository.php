@@ -6,6 +6,7 @@ use App\Models\CartProduct;
 use App\Models\Order;
 use App\Models\ProductOrder;
 use App\Repositories\Contracts\OrderInterfaceRepository;
+use Illuminate\Support\Facades\DB;
 
 class OrderRepository extends BaseRepository implements OrderInterfaceRepository
 {
@@ -16,6 +17,7 @@ class OrderRepository extends BaseRepository implements OrderInterfaceRepository
 
     public function createOrder($data, $cartProductIds)
     {
+        DB::beginTransaction();
         $order = Order::create($data);
         foreach ($cartProductIds as $cartProductId) {
             $cartProduct = CartProduct::findOrFail($cartProductId);
@@ -35,12 +37,15 @@ class OrderRepository extends BaseRepository implements OrderInterfaceRepository
                 $cartProduct->storeProduct->decrement('number', $number);
                 $cartProduct->storeProduct->increment('sale_number', $number);
                 $cartProduct->delete();
-
-                return 1;
             } else {
+                DB::rollback();
+
                 return 0;
             }
         }
+        DB::commit();
+
+        return 1;
     }
 
     /**

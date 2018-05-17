@@ -46,7 +46,6 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        DB::beginTransaction();
         try {
             $data = $request->only([
                 'customer_name',
@@ -63,14 +62,10 @@ class OrderController extends Controller
             }
             $data['status'] = Order::PENDDING_STATUS;
             if ($this->orderRepository->createOrder($data, $request->cartProductIds)) {
-                DB::commit();
-
                 return view('sites.order.success_add', [
                     'message' => trans('sites.order.success_add'),
                 ]);
             } else {
-                DB::rollback();
-
                 return view('sites.order.success_add', [
                     'error' => trans('sites.order.not_enough'),
                 ]);

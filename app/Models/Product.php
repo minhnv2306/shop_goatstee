@@ -14,6 +14,7 @@ class Product extends Model
     const IMAGE_NUMBER = 5;
     const PAGINATE = 4;
     const TAKE_HOME_PAGE = 8;
+    const SUGGEST_PRODUCT = 5;
 
     protected $guarded = ['id'];
 

@@ -281,7 +281,7 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
      */
     public function getBestSelling($number)
     {
-        return StoreProduct::selectRaw('count(*) AS cnt, product_id')
+        return StoreProduct::selectRaw('sum("sale_number") AS cnt, product_id')
             ->groupBy('product_id')
             ->orderBy('cnt', 'DESC')
             ->limit($number)
@@ -303,6 +303,14 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
     public function findSuggestProduct($key)
     {
         return Product::where('name', 'like', '%' . $key . '%')
+            ->get();
+    }
+    public function getSuggestProducts($categoryId, $productId)
+    {
+        return Product::where('category_id', $categoryId)
+            ->whereNotIn('id', [$productId])
+            ->orderBy('id', 'desc')
+            ->take(Product::SUGGEST_PRODUCT)
             ->get();
     }
 }

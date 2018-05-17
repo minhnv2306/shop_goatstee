@@ -34,10 +34,25 @@ class ProductController extends Controller
         $colors = $this->productRepository->getColors($product->id);
         $sizes = $this->productRepository->getSizes($product->id);
         $reviews = $product->reviews;
+        $suggestProducts = $this->productRepository->getSuggestProducts($product->category_id, $product->id);
+        // Add avatar attribute to product
+        foreach ($suggestProducts as $suggestProduct) {
+            $suggestProduct['avatar'] = $this->productRepository->getAvatar($suggestProduct);
+        }
+        $data = compact(
+            'product',
+            'avatar',
+            'images',
+            'colors',
+            'sizes',
+            'sex',
+            'defaultOption',
+            'rates',
+            'reviews',
+            'suggestProducts'
+        );
 
-        $data = compact('product', 'avatar', 'images', 'colors', 'sizes', 'sex', 'defaultOption', 'rates', 'reviews');
-
-        return view('sites.product.show', $data);
+        return view('sites.product.show1', $data);
     }
 
     public function search(Request $request)

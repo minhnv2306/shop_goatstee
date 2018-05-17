@@ -29,7 +29,9 @@ class CategoryController extends Controller
             'orderby' => $orderBySelected,
         ];
         $products = $this->productRepository->getAllProductOfCategory($categoryId, $attribute);
+        $page = empty($request->page) ? 1 : $request->page;
 
+        $products->withPath('?orderby=' . $orderBySelected);
         // Add avatar attribute to product
         foreach ($products as $product) {
             $link = $this->productRepository->getAvatar($product)[0]->link;

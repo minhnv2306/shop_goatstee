@@ -27,7 +27,7 @@ class RenameSomeTable extends Migration
     public function down()
     {
         Schema::rename('store_products', 'store_product');
-        Schema::rename('cart_product', 'cart_products');
+        Schema::rename('cart_products', 'cart_product');
         Schema::rename('product_orders', 'product_order');
         Schema::rename('discount_orders', 'discount_order');
     }
