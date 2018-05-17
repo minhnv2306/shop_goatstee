@@ -38,7 +38,11 @@
 
     {{ Html::style('css/goatstee/index.css') }}
     {{ Html::script('js/goatstee/index.js') }}
+    {{ Html::script('js/toastr.js') }}
+    {{ Html::script('js/waitMe.min.js') }}
+    {{ Html::style('css/waitMe.min.css') }}
     {{ Html::style('css/goatstee/animation.css') }}
+    {{ Html::style('css/toastr.css') }}
     <!--[if lte IE 9]>
     <![endif]-->
 </head>

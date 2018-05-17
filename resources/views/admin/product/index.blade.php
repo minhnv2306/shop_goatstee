@@ -34,10 +34,10 @@
                                         <th> @lang('admin.id') </th>
                                         <th> @lang('admin.name') </th>
                                         <th> @lang('admin.product.price') </th>
-                                        <th> @lang('admin.product.image') </th>
-                                        <th> @lang('admin.product.desciption') </th>
+                                        <th class="col-image"> @lang('admin.product.image') </th>
+                                        <th class="col-description"> @lang('admin.product.desciption') </th>
                                         <th> @lang('admin.category_title') </th>
-                                        <th> @lang('admin.action') </th>
+                                        <th class="col-action"> @lang('admin.action') </th>
                                     </tr>
                                 </thead>
                             </table>
@@ -61,6 +61,7 @@
         $('#product-table').DataTable({
             "processing": true,
             "serverSide": true,
+            "order": [[ 0, 'desc' ]],
             ajax: '{{route('datatable.server-side')}}',
             columns: [
                 {data: 'id', name: 'id'},

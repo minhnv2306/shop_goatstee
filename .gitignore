@@ -16,4 +16,7 @@ npm-debug.log
 yarn-error.log
 .env
 /resources/assets/typeahead.js
-/resources/assets/jquery.js
+/resources/assets/jquery
+/resources/assets/toastr
+/resources/assets/wait-me
+/resources/assets/bootstrap
