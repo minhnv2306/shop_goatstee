@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use App\Models\StoreProduct;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ColorRepository;
 use App\Repositories\ImageRepository;

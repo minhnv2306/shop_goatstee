@@ -14,6 +14,6 @@ trait ProductOrderRelations
 
     public function storeProduct()
     {
-        return $this->belongsTo(StoreProduct::class);
+        return $this->belongsTo(StoreProduct::class)->withTrashed();
     }
 }

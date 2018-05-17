@@ -19,7 +19,7 @@
                         <div itemscope itemtype="http://schema.org/Product" id="product-2779088" class="post-2779088 product type-product status-publish has-post-thumbnail
                             yith-wishlist entry first instock taxable shipping-taxable purchasable product-type-variable has-children">
                             <div class="row">
-                                <div class="col col-sm-4">
+                                <div class="col col-sm-4 animation-left-to-right">
                                     <div class="images" style="width: 100%">
                                         <a href="{{ $avatar[0]->link }}"
                                            itemprop="image" class="woocommerce-main-image zoom"
@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col col-sm-8">
+                                <div class="col col-sm-8 animation-right-to-left">
                                     <h2> {{ $product->name }} </h2>
                                     <h1 style="color: red"> $ {{ number_format($product->price) }} </h1>
                                     <div id="description" style="border: 0; padding-top: 0px">
@@ -106,9 +106,9 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                        </div><!-- Trigger the modal with a button -->
-                                        <button class="btn btn-primary btn-lg" data-toggle="modal"
-                                                data-target="#myModal">Add to cart
+                                        </div>
+                                        <!-- Trigger the modal with a button -->
+                                        <button class="btn btn-primary btn-lg" id="add-to-cart">Add to cart
                                         </button>
                                         <!-- Modal -->
                                         {!! Form::open([
@@ -118,7 +118,7 @@
                                             'class' => 'variations_form cart',
                                             'style' => 'border: none'
                                         ]) !!}
-                                        <div id="myModal" class="modal fade" role="dialog">
+                                        <div id="my-cart" class="modal fade" role="dialog">
                                             <div class="modal-dialog">
                                                 <!-- Modal content-->
                                                 <div class="modal-content">
@@ -150,7 +150,7 @@
                                                             <tr>
                                                                 <td>
                                                                 {!! Form::label('size', trans('sites.product.size')) !!}
-                                                                <td class="value">
+                                                                <td class="value" id="size_product">
                                                                     {!! Form::select('size_id', $defaultOption, null, ['id' => 'size']) !!}
                                                                 </td>
                                                             </tr>
@@ -199,7 +199,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col col-sm-8" id="tab-reviews">
+                                <div class="col col-sm-8 display-none" id="tab-reviews">
                                     <div id="reviews" class="woocommerce-Reviews">
                                         <div id="comments">
                                             <h2 class="woocommerce-Reviews-title"> @lang('sites.product.review')
@@ -285,7 +285,7 @@
                                         <div class="clear"></div>
                                     </div>
                                 </div>
-                                <div class="col col-sm-4">
+                                <div class="col col-sm-4 display-none" id="suggest-product">
                                     <h2 class="text-right"> @lang('sites.suggest_product') </h2>
                                     @foreach($suggestProducts as $suggestProduct)
                                         <div class="row">
@@ -337,33 +337,43 @@
 <script>
     $(document).ready(function () {
         // Animation
-        // $(window).scroll(function () {
-        //     if ($(this).scrollTop() > 400) {
-        //         $('#description').removeClass('display-none');
-        //         $('#description').addClass('animation-bottom ');
-        //     }
-        // });
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 400) {
+                $('#tab-reviews').removeClass('display-none');
+                $('#tab-reviews').addClass('animation-bottom ');
+                $('#suggest-product').removeClass('display-none');
+                $('#suggest-product').addClass('animation-right-to-left');
+            }
+        });
 
         // Load ajax when user change type field
-        $('#fit-type').change(function () {
+        $('#fit-type').on('change', function () {
             var sex = $('#fit-type').val();
             var productId = {!! $product->id !!};
-            console.log(productId);
             $.ajax({
                 url: '{{ route('ajax.get-color-product') }}',
                 data: {
                     sex: sex,
                     productId: productId
                 },
+                beforeSend: function () {
+                    $('#color_product').waitMe({
+                        effect: 'bounce',
+                        text: '',
+                        bg: 'rgba(255,255,255,0.7)',
+                        color: '#000'
+                    });
+                },
                 type: 'POST',
                 success: function (data) {
+                    $('#color_product').waitMe('hide');
                     $('#color').html(data);
                 }
             })
         });
 
         // Load ajax when user change color field
-        $('#color').change(function () {
+        $('#color').on('change', function () {
             var sex = $('#fit-type').val();
             var productId = {!! $product->id !!};
             var color_id = $('#color').val();
@@ -374,14 +384,23 @@
                     productId: productId,
                     color_id: color_id
                 },
+                beforeSend: function () {
+                    $('#size_product').waitMe({
+                        effect: 'bounce',
+                        text: '',
+                        bg: 'rgba(255,255,255,0.7)',
+                        color: '#000'
+                    });
+                },
                 type: 'POST',
                 success: function (data) {
+                    $('#size_product').waitMe('hide');
                     $('#size').html(data);
                 }
             })
         });
 
-        $('#size').change(function () {
+        $('#size').on('change', function () {
             var sex = $('#fit-type').val();
             var productId = {!! $product->id !!};
             var size_id = $('#size').val();
@@ -402,12 +421,12 @@
             })
         })
         // Computer price when user change number of product
-        $('.number_product').change(function () {
+        $('.number_product').on('change', function () {
             $('#price').html($(this).val() * {!! $product->price !!});
         });
 
         // Validate data from client form
-        $('#add_cart').click(function (event) {
+        $('#add_cart').on('click', function (event) {
             var sex = $('#fit-type').val();
             var color = $('#color').val();
             var size = $('#size').val();
@@ -430,7 +449,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#submit').click(function (e) {
+        $('#submit').on('click', function (e) {
             e.preventDefault();
             var rating = $('#rating').val();
             var comment = $('#comment').val();
@@ -468,6 +487,13 @@
             }
         })
     })
+</script>
+<script>
+    $(document).ready(function(){
+        $("#add-to-cart").on('click', function () {
+            $('#my-cart').modal();
+        })
+    });
 </script>
 </body>
 </html>

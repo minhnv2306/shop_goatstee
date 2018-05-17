@@ -9,7 +9,8 @@ trait CartProductRelations
 {
     public function storeProduct()
     {
-        return $this->belongsTo(StoreProduct::class);
+        return $this->belongsTo(StoreProduct::class)
+            ->withTrashed();
     }
 
     public function cart()
