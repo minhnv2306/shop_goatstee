@@ -34,15 +34,13 @@ class CartController extends Controller
             $this->cartRepository->create($attribute);
             DB::commit();
 
-            return redirect()->route('sites.cart')
-                ->with('name_product', $this->productRepository->getName($request->product_id));
+            return redirect()->back()->with('message', trans('sites.carts.success_update'));
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());
             DB::rollback();
 
-            return redirect()->route('sites.cart')
-                ->with('error', $ex->getMessage());
+            return redirect()->back()->with('error', $ex->getMessage());
         }
     }
 
@@ -58,15 +56,13 @@ class CartController extends Controller
             $this->cartRepository->updateCart($request->cartProductIds);
             DB::commit();
 
-            return redirect()->route('sites.cart')
-                ->with('message', trans('sites.carts.success_update'));
+            return redirect()->back()->with('message', trans('sites.carts.success_update'));
         } catch (Exception $ex) {
             Log::useDailyFiles(config('app.file_log'));
             Log::error($ex->getMessage());
             DB::rollback();
 
-            return redirect()->route('sites.cart')
-                ->with('error', $ex->getMessage());
+            return redirect()->back()->with('error', $ex->getMessage());
         }
     }
     /**
@@ -117,5 +113,22 @@ class CartController extends Controller
     public function removeProductInCart(Request $request)
     {
         return $this->cartRepository->removeProductInCart($request->id);
+    }
+
+    public function getCart()
+    {
+        $cartProducts = $this->cartRepository->getProductInCart();
+        $price = empty($cartProducts) ? 0 : $cartProducts->sum("price");
+
+        // Add avatar attribute for cart_product model
+        foreach ($cartProducts as $cartProduct) {
+            $product = $cartProduct->storeProduct->product;
+            $cartProduct['avatar'] = $this->productRepository->getAvatar($product);
+        }
+
+        return view('sites.cart.ajax', [
+            'cartProducts' => $cartProducts,
+            'price' => $price,
+        ]);
     }
 }

@@ -12,7 +12,7 @@ class Product extends Model
     const IMAGE_AVATAR = 1;
     const IMAGE_DESCRIPTION = 2;
     const IMAGE_NUMBER = 5;
-    const PAGINATE = 4;
+    const PAGINATE = 8;
     const TAKE_HOME_PAGE = 8;
     const SUGGEST_PRODUCT = 5;
 
