@@ -190,5 +190,11 @@ return [
         'welcome' => 'Welcome',
         'hello' => 'Hello, Welcome to Goatstee!',
         'active_account' => 'Active your account',
+        'order_confirm' => 'Order confirm',
+        'order_title' => 'You just have ordered:',
+        'total' => 'Total',
+        'view' => 'View Detail Order',
+        'thanks' => 'Thanks',
+        'signature' => 'Goatstee Admin',
     ]
 ];

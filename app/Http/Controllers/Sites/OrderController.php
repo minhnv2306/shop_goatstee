@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sites;
 
 use App\Http\Requests\OrderRequest;
+use App\Jobs\SendOrderConfirmEmail;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\CartRepository;
@@ -61,7 +62,11 @@ class OrderController extends Controller
                 $data['user_id'] = Auth::user()->id;
             }
             $data['status'] = Order::PENDDING_STATUS;
-            if ($this->orderRepository->createOrder($data, $request->cartProductIds)) {
+            $orderId = $this->orderRepository->createOrder($data, $request->cartProductIds);
+            if ($orderId) {
+                // Send email
+                $job = new SendOrderConfirmEmail($data['customer_email'], $orderId, $data['price']);
+                dispatch($job);
 
                 return redirect()->route('sites.my-order')
                     ->with('message', trans('sites.order.success_add'));
