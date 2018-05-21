@@ -21,3 +21,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .copy('resources/assets/toastr/toastr.js', 'public/js/toastr.js')
     .sass('resources/assets/toastr/toastr.scss', 'public/css')
     .sass('resources/assets/sass/app.scss', 'public/css');
+
+// Vue js
+mix.js('resources/assets/js/goatstee/product/paginate.js', 'public/js/product');
+mix.js('resources/assets/js/goatstee/product/show.js', 'public/js/product');

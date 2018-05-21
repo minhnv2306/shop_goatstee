@@ -108,8 +108,7 @@
                                             </table>
                                         </div>
                                         <!-- Trigger the modal with a button -->
-                                        <button class="btn btn-primary btn-lg" id="add-to-cart">Add to cart
-                                        </button>
+                                        <button class="btn btn-primary btn-lg" id="add-to-cart"> Add to cart </button>
                                         <!-- Modal -->
                                         {!! Form::open([
                                             'method' => 'POST',
@@ -126,64 +125,22 @@
                                                         <button type="button" class="close" data-dismiss="modal">
                                                             &times;
                                                         </button>
-                                                        <h4 class="modal-title">Modal Header</h4>
+                                                        <h4 class="modal-title"> Modal content </h4>
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <table class="variations" cellspacing="0">
-                                                            <tbody>
-                                                            <tr id="fit_type_choose">
-                                                                <td>
-                                                                    {!! Form::label('sex', trans('sites.product.type')) !!}
-                                                                </td>
-                                                                <td class="value">
-                                                                    {!! Form::select('sex', $sex, 0, ['id' => 'fit-type']) !!}
-                                                                </td>
-                                                            </tr>
-                                                            <tr id="color_choose">
-                                                                <td>
-                                                                    {!! Form::label('color', trans('sites.product.color')) !!}
-                                                                </td>
-                                                                <td class="value" id="color_product">
-                                                                    {!! Form::select('color_id', $defaultOption, null, ['id' => 'color']) !!}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                {!! Form::label('size', trans('sites.product.size')) !!}
-                                                                <td class="value" id="size_product">
-                                                                    {!! Form::select('size_id', $defaultOption, null, ['id' => 'size']) !!}
-                                                                </td>
-                                                            </tr>
-                                                            <input type="hidden" name="product_id"
-                                                                   value="{{$product->id}}">
-                                                            </tbody>
-                                                        </table>
-                                                        <div>
-                                                            <div class="woocommerce-variation-price">
-                                                                <span class="price">
-                                                                    <span class="woocommerce-Price-amount amount">
-                                                                        <span class="woocommerce-Price-currencySymbol">$</span>
-                                                                    </span>
-                                                                    <span id="price">
-                                                                    {{ $product->price }}
-                                                                    </span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="woocommerce-variation-add-to-cart variations_button">
-                                                                <div class="quantity">
-                                                                    {!! Form::number('number', 1, [
-                                                                        'class' => 'input-text qty text number_product',
-                                                                        'min' => 1,
-                                                                    ]) !!}
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <p> (@lang('sites.product.number_store')
-                                                                    <span id="total_number"></span>)</p>
-                                                            </div>
-                                                        </div>
+                                                    <div class="modal-body" id="modal-content">
+                                                        <modal-choose-product
+                                                            originprice="{!! $product->price !!}"
+                                                            sumprice="{!! $product->price !!}"
+                                                            id="{!! $product->id !!}"
+                                                            labelType="{!! trans('sites.product.type') !!}"
+                                                            labelColor="{!! trans('sites.product.color') !!}"
+                                                            labelSize="{!! trans('sites.product.size') !!}"
+                                                            labelNumber="{!! trans('sites.product.number_store') !!}"
+                                                        >
+                                                        </modal-choose-product>
                                                     </div>
                                                     <div class="modal-footer">
+                                                        <input type="hidden" value="{{ $product->id }}" name="product_id"/>
                                                         <button class="btn btn-primary" id="add_cart">
                                                             @lang('sites.product.add_to_cart')
                                                         </button>
@@ -346,85 +303,6 @@
             }
         });
 
-        // Load ajax when user change type field
-        $('#fit-type').on('change', function () {
-            var sex = $('#fit-type').val();
-            var productId = {!! $product->id !!};
-            $.ajax({
-                url: '{{ route('ajax.get-color-product') }}',
-                data: {
-                    sex: sex,
-                    productId: productId
-                },
-                beforeSend: function () {
-                    $('#color_product').waitMe({
-                        effect: 'bounce',
-                        text: '',
-                        bg: 'rgba(255,255,255,0.7)',
-                        color: '#000'
-                    });
-                },
-                type: 'POST',
-                success: function (data) {
-                    $('#color_product').waitMe('hide');
-                    $('#color').html(data);
-                }
-            })
-        });
-
-        // Load ajax when user change color field
-        $('#color').on('change', function () {
-            var sex = $('#fit-type').val();
-            var productId = {!! $product->id !!};
-            var color_id = $('#color').val();
-            $.ajax({
-                url: '{{ route('ajax.get-size-product') }}',
-                data: {
-                    sex: sex,
-                    productId: productId,
-                    color_id: color_id
-                },
-                beforeSend: function () {
-                    $('#size_product').waitMe({
-                        effect: 'bounce',
-                        text: '',
-                        bg: 'rgba(255,255,255,0.7)',
-                        color: '#000'
-                    });
-                },
-                type: 'POST',
-                success: function (data) {
-                    $('#size_product').waitMe('hide');
-                    $('#size').html(data);
-                }
-            })
-        });
-
-        $('#size').on('change', function () {
-            var sex = $('#fit-type').val();
-            var productId = {!! $product->id !!};
-            var size_id = $('#size').val();
-            var color_id = $('#color').val();
-            $.ajax({
-                url: '{{ route('ajax.get-number-product') }}',
-                data: {
-                    sex: sex,
-                    productId: productId,
-                    colorId: color_id,
-                    sizeId: size_id
-                },
-                type: 'POST',
-                success: function (data) {
-                    $('#total_number').html(data);
-                    $('.qty').attr('max', data);
-                }
-            })
-        })
-        // Computer price when user change number of product
-        $('.number_product').on('change', function () {
-            $('#price').html($(this).val() * {!! $product->price !!});
-        });
-
         // Validate data from client form
         $('#add_cart').on('click', function (event) {
             var sex = $('#fit-type').val();
@@ -495,5 +373,6 @@
         })
     });
 </script>
+{{ Html::script('js/product/show.js') }}
 </body>
 </html>

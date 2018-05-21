@@ -7,9 +7,11 @@
 
 require('./bootstrap');
 require('datatables.net/js/jquery.dataTables.js');
-require('axios/dist/axios.js')
+require('axios/dist/axios.js');
 
 window.Vue = require('vue');
+import Router from 'vue-router';
+window.Vue.use(Router);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,7 +20,6 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/ExampleComponent.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
+Vue.component('product', require('./components/ProductComponent.vue'));
+Vue.component('add-product-to-cart', require('./components/AddProductToCart.vue'));
+Vue.component('modal-choose-product', require('./components/ModalChooseProduct.vue'));
