@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     const ROLE_USER = 2;
     const ROLE_ADMIN = 1;
+    const ACTIVE = 1;
+    const UN_ACTIVE = 0;
 
     use Notifiable, UserRelations, UserMutators, UserAccessors;
 
@@ -30,5 +32,6 @@ class User extends Authenticatable
         'city_id',
         'role_id',
         'password',
+        'hash',
     ];
 }

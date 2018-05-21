@@ -91,7 +91,11 @@
                                         </div>
                                     </div>
                                 @else
-                                    @include('layouts.sites.components.user_dashboard')
+                                    @if (Auth::user()->active == 0)
+                                        <h4> A active email just have been sent to you! Please active your account </h4>
+                                    @else
+                                        @include('layouts.sites.components.user_dashboard')
+                                    @endif
                                 @endguest
                             </div>
                         </div><!-- .entry-content -->

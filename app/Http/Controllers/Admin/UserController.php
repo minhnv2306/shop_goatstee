@@ -18,6 +18,7 @@ class UserController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $credentials['role_id'] = User::ROLE_ADMIN;
+        $credentials['active'] = User::ACTIVE;
         if (Auth::attempt($credentials)) {
             // Authentication passed...
             return redirect()->route('admin.index');
