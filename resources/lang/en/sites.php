@@ -186,4 +186,9 @@ return [
         'remember' => 'Remember me',
         'lost_password' => 'Lost your password',
     ],
+    'emails' => [
+        'welcome' => 'Welcome',
+        'hello' => 'Hello, Welcome to Goatstee!',
+        'active_account' => 'Active your account',
+    ]
 ];

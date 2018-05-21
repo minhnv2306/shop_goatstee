@@ -45,6 +45,7 @@ Route::group([ 'namespace' => 'Sites'], function() {
     });
     Route::get('find', 'ProductController@find');
     Route::get('get-cart', 'CartController@getCart');
+    Route::get('active', 'UserController@activeUser')->name('sites.active-user');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {

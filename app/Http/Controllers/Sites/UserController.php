@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -45,6 +46,19 @@ class UserController extends Controller
             return redirect()->back()->with('message', trans('sites.user.success_update'));
         } catch (Exception $ex) {
             return redirect()->back()->with('errors', $ex->getMessage());
+        }
+    }
+
+    public function activeUser(Request $request)
+    {
+        $user = User::where('hash', $request->active)->first();
+        if (!empty($user)) {
+            $user->active = User::ACTIVE;
+            $user->save();
+
+            return view('sites.user.active-account');
+        } else {
+            abort(404);
         }
     }
 }
