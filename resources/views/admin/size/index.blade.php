@@ -28,52 +28,54 @@
                                 {!! Form::submit(trans('admin.filter'), ['class' => 'btn btn-primary', 'id' => 'filter']) !!}
                             </div>
                             <div class="pull-right">
-                                <!-- Trigger the modal with a button -->
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#create-size">
-                                    <i class="fa fa-plus"></i> @lang('admin.size.create')
-                                </button>
-                                <!-- Modal -->
-                                <div id="create-size" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
+                                @can('create', 'App\Models\Size')
+                                    <!-- Trigger the modal with a button -->
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#create-size">
+                                        <i class="fa fa-plus"></i> @lang('admin.size.create')
+                                    </button>
+                                    <!-- Modal -->
+                                    <div id="create-size" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
 
-                                        <!-- Modal content-->
-                                        {!! Form::open([
-                                            'method' => 'POST',
-                                            'route' => 'sizes.store'
-                                        ]) !!}
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;
-                                                </button>
-                                                <h4 class="modal-title"> @lang('admin.size.create') </h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div id="size_content">
+                                            <!-- Modal content-->
+                                            {!! Form::open([
+                                                'method' => 'POST',
+                                                'route' => 'sizes.store'
+                                            ]) !!}
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;
+                                                    </button>
+                                                    <h4 class="modal-title"> @lang('admin.size.create') </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div id="size_content">
+                                                        <div class="form-group">
+                                                            {{ Form::label('name', trans('admin.category.name')) }}
+                                                            {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name', 'required' => '',]) }}
+                                                        </div>
+                                                    </div>
                                                     <div class="form-group">
-                                                        {{ Form::label('name', trans('admin.category.name')) }}
-                                                        {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name', 'required' => '',]) }}
+                                                        {!! Form::label('made', trans('admin.category_title')) !!}
+                                                        {!! Form::select('category_id', $categories->pluck('name', 'id')->toArray(), null,
+                                                            ['class' => 'form-control'])
+                                                        !!}
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    {!! Form::label('made', trans('admin.category_title')) !!}
-                                                    {!! Form::select('category_id', $categories->pluck('name', 'id')->toArray(), null,
-                                                        ['class' => 'form-control'])
-                                                    !!}
+                                                <div class="modal-footer">
+                                                    {{ Form::submit(trans('admin.create'), ['class' => 'btn btn-primary']) }}
+                                                    {{ Form::submit(trans('admin.close'), [
+                                                        'class' => 'btn btn-default',
+                                                        'data-dismiss' => 'modal',
+                                                    ]) }}
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                {{ Form::submit(trans('admin.create'), ['class' => 'btn btn-primary']) }}
-                                                {{ Form::submit(trans('admin.close'), [
-                                                    'class' => 'btn btn-default',
-                                                    'data-dismiss' => 'modal',
-                                                ]) }}
-                                            </div>
-                                        </div>
-                                        {!! Form::close() !!}
+                                            {!! Form::close() !!}
 
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- end Modal create -->
+                                    <!-- end Modal create -->
+                                @endcan
                             </div>
                         </div>
                         <!-- /.box-header -->
@@ -92,13 +94,14 @@
                                         <td>{{ $size->id }}</td>
                                         <td>{{ $size->name }}</td>
                                         <td>
-                                            <button class="btn btn-xs btn-primary" data-toggle="modal"
-                                                    data-target="#edit-size-{{$size->id}}">
-                                                <i class="fa fa-edit"></i> @lang('admin.edit')
-                                            </button>
+                                            @can('update', 'App\Models\Size')
+                                                <button class="btn btn-xs btn-primary" data-toggle="modal"
+                                                        data-target="#edit-size-{{$size->id}}">
+                                                    <i class="fa fa-edit"></i> @lang('admin.edit')
+                                                </button>
 
-                                            <!-- Modal -->
-                                            <div id="edit-size-{{$size->id}}" class="modal fade" role="dialog">
+                                                <!-- Modal -->
+                                                <div id="edit-size-{{$size->id}}" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">
                                                     <!-- Modal content-->
                                                     {!! Form::open([
@@ -133,17 +136,20 @@
                                                     {!! Form::close() !!}
                                                 </div>
                                             </div>
+                                            @endcan
                                             <!-- End modal -->
                                             @if (count($size->storeProducts) == 0)
-                                                {!! Form::open([
-                                                    'method' => 'DELETE',
-                                                    'route' => ['sizes.destroy', 'size' => $size->id],
-                                                    'class' => 'inline',
-                                                ]) !!}
-                                                <button class="btn btn-xs btn-danger deleteElement">
-                                                    <i class="fa fa-trash"></i> @lang('admin.delete')
-                                                </button>
-                                                {!! Form::close() !!}
+                                                @can('delete', 'App\Models\Size')
+                                                    {!! Form::open([
+                                                        'method' => 'DELETE',
+                                                        'route' => ['sizes.destroy', 'size' => $size->id],
+                                                        'class' => 'inline',
+                                                    ]) !!}
+                                                    <button class="btn btn-xs btn-danger deleteElement">
+                                                        <i class="fa fa-trash"></i> @lang('admin.delete')
+                                                    </button>
+                                                    {!! Form::close() !!}
+                                                @endcan
                                             @endif
                                         </td>
                                     </tr>

@@ -11,6 +11,8 @@ class UserController extends Controller
 {
     public function index()
     {
+        $this->authorize('view', User::class);
+
         return view('admin.user.index');
     }
 

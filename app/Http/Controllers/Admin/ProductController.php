@@ -42,6 +42,8 @@ class ProductController extends Controller
 
     public function index()
     {
+        $this->authorize('view', Product::class);
+
         return view('admin.product.index');
     }
 
@@ -88,6 +90,8 @@ class ProductController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Product::class);
+
         $attribute = [
             'id',
             'name',
@@ -105,6 +109,8 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
+        $this->authorize('create', Product::class);
+
         DB::beginTransaction();
         try {
             $data = $request->only([
@@ -203,6 +209,8 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
+        $this->authorize('update', Product::class);
+
         DB::beginTransaction();
         try {
             $data = $request->only([

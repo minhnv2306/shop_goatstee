@@ -19,6 +19,8 @@ class ColorController extends Controller
 
     public function index()
     {
+        $this->authorize('view', Color::class);
+
         $attribute = [
             'name',
             'id',
@@ -32,6 +34,8 @@ class ColorController extends Controller
 
     public function store(ColorRequest $request)
     {
+        $this->authorize('create', Color::class);
+
         try {
             $data = $request->only('name');
             $this->colorRepository->create($data);
@@ -49,6 +53,8 @@ class ColorController extends Controller
 
     public function update(ColorRequest $request, Color $color)
     {
+        $this->authorize('update', Color::class);
+
         try {
             $data = $request->only('name');
             $this->colorRepository->update($color, $data);

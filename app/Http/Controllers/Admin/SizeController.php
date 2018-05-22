@@ -22,6 +22,8 @@ class SizeController extends Controller
 
     public function index()
     {
+        $this->authorize('view', Size::class);
+
         $attribute = [
             'name',
             'id',
@@ -44,6 +46,8 @@ class SizeController extends Controller
 
     public function store(SizeRequest $request)
     {
+        $this->authorize('store', Size::class);
+
         try {
             $data = $request->only('name', 'category_id');
             $this->sizeRepository->create($data);
@@ -61,6 +65,8 @@ class SizeController extends Controller
 
     public function update(SizeRequest $request, Size $size)
     {
+        $this->authorize('update', Size::class);
+
         try {
             $data = $request->only('name');
             $this->sizeRepository->update($size, $data);
