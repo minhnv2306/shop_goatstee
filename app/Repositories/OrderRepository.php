@@ -45,7 +45,7 @@ class OrderRepository extends BaseRepository implements OrderInterfaceRepository
         }
         DB::commit();
 
-        return 1;
+        return $order->id;
     }
 
     /**
