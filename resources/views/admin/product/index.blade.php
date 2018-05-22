@@ -21,9 +21,11 @@
                     <div class="box">
                         <div class="box-header">
                             <div class="pull-right">
-                                <a class="btn btn-primary" href="{{ route('products.create') }}">
-                                    <i class="fa fa-plus"></i> @lang('admin.product.create')
-                                </a>
+                                @can('create', 'App\Models\Product')
+                                    <a class="btn btn-primary" href="{{ route('products.create') }}">
+                                        <i class="fa fa-plus"></i> @lang('admin.product.create')
+                                    </a>
+                                @endcan
                             </div>
                         </div>
                         <!-- /.box-header -->

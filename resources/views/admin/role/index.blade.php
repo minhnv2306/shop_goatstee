@@ -39,8 +39,7 @@
                                             ]) !!}
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;
-                                                    </button>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <h4 class="modal-title"> @lang('admin.size.create') </h4>
                                                 </div>
                                                 <div class="modal-body">
@@ -54,7 +53,7 @@
                                                     </div>
                                                     @foreach($objects as $key=>$value)
                                                         <div class="form-group">
-                                                            <label> {{ $value }} </label>
+                                                            <label class="title-role"> {{ $value }} </label>
                                                             <br>
                                                             <label class="checkbox-inline">
                                                                 <input type="checkbox" value="1" name="roles[{{$key}}][]" checked>View
@@ -135,34 +134,34 @@
                                                                 </div>
                                                                 @foreach($objects as $key=>$value)
                                                                 <div class="form-group">
-                                                                    <label> {{ $value }} </label>
+                                                                    <label class="title-role"> {{ $value }} </label>
                                                                     <br>
                                                                     <label class="checkbox-inline">
-                                                                        @if(array_search(1, $role[$value]) === false)
-                                                                            <input type="checkbox" value="1" name="roles[{{$key}}][]">View
+                                                                        @if(array_search(\App\Models\Role::VIEW, $role[$value]) === false)
+                                                                            <input type="checkbox" value="1" name="roles[{{$key}}][]"> @lang('admin.roles.view')
                                                                         @else
-                                                                            <input type="checkbox" value="1" checked name="roles[{{$key}}][]">View
+                                                                            <input type="checkbox" value="1" checked name="roles[{{$key}}][]"> @lang('admin.roles.view')
                                                                         @endif
                                                                     </label>
                                                                     <label class="checkbox-inline">
-                                                                        @if(array_search(2, $role[$value]) === false)
-                                                                            <input type="checkbox" value="2" name="roles[{{$key}}][]">Create
+                                                                        @if(array_search(\App\Models\Role::CREATE, $role[$value]) === false)
+                                                                            <input type="checkbox" value="2" name="roles[{{$key}}][]"> @lang('admin.roles.create')
                                                                         @else
-                                                                            <input type="checkbox" value="2" checked name="roles[{{$key}}][]">Create
+                                                                            <input type="checkbox" value="2" checked name="roles[{{$key}}][]"> @lang('admin.roles.create')
                                                                         @endif
                                                                     </label>
                                                                     <label class="checkbox-inline">
-                                                                        @if(array_search(3, $role[$value]) === false)
-                                                                            <input type="checkbox" value="3" name="roles[{{$key}}][]">Update
+                                                                        @if(array_search(\App\Models\Role::UPDATE, $role[$value]) === false)
+                                                                            <input type="checkbox" value="3" name="roles[{{$key}}][]"> @lang('admin.roles.update')
                                                                         @else
-                                                                            <input type="checkbox" value="3" checked name="roles[{{$key}}][]">Update
+                                                                            <input type="checkbox" value="3" checked name="roles[{{$key}}][]"> @lang('admin.roles.update')
                                                                         @endif
                                                                     </label>
                                                                     <label class="checkbox-inline">
-                                                                        @if(array_search(4, $role[$value]) === false)
-                                                                            <input type="checkbox" value="4" name="roles[{{$key}}][]">Delete
+                                                                        @if(array_search(\App\Models\Role::DELETE, $role[$value]) === false)
+                                                                            <input type="checkbox" value="4" name="roles[{{$key}}][]"> @lang('admin.roles.delete')
                                                                         @else
-                                                                            <input type="checkbox" value="4" checked name="roles[{{$key}}][]">Delete
+                                                                            <input type="checkbox" value="4" checked name="roles[{{$key}}][]"> @lang('admin.roles.delete')
                                                                         @endif
                                                                     </label>
                                                                 </div>
@@ -213,6 +212,7 @@
 @endsection
 @section('scripts')
     {!! Html::script(asset('js/goatstee/datatable.js')) !!}
+    {!! Html::style(asset('css/goatstee/role/index.css')) !!}
     <script>
         $('#roles').addClass('active');
     </script>
