@@ -66,12 +66,12 @@ class OrderController extends Controller
             $order = $this->orderRepository->createOrder($data, $request->cartProductIds);
             if (!empty($order)) {
                 // Send email
-                /*
                 $job = new SendOrderConfirmEmail($data['customer_email'], $order->id, $data['price']);
                 dispatch($job);
-                */
+
                 // Generate notification
-                event(new OrderCreated($order));
+                OrderCreated::dispatch($order);
+
                 return redirect()->route('sites.my-order')
                     ->with('message', trans('sites.order.success_add'));
             } else {

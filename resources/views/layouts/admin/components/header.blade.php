@@ -18,7 +18,7 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-                <li class="dropdown notifications-menu">
+                <li class="dropdown notifications-menu" id="notification">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
                         @if ($totalNoti != 0)

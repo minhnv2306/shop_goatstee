@@ -9,7 +9,7 @@ class NotificationRepository extends BaseRepository
 {
     public function __construct()
     {
-        parent::__construct(Cart::class);
+        parent::__construct(Notification::class);
     }
 
     public function getUnReadNotification()

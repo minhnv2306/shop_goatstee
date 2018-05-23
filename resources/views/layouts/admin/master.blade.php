@@ -36,5 +36,17 @@
     })
 </script>
 <!-- End script -->
+<script>
+    Echo.channel('orders')
+        .listen('OrderCreated', (e) => {
+            $.ajax({
+                url: '{{ route('admin.get-notification') }}',
+                type: 'GET',
+                success: function (data) {
+                    $('#notification').html(data);
+                }
+            })
+        });
+</script>
 @yield('scripts')
 </html>
