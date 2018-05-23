@@ -19,7 +19,6 @@ class UserController extends Controller
     public function checkLoginAdmin(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        $credentials['role_id'] = User::ROLE_ADMIN;
         $credentials['active'] = User::ACTIVE;
         if (Auth::attempt($credentials)) {
             // Authentication passed...

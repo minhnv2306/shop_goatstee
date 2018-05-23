@@ -139,5 +139,13 @@ return [
         '3-stars' => 'Average',
         '4-stars' => 'Good',
         '5-stars' => 'Perfect',
+    ],
+    'roles' => [
+        'create' => 'Create',
+        'view' => 'View',
+        'update' => 'Update',
+        'delete' => 'Delete',
+        'success_add' => 'Cretae new role successfully!',
+        'success_update' => 'Update new role successfully!',
     ]
 ];
