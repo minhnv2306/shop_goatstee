@@ -19,6 +19,8 @@ class OrderController extends Controller
 
     public function index()
     {
+        $this->authorize('view', Order::class);
+
         return view('admin.order.index');
     }
 
@@ -67,6 +69,8 @@ class OrderController extends Controller
 
     public function update(Order $order, Request $request)
     {
+        $this->authorize('update', Order::class);
+
         try {
             $data = $request->only([
                 'note',

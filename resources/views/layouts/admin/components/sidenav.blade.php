@@ -8,7 +8,7 @@
                 {{ HTML::image(asset('img/avatar.png'), '', ['class' => 'img-circle', 'alt' => trans('admin.error_image')]) }}
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p> {{ Auth::user()->email }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> @lang('admin.online') </a>
             </div>
         </div>
@@ -27,42 +27,62 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i> @lang('admin.dashboard') </a></li>
                 </ul>
             </li>
+            @can('users.view')
             <li id="users">
                 <a href="{{ route('users-admin.index') }}">
                     <i class="fa fa-user"></i>
                     <span> @lang('admin.user.manager') </span>
                 </a>
             </li>
+            @endcan
+            @can('roles.view')
+            <li id="roles">
+                <a href="{{ route('roles.index') }}">
+                    <i class="fa fa fa-exchange"></i>
+                    <span> Role Manager </span>
+                </a>
+            </li>
+            @endcan
+            @can('categories.view')
             <li id="categories">
                 <a href="{{ route('categories.index') }}">
                     <i class="fa fa-circle-thin"></i>
                     <span> @lang('admin.category.manager') </span>
                 </a>
             </li>
+            @endcan
+            @can('colors.view')
             <li id="colors">
                 <a href="{{ route('colors.index') }}">
                     <i class="fa fa-cube"></i>
                     <span> @lang('admin.color.manager') </span>
                 </a>
             </li>
+            @endcan
+            @can('sizes.view')
             <li id="sizes">
                 <a href="{{ route('sizes.index') }}">
                     <i class="fa fa-list"></i>
                     <span> @lang('admin.size.manager') </span>
                 </a>
             </li>
+            @endcan
+            @can('products.view')
             <li id="products">
                 <a href="{{ route('products.index') }}">
                     <i class="fa fa-product-hunt"></i>
                     <span> @lang('admin.product.manager') </span>
                 </a>
             </li>
+            @endcan
+            @can('orders.view')
             <li id="orders">
                 <a href="{{ route('orders.index') }}">
                     <i class="fa fa-money"></i>
                     <span> @lang('admin.order.manager') </span>
                 </a>
             </li>
+            @endcan
             <li id="reviews">
                 <a href="{{ route('reviews.index') }}">
                     <i class="fa fa-star"></i>

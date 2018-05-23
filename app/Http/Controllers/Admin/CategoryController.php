@@ -21,6 +21,8 @@ class CategoryController extends Controller
 
     public function index()
     {
+        $this->authorize('view', Category::class);
+
         $attribute = [
             'name',
             'id',
@@ -34,6 +36,8 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
+        $this->authorize('create', Category::class);
+
         try {
             $data = $request->only('name');
             $this->cateRepository->create($data);
@@ -51,6 +55,8 @@ class CategoryController extends Controller
 
     public function update(Category $category, CategoryRequest $request)
     {
+        $this->authorize('update', Category::class);
+
         try {
             $data = $request->only('name');
             $this->cateRepository->update($category, $data);

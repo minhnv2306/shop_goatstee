@@ -21,43 +21,45 @@
                     <div class="box">
                         <div class="box-header">
                             <div class="pull-right">
-                                <!-- Trigger the modal with a button -->
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#create-cate">
-                                    <i class="fa fa-plus"></i> @lang('admin.category.create')
-                                </button>
-                                <!-- Modal -->
-                                <div id="create-cate" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
+                                @can('categories.create', 'App\Model\Category')
+                                    <!-- Trigger the modal with a button -->
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#create-cate">
+                                        <i class="fa fa-plus"></i> @lang('admin.category.create')
+                                    </button>
+                                    <!-- Modal -->
+                                    <div id="create-cate" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
 
-                                        <!-- Modal content-->
-                                        {!! Form::open([
-                                            'method' => 'POST',
-                                            'route' => 'categories.store'
-                                        ]) !!}
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;
-                                                </button>
-                                                <h4 class="modal-title"> @lang('admin.category.create') </h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    {{ Form::label('name', trans('admin.category.name')) }}
-                                                    {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name', 'required' => '',]) }}
+                                            <!-- Modal content-->
+                                            {!! Form::open([
+                                                'method' => 'POST',
+                                                'route' => 'categories.store'
+                                            ]) !!}
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;
+                                                    </button>
+                                                    <h4 class="modal-title"> @lang('admin.category.create') </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        {{ Form::label('name', trans('admin.category.name')) }}
+                                                        {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name', 'required' => '',]) }}
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    {{ Form::submit(trans('admin.create'), ['class' => 'btn btn-primary']) }}
+                                                    {{ Form::submit(trans('admin.close'), [
+                                                        'class' => 'btn btn-default',
+                                                        'data-dismiss' => 'modal',
+                                                    ]) }}
                                                 </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                {{ Form::submit(trans('admin.create'), ['class' => 'btn btn-primary']) }}
-                                                {{ Form::submit(trans('admin.close'), [
-                                                    'class' => 'btn btn-default',
-                                                    'data-dismiss' => 'modal',
-                                                ]) }}
-                                            </div>
-                                        </div>
-                                        {!! Form::close() !!}
+                                            {!! Form::close() !!}
 
+                                        </div>
                                     </div>
-                                </div>
+                                @endcan
                             </div>
                         </div>
                         <!-- /.box-header -->
@@ -76,55 +78,59 @@
                                         <td>{{ $cate->id }}</td>
                                         <td>{{ $cate->name }}</td>
                                         <td>
-                                            <button href="#" class="btn btn-xs btn-primary" data-toggle="modal"
-                                                    data-target="#edit-cate-{{$cate->id}}">
-                                                <i class="fa fa-edit"></i> @lang('admin.edit')
-                                            </button>
+                                            @can('categories.update', 'App\Model\Category')
+                                                <button href="#" class="btn btn-xs btn-primary" data-toggle="modal"
+                                                        data-target="#edit-cate-{{$cate->id}}">
+                                                    <i class="fa fa-edit"></i> @lang('admin.edit')
+                                                </button>
 
-                                            <!-- Modal -->
-                                            <div id="edit-cate-{{$cate->id}}" class="modal fade" role="dialog">
-                                                <div class="modal-dialog">
-                                                    <!-- Modal content-->
-                                                    {!! Form::open([
-                                                        'method' => 'PUT',
-                                                        'route' => ['categories.update', 'category' => $cate->id],
-                                                    ]) !!}
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title"> @lang('admin.category.create') </h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                {{ Form::label('name', trans('admin.category.name')) }}
-                                                                {{ Form::text('name', $cate->name, [
-                                                                    'class' => 'form-control',
-                                                                    'id' => 'name',
-                                                                    'required' => '',
+                                                <!-- Modal -->
+                                                <div id="edit-cate-{{$cate->id}}" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+                                                        <!-- Modal content-->
+                                                        {!! Form::open([
+                                                            'method' => 'PUT',
+                                                            'route' => ['categories.update', 'category' => $cate->id],
+                                                        ]) !!}
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title"> @lang('admin.category.create') </h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    {{ Form::label('name', trans('admin.category.name')) }}
+                                                                    {{ Form::text('name', $cate->name, [
+                                                                        'class' => 'form-control',
+                                                                        'id' => 'name',
+                                                                        'required' => '',
+                                                                    ]) }}
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                {{ Form::submit(trans('admin.update'), ['class' => 'btn btn-primary']) }}
+                                                                {{ Form::submit(trans('admin.close'), [
+                                                                    'class' => 'btn btn-default',
+                                                                    'data-dismiss' => 'modal'
                                                                 ]) }}
                                                             </div>
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            {{ Form::submit(trans('admin.update'), ['class' => 'btn btn-primary']) }}
-                                                            {{ Form::submit(trans('admin.close'), [
-                                                                'class' => 'btn btn-default',
-                                                                'data-dismiss' => 'modal'
-                                                            ]) }}
-                                                        </div>
+                                                        {!! Form::close() !!}
                                                     </div>
-                                                    {!! Form::close() !!}
                                                 </div>
-                                            </div>
+                                            @endcan
                                             @if (count($cate->products) == 0)
-                                                {!! Form::open([
-                                                    'method' => 'DELETE',
-                                                    'route' => ['categories.destroy', 'category' => $cate->id],
-                                                    'class' => 'inline',
-                                                ]) !!}
-                                                <button class="btn btn-xs btn-danger deleteElement">
-                                                    <i class="fa fa-trash"></i> @lang('admin.delete')
-                                                </button>
-                                                {!! Form::close() !!}
+                                                @can('delete', 'App\Models\Category')
+                                                    {!! Form::open([
+                                                        'method' => 'DELETE',
+                                                        'route' => ['categories.destroy', 'category' => $cate->id],
+                                                        'class' => 'inline',
+                                                    ]) !!}
+                                                    <button class="btn btn-xs btn-danger deleteElement">
+                                                        <i class="fa fa-trash"></i> @lang('admin.delete')
+                                                    </button>
+                                                    {!! Form::close() !!}
+                                                @endcan
                                             @endif
                                         </td>
                                     </tr>
