@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ReadNotification;
 use App\Models\Order;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
+        event(new ReadNotification($order));
         $productOrders = $order->productOrders;
         $price = empty($productOrders) ? 0 : $productOrders->sum('price');
         $status = Order::getStatus($order->status);

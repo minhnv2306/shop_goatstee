@@ -40,12 +40,12 @@ class OrderRepository extends BaseRepository implements OrderInterfaceRepository
             } else {
                 DB::rollback();
 
-                return 0;
+                return null;
             }
         }
         DB::commit();
 
-        return $order->id;
+        return $order;
     }
 
     /**
