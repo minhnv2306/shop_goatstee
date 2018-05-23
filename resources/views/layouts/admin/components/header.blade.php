@@ -21,7 +21,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         {{ HTML::image(asset('img/avatar.png'), '', ['class' => 'user-image', 'alt' => trans('admin.error_image')]) }}
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">{{ Auth::user()->email }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
