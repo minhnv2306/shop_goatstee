@@ -187,6 +187,8 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
+        $this->authorize('update', Product::class);
+
         $attribute = [
             'id',
             'name',

@@ -58,6 +58,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
         Route::resource('categories', 'CategoryController');
         Route::resource('colors', 'ColorController');
         Route::resource('sizes', 'SizeController');
+        Route::resource('roles', 'RoleController');
 
         Route::get('get-size-of-category/{categoryId}', 'SizeController@getSizeOfCategory')->name('ajax.get-size');
         Route::get('add-product/{categoryId}', 'ProductController@addProduct')->name('ajax.add-product');
