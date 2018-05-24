@@ -3,8 +3,3 @@
     <i class="fa fa-edit"></i> @lang('admin.edit')
 </a>
 @endcan
-{!! Form::open([
-    'class' => 'inline',
-    'route' => ['orders.destroy', 'product' => $order->id],
-    'method' => 'DELETE'
-]) !!}

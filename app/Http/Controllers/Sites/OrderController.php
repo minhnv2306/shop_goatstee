@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Sites;
 
+use App\Events\OrderCreated;
 use App\Http\Requests\OrderRequest;
 use App\Jobs\SendOrderConfirmEmail;
 use App\Repositories\OrderRepository;
@@ -62,12 +63,15 @@ class OrderController extends Controller
                 $data['user_id'] = Auth::user()->id;
             }
             $data['status'] = Order::PENDDING_STATUS;
-            $orderId = $this->orderRepository->createOrder($data, $request->cartProductIds);
-            if ($orderId) {
+            $order = $this->orderRepository->createOrder($data, $request->cartProductIds);
+            if (!empty($order)) {
                 // Send email
-                $job = new SendOrderConfirmEmail($data['customer_email'], $orderId, $data['price']);
+                /*
+                $job = new SendOrderConfirmEmail($data['customer_email'], $order->id, $data['price']);
                 dispatch($job);
-
+                */
+                // Generate notification
+                event(new OrderCreated($order));
                 return redirect()->route('sites.my-order')
                     ->with('message', trans('sites.order.success_add'));
             } else {

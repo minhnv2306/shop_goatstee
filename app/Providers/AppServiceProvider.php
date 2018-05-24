@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Notification;
 use App\Repositories\CategoryRepository;
+use App\Repositories\NotificationRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +24,16 @@ class AppServiceProvider extends ServiceProvider
             $categoryRepository = new CategoryRepository();
             $view->with([
                 'categories'=> $categoryRepository->getCategoryHasProduct($attribute),
+            ]);
+        });
+
+        view()->composer('layouts.admin.components.header', function ($view) {
+            $repository = new NotificationRepository();
+            $notifications = $repository->getUnReadNotification();
+            $totalNoti = count($notifications);
+            $view->with([
+                'notifications'=> $notifications,
+                'totalNoti' => $totalNoti,
             ]);
         });
     }

@@ -51,4 +51,9 @@ class Order extends Model
             self::FINISH_STATUS => trans('sites.order.status_4'),
         ];
     }
+
+    public function notifications()
+    {
+        return $this->morphMany('App\Models\Notification', 'object');
+    }
 }
