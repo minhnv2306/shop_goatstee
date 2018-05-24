@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Sites;
 
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository;
+use App\Repositories\Contracts\UserInterfaceRepository;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     protected $userRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserInterfaceRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }

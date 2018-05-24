@@ -32,6 +32,7 @@ class User extends Authenticatable
         'city_id',
         'role_id',
         'password',
+        'active',
         'hash',
     ];
 }

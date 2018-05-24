@@ -27,6 +27,8 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
+        $this->authorize('update', Order::class);
+
         event(new ReadNotification($order));
         $productOrders = $order->productOrders;
         $price = empty($productOrders) ? 0 : $productOrders->sum('price');

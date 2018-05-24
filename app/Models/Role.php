@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Relations\RoleRelations;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
+    use RoleRelations;
+
     const VIEW = 1;
     const CREATE = 2;
     const UPDATE = 3;

@@ -34,6 +34,13 @@ return [
     'filter' => 'Filter',
     'user' => [
         'manager' => 'User Manager',
+        'success_add' => 'Add new user successfully!',
+        'success_update' => 'Update user successfully!',
+        'role' => 'Role',
+        'create' => 'Create new user',
+        'email' => 'Email',
+        'password' => 'Password',
+        'confirm_password' => 'Confirm password',
     ],
     'select_option' => '-- Select an option --',
     'men' => 'Men',

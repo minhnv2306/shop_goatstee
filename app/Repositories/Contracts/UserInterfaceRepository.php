@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-interface UserRepository
+interface UserInterfaceRepository
 {
     public function saveInfor($user, $data);
 }

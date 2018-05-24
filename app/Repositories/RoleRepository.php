@@ -13,6 +13,10 @@ class RoleRepository extends BaseRepository implements RoleInterfaceRepository
         parent::__construct(Role::class);
     }
 
+    public function getAllForSite()
+    {
+        return Role::all();
+    }
     public function getAll($atrribute)
     {
         return Role::whereNotIn('id', [User::ROLE_ADMIN, User::ROLE_USER])

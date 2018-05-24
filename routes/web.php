@@ -52,7 +52,15 @@ Route::group([ 'namespace' => 'Sites'], function() {
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/', 'HomeController@index')->name('admin.index');
-        Route::resource('users-admin', 'UserController');
+        Route::resource('users', 'UserController')->names([
+            'create' => 'admin.users.create',
+            'update' => 'admin.users.update',
+            'destroy' => 'admin.users.destroy',
+            'store' => 'admin.users.store',
+            'edit' => 'admin.users.edit',
+            'show' => 'admin.users.show',
+            'index' => 'admin.users.index',
+        ]);
         Route::resource('products', 'ProductController');
         Route::resource('orders', 'OrderController');
         Route::resource('reviews', 'ReViewController');

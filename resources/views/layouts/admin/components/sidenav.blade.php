@@ -29,7 +29,7 @@
             </li>
             @can('users.view')
             <li id="users">
-                <a href="{{ route('users-admin.index') }}">
+                <a href="{{ route('admin.users.index') }}">
                     <i class="fa fa-user"></i>
                     <span> @lang('admin.user.manager') </span>
                 </a>
