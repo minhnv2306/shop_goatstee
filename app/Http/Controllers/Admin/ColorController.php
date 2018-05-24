@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ColorRequest;
 use App\Models\Color;
-use App\Repositories\ColorRepository;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\ColorInterfaceRepository;
 use Illuminate\Support\Facades\Log;
 
 class ColorController extends Controller
 {
     protected $colorRepository;
 
-    public function __construct(ColorRepository $colorRepository)
+    public function __construct(ColorInterfaceRepository $colorRepository)
     {
         $this->colorRepository = $colorRepository;
     }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\SizeRequest;
 use App\Models\Size;
-use App\Repositories\CategoryRepository;
-use App\Repositories\SizeRepository;
+use App\Repositories\Contracts\CategoryInterfaceRepository;
+use App\Repositories\Contracts\SizeInterfaceRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
@@ -14,8 +14,10 @@ class SizeController extends Controller
     protected $sizeRepository;
     protected $cateRepository;
 
-    public function __construct(SizeRepository $sizeRepository, CategoryRepository $categoryRepository)
-    {
+    public function __construct(
+        SizeInterfaceRepository $sizeRepository,
+        CategoryInterfaceRepository $categoryRepository
+    ) {
         $this->sizeRepository = $sizeRepository;
         $this->cateRepository = $categoryRepository;
     }

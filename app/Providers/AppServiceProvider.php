@@ -45,6 +45,61 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            'App\Repositories\Contracts\CartInterfaceRepository',
+            'App\Repositories\CartRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\CartProductInterfaceRepository',
+            'App\Repositories\CartProductRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\CategoryInterfaceRepository',
+            'App\Repositories\CategoryRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\ColorInterfaceRepository',
+            'App\Repositories\ColorRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\ImageInterfaceRepository',
+            'App\Repositories\ImageRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\NotificationInterfaceRepository',
+            'App\Repositories\NotificationRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\OrderInterfaceRepository',
+            'App\Repositories\OrderRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\ProductInterfaceRepository',
+            'App\Repositories\ProductRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\ProductOrderInterfaceRepository',
+            'App\Repositories\ProductOrderRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\ReviewInterfaceRepository',
+            'App\Repositories\ReviewRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\RoleInterfaceRepository',
+            'App\Repositories\RoleRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\SizeInterfaceRepository',
+            'App\Repositories\SizeRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\StoreProductInterfaceRepository',
+            'App\Repositories\StoreProductRepository'
+        );
+        $this->app->bind(
+            'App\Repositories\Contracts\UserInterfaceRepository',
+            'App\Repositories\UserRepository'
+        );
     }
 }

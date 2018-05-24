@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
-use App\Repositories\CategoryRepository;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\CategoryInterfaceRepository;
 use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 use Illuminate\Support\Facades\Log;
@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     protected $cateRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryInterfaceRepository $categoryRepository)
     {
         $this->cateRepository = $categoryRepository;
     }

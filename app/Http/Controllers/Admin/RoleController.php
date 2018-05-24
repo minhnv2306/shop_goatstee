@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Permission;
 use App\Models\Role;
-use App\Repositories\RoleRepository;
+use App\Repositories\Contracts\RoleInterfaceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
     protected $roleRepository;
 
-    public function __construct(RoleRepository $roleRepository)
+    public function __construct(RoleInterfaceRepository $roleRepository)
     {
         $this->roleRepository = $roleRepository;
     }

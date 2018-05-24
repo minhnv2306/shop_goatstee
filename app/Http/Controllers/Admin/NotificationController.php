@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Notification;
+use App\Repositories\Contracts\NotificationInterfaceRepository;
 use App\Repositories\NotificationRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,7 +12,7 @@ class NotificationController extends Controller
 {
     protected $repository;
 
-    public function __construct(NotificationRepository $notificationRepository)
+    public function __construct(NotificationInterfaceRepository $notificationRepository)
     {
         $this->repository = $notificationRepository;
     }
