@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Review;
-use App\Repositories\ReviewRepository;
+use App\Repositories\Contracts\ReviewInterfaceRepository;
 use App\Http\Controllers\Controller;
 
 class ReviewController extends Controller
 {
     protected $reviewRepository;
 
-    public function __construct(ReviewRepository $reviewRepository)
+    public function __construct(ReviewInterfaceRepository $reviewRepository)
     {
         $this->reviewRepository = $reviewRepository;
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Sites;
 
-use App\Repositories\CategoryRepository;
-use App\Repositories\ProductRepository;
+use App\Repositories\Contracts\CategoryInterfaceRepository;
+use App\Repositories\Contracts\ProductInterfaceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -14,8 +14,8 @@ class CategoryController extends Controller
     protected $categoryRepository;
 
     public function __construct(
-        ProductRepository $productRepository,
-        CategoryRepository $categoryRepository
+        ProductInterfaceRepository $productRepository,
+        CategoryInterfaceRepository $categoryRepository
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;

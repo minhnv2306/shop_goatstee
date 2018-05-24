@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Events\ReadNotification;
 use App\Models\Order;
-use App\Repositories\OrderRepository;
+use App\Repositories\Contracts\OrderInterfaceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     protected $orderRepository;
 
-    public function __construct(OrderRepository $orderRepository)
+    public function __construct(OrderInterfaceRepository $orderRepository)
     {
         $this->orderRepository = $orderRepository;
     }

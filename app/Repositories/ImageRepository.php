@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Image;
+use App\Repositories\Contracts\ImageInterfaceRepository;
 
-class ImageRepository extends BaseRepository
+class ImageRepository extends BaseRepository implements ImageInterfaceRepository
 {
     public function __construct()
     {

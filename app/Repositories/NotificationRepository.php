@@ -4,8 +4,9 @@ namespace App\Repositories;
 
 use App\Models\Cart;
 use App\Models\Notification;
+use App\Repositories\Contracts\NotificationInterfaceRepository;
 
-class NotificationRepository extends BaseRepository
+class NotificationRepository extends BaseRepository implements NotificationInterfaceRepository
 {
     public function __construct()
     {

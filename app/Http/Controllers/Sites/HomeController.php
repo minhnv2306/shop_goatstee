@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Sites;
 
 use App\Models\Product;
-use App\Repositories\ProductRepository;
+use App\Repositories\Contracts\ProductInterfaceRepository;
 use App\Http\Controllers\Controller;
-use Yajra\DataTables\Utilities\Request;
 
 class HomeController extends Controller
 {
     protected $productRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductInterfaceRepository $productRepository)
     {
         $this->productRepository = $productRepository;
     }

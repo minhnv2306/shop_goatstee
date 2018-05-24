@@ -17,11 +17,6 @@ class ProductRepository extends BaseRepository implements ProductInterfaceReposi
         parent::__construct(Product::class);
     }
 
-    public function create($data)
-    {
-        return Product::create($data);
-    }
-
     public function delele($model)
     {
         $model->update([

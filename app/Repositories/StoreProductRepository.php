@@ -3,8 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\StoreProduct;
+use App\Repositories\Contracts\StoreProductInterfaceRepository;
 
-class StoreProductRepository extends BaseRepository
+class StoreProductRepository extends BaseRepository implements StoreProductInterfaceRepository
 {
     public function __construct()
     {

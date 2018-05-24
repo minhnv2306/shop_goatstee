@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use App\Models\StoreProduct;
-use App\Repositories\CategoryRepository;
-use App\Repositories\ColorRepository;
-use App\Repositories\ImageRepository;
-use App\Repositories\ProductRepository;
-use App\Repositories\SizeRepository;
-use App\Repositories\StoreProductRepository;
+use App\Repositories\Contracts\CategoryInterfaceRepository;
+use App\Repositories\Contracts\ColorInterfaceRepository;
+use App\Repositories\Contracts\ImageInterfaceRepository;
+use App\Repositories\Contracts\ProductInterfaceRepository;
+use App\Repositories\Contracts\SizeInterfaceRepository;
+use App\Repositories\Contracts\StoreProductInterfaceRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -25,12 +24,12 @@ class ProductController extends Controller
     protected $storeProductRepository;
 
     public function __construct(
-        CategoryRepository $categoryRepository,
-        ColorRepository $colorRepository,
-        SizeRepository $sizeRepository,
-        ProductRepository $productRepository,
-        ImageRepository $imageRepository,
-        StoreProductRepository $storeProductRepository
+        CategoryInterfaceRepository $categoryRepository,
+        ColorInterfaceRepository $colorRepository,
+        SizeInterfaceRepository $sizeRepository,
+        ProductInterfaceRepository $productRepository,
+        ImageInterfaceRepository $imageRepository,
+        StoreProductInterfaceRepository $storeProductRepository
     ) {
         $this->cateRepository = $categoryRepository;
         $this->sizeRepository = $sizeRepository;

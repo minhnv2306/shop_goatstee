@@ -3,17 +3,15 @@
 namespace App\Http\Controllers\Sites;
 
 use App\Models\Product;
-use App\Models\StoreProduct;
-use App\Repositories\ProductRepository;
+use App\Repositories\Contracts\ProductInterfaceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     protected $productRepository;
 
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductInterfaceRepository $productRepository)
     {
         $this->productRepository = $productRepository;
     }

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Sites;
 use App\Events\OrderCreated;
 use App\Http\Requests\OrderRequest;
 use App\Jobs\SendOrderConfirmEmail;
-use App\Repositories\OrderRepository;
-use App\Repositories\ProductRepository;
-use App\Repositories\CartRepository;
+use App\Repositories\Contracts\CartInterfaceRepository;
+use App\Repositories\Contracts\OrderInterfaceRepository;
+use App\Repositories\Contracts\ProductInterfaceRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,9 +20,9 @@ class OrderController extends Controller
     protected $orderRepository;
 
     public function __construct(
-        CartRepository $cartRepository,
-        ProductRepository $productRepository,
-        OrderRepository $orderRepository
+        CartInterfaceRepository $cartRepository,
+        ProductInterfaceRepository $productRepository,
+        OrderInterfaceRepository $orderRepository
     ) {
         $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;

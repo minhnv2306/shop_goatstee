@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Sites;
 
-use App\Repositories\CartRepository;
-use App\Repositories\ProductRepository;
+use App\Repositories\Contracts\CartInterfaceRepository;
+use App\Repositories\Contracts\ProductInterfaceRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +14,8 @@ class CartController extends Controller
     protected $productRepository;
 
     public function __construct(
-        CartRepository $cartRepository,
-        ProductRepository $productRepository
+        CartInterfaceRepository $cartRepository,
+        ProductInterfaceRepository $productRepository
     ) {
         $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;
