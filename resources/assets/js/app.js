@@ -9,17 +9,19 @@ require('./bootstrap');
 require('datatables.net/js/jquery.dataTables.js');
 require('axios/dist/axios.js');
 
-window.Vue = require('vue');
-import Router from 'vue-router';
-window.Vue.use(Router);
+import Vue from 'vue'; // Importing Vue Library
+import VueRouter from 'vue-router'; // importing Vue router library
 
+window.Vue = Vue;
+Vue.use(VueRouter);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/ExampleComponent.vue'));
 Vue.component('product', require('./components/ProductComponent.vue'));
-Vue.component('add-product-to-cart', require('./components/AddProductToCart.vue'));
-Vue.component('modal-choose-product', require('./components/ModalChooseProduct.vue'));
+Vue.component('product-cart', require('./components/ProductCart.vue'));
+Vue.component('product-modal-choose', require('./components/ProductModalChoose.vue'));
+Vue.component('the-cart-header', require('./components/TheCartHeader.vue'));
+Vue.component('the-cart-content', require('./components/TheCartContent.vue'));

@@ -28,11 +28,18 @@
                 productObject: JSON.parse(this.product),
             }
         },
-        props: [
-            'product',
-            'avatar',
-            'url',
-        ],
+        props: {
+            product: {
+                type: String,
+                required: true
+            },
+            avatar: {
+                type: String
+            },
+            url: {
+                type: String
+            },
+        },
         mounted() {
             console.log('Component mounted.')
         }

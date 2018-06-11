@@ -26,6 +26,7 @@
         "pusher-js": "^4.2.2",
         "sweetalert": "^2.1.0",
         "toastr": "^2.1.4",
+        "vue-cli": "^2.9.3",
         "vue-router": "^3.0.1"
     }
 }

@@ -21,8 +21,8 @@
                 </div>
             {!! Form::close() !!}
         </div>
-        <div class="header-cart">
-
+        <div id="cart-header">
+            <the-cart-header></the-cart-header>
         </div>
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="modal-cart" role="dialog">

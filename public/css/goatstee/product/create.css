@@ -1,0 +1,13 @@
+.color {
+    width: 120px;
+    margin-left: 20px !important;
+}
+.padding-bottom-20 {
+    padding-bottom: 20px;
+}
+.width-100 {
+    width: 100px !important;
+}
+.width-full {
+    width: 100%;
+}

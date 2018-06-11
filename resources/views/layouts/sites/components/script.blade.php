@@ -44,14 +44,6 @@
     if (!localStorage.getItem("hash")) {
         localStorage.setItem("hash", Math.random());
     }
-
-    // Load cart
-    $.ajax({
-        url: "/getNumberProduct/" + localStorage.getItem("hash"),
-        success: function(result){
-            $('.header-cart').html(result);
-        }
-    });
 </script>
 <script src="{{asset('js/typeahead.bundle.js')}}"></script>
 <script>
@@ -84,6 +76,11 @@
                 }
             }
         });
+    });
+</script>
+<script>
+    new Vue({
+        el: '#cart-header'
     });
 </script>
 <!-- Toastr -->

@@ -82,3 +82,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
 });
 
 Auth::routes();
+
+Route::get('/match-route', function () {
+    return view('match-route');
+});
+Route::get('/nested-route', function () {
+    return view('nested-route');
+});
+Route::get('/view-name', function () {
+    return view('view-name');
+});

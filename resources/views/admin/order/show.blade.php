@@ -159,7 +159,7 @@
                                                         'route' => ['orders.update', 'order' => $order->id]
                                                     ]) !!}
                                                         <div class="form-group">
-                                                            {!! Form::label('status', trans('admin.product.made_in')) !!}
+                                                            {!! Form::label('status', 'Status') !!}
                                                             {!! Form::select('status', $arrayStatus, $order->status, ['id' => 'status', 'class' => 'form-control']); !!}
                                                         </div>
                                                         <div class="form-group">

@@ -1,13 +1,13 @@
 <template>
     <div>
-        <add-product-to-cart
+        <product-cart
                 v-bind:id="id"
-                v-bind:labeltype="labeltype"
-                v-bind:labelcolor="labelcolor"
-                v-bind:labelsize="labelsize"
-                v-bind:labelnumber="labelnumber"
+                v-bind:label-type="labelType"
+                v-bind:label-color="labelColor"
+                v-bind:label-size="labelSize"
+                v-bind:label-number="labelNumber"
                 v-on:increment="getNumberTotal"
-        ></add-product-to-cart>
+        ></product-cart>
         <div>
             <div class="woocommerce-variation-price">
                 <span class="price">
@@ -15,7 +15,7 @@
                         <span class="woocommerce-Price-currencySymbol">$</span>
                     </span>
                     <span id="price">
-                        {{ sumprice }}
+                        {{ sumPrice }}
                     </span>
                 </span>
             </div>
@@ -27,13 +27,13 @@
                             min="1"
                             class="number_product"
                             v-bind:max="max"
-                            v-model="min"
-                            v-on:change="sumTotal">
+                            v-model="quality"
+                            />
                 </div>
             </div>
             <div>
-                <p> {{ labelnumber }}
-                    <span id="total_number"> {{  totalnumber }} </span></p>
+                <p> {{ labelNumber }}
+                    <span id="total_number"> {{  totalNumber }} </span></p>
             </div>
         </div>
     </div>
@@ -41,32 +41,44 @@
 
 <script>
     export default {
-        props: [
-            'originprice',
-            'sumprice',
-            'id',
-            'labeltype',
-            'labelcolor',
-            'labelsize',
-            'labelnumber'
-        ],
-        mounted() {
-            console.log(this.labeltype);
+        props: {
+            originPrice: {
+                type: Number,
+                required: true
+            },
+            id: {
+                type: Number,
+                required: true
+            },
+            labelType: {
+                type: String
+            },
+            labelColor: {
+                type: String
+            },
+            labelSize: {
+                type: String
+            },
+            labelNumber: {
+                type: String
+            }
         },
         data: function () {
             return {
-                totalnumber: 0,
-                min: 1,
+                totalNumber: 0,
+                quality: 1,
                 max: 10000,
+            }
+        },
+        computed: {
+            sumPrice: function () {
+                return this.quality * this.originPrice;
             }
         },
         methods: {
             getNumberTotal: function (payload) {
-                this.totalnumber = payload.numbertotal
+                this.totalNumber = payload.numbertotal
                 this.max = payload.numbertotal
-            },
-            sumTotal: function (e) {
-                this.sumprice = this.originprice * e.target.value;
             }
         }
     }

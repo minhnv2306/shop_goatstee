@@ -35,7 +35,7 @@
                                             <!-- Modal content-->
                                             {!! Form::open([
                                                 'method' => 'POST',
-                                                'route' => 'admin.users.create'
+                                                'route' => 'admin.users.store'
                                             ]) !!}
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -122,6 +122,7 @@
                                             <td>{{ $user->created_at }}</td>
                                             <td>
                                                 @can('update', 'App\Models\User')
+                                                    @if (\Illuminate\Support\Facades\Auth::user()->id != $user->id)
                                                     <button class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit-color-{{$user->id}}">
                                                         <i class="fa fa-edit"></i> @lang('admin.edit')
                                                     </button>
@@ -169,6 +170,7 @@
                                                             {!! Form::close() !!}
                                                         </div>
                                                     </div>
+                                                    @endif
                                                 @endcan
                                             </td>
                                         </tr>

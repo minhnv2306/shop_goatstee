@@ -23,7 +23,7 @@
     </script>
 @elseif($errors->any())
     <script>
-        toastr.error('{{ trans('admin.category.error') }}')
+        toastr.error('Some thing went wrong!')
     </script>
 @endif
 

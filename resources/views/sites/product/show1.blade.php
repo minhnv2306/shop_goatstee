@@ -128,16 +128,15 @@
                                                         <h4 class="modal-title"> Modal content </h4>
                                                     </div>
                                                     <div class="modal-body" id="modal-content">
-                                                        <modal-choose-product
-                                                            originprice="{!! $product->price !!}"
-                                                            sumprice="{!! $product->price !!}"
-                                                            id="{!! $product->id !!}"
-                                                            labelType="{!! trans('sites.product.type') !!}"
-                                                            labelColor="{!! trans('sites.product.color') !!}"
-                                                            labelSize="{!! trans('sites.product.size') !!}"
-                                                            labelNumber="{!! trans('sites.product.number_store') !!}"
+                                                        <product-modal-choose
+                                                            :origin-price="{!! $product->price !!}"
+                                                            :id="{!! $product->id !!}"
+                                                            label-type="{!! trans('sites.product.type') !!}"
+                                                            label-color="{!! trans('sites.product.color') !!}"
+                                                            label-size="{!! trans('sites.product.size') !!}"
+                                                            label-number="{!! trans('sites.product.number_store') !!}"
                                                         >
-                                                        </modal-choose-product>
+                                                        </product-modal-choose>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <input type="hidden" value="{{ $product->id }}" name="product_id"/>

@@ -83,12 +83,6 @@
                 </a>
             </li>
             @endcan
-            <li id="reviews">
-                <a href="{{ route('reviews.index') }}">
-                    <i class="fa fa-star"></i>
-                    <span> @lang('admin.review.manager') </span>
-                </a>
-            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

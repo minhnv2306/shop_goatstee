@@ -1,0 +1,11 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/toastr.css": "/css/toastr.css",
+    "/css/app.css": "/css/app.css",
+    "/js/product/show.js": "/js/product/show.js",
+    "/js/product/paginate.js": "/js/product/paginate.js",
+    "/js/typeahead.bundle.js": "/js/typeahead.bundle.js",
+    "/js/waitMe.min.js": "/js/waitMe.min.js",
+    "/css/waitMe.min.css": "/css/waitMe.min.css",
+    "/js/toastr.js": "/js/toastr.js"
+}

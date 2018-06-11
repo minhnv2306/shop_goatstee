@@ -3,7 +3,7 @@
         <tbody>
         <tr id="fit_type_choose">
             <td>
-                <h4> {{ labeltype }} </h4>
+                <h4> {{ labelType }} </h4>
             </td>
             <td class="value">
                 <select
@@ -19,7 +19,7 @@
         </tr>
         <tr id="color_choose">
             <td>
-                <h4> {{ labelcolor }} </h4>
+                <h4> {{ labelColor }} </h4>
             </td>
             <td class="value" id="color_product">
                 <select
@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td>
-                <h4> {{ labelsize }} </h4>
+                <h4> {{ labelSize }} </h4>
             <td class="value" id="size_product">
                 <select
                         v-model="size"
@@ -52,12 +52,22 @@
 
 <script>
     export default {
-        props: [
-            'id',
-            'labeltype',
-            'labelcolor',
-            'labelsize'
-        ],
+        props: {
+            id: {
+                type: Number,
+                required: true
+            },
+            labelType: {
+                type: String
+            },
+            labelColor: {
+                type: String
+            },
+            labelSize: {
+                type: String
+            }
+        },
+
         data: function() {
             return {
                 sex: 0,
@@ -68,12 +78,9 @@
                 htmlsize: '<option value="0" selected>--Select an option--</option>',
             }
         },
-        mounted() {
-            console.log(this.labeltype)
-        },
+
         methods: {
             changeSelect: function () {
-                console.log(this.labeltype)
                 var sex = this.sex;
                 var productId = this.productId;
                 var vueThis = this;
@@ -84,11 +91,8 @@
                         sex: sex,
                         productId: productId
                     },
-                }).then(function (resp) {
-                    vueThis.htmlcolor = resp.data;
-                }).catch(function (error) {
-                    swal("OOp!!", error, "error");
-                });
+                }).then(resp => vueThis.htmlcolor = resp.data
+                ).catch(error => swal("OOp!!", error, "error"));
             },
             changeColor: function () {
                 var sex = this.sex;
@@ -127,8 +131,6 @@
                     method: 'POST',
                 }).then(function (resp) {
                     vueThis.$emit('increment', {numbertotal: resp.data})
-                    // $('#total_number').html(resp.data);
-                    // $('.qty').attr('max', resp.data);
                 }).catch(function (error) {
                     swal("OOp!!", error, "error");
                 });
